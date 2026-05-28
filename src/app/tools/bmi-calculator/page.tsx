@@ -1,0 +1,101 @@
+"use client"
+
+import { useState } from "react"
+import { Activity, Scale } from "lucide-react"
+import AdSlot from "@/components/ad-slot"
+
+export default function BMICalculator() {
+  const [weight, setWeight] = useState("")
+  const [height, setHeight] = useState("")
+  const [bmi, setBMI] = useState<number | null>(null)
+  const [category, setCategory] = useState("")
+
+  const calculateBMI = () => {
+    if (!weight || !height) return
+
+    const weightNum = parseFloat(weight)
+    const heightNum = parseFloat(height) / 100 // Convert cm to m
+
+    const bmiValue = weightNum / (heightNum * heightNum)
+    setBMI(bmiValue)
+
+    if (bmiValue < 18.5) setCategory("Underweight")
+    else if (bmiValue < 25) setCategory("Normal weight")
+    else if (bmiValue < 30) setCategory("Overweight")
+    else setCategory("Obese")
+  }
+
+  return (
+    <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-3 text-center text-white">BMI Calculator</h1>
+        <p className="text-gray-400 text-base text-center mb-8">Calculate your Body Mass Index</p>
+        
+        <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
+          {/* Input Fields */}
+          <div className="mb-6 grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-2 text-white">Weight (kg)</label>
+              <input
+                type="number"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
+                placeholder="70"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-white">Height (cm)</label>
+              <input
+                type="number"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
+                placeholder="175"
+              />
+            </div>
+          </div>
+
+          {/* Calculate Button */}
+          <button
+            onClick={calculateBMI}
+            disabled={!weight || !height}
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
+          >
+            Calculate BMI
+          </button>
+
+          {/* Result */}
+          {bmi !== null && (
+            <div className="mt-6 p-6 bg-gradient-to-r from-[#3B82F6]/20 to-[#7C3AED]/20 rounded-xl border border-[#3B82F6]/30">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center">
+                  <Activity className="h-8 w-8 mx-auto mb-2 text-[#00E5FF]" />
+                  <p className="text-4xl font-bold text-white">{bmi.toFixed(1)}</p>
+                  <p className="text-sm text-gray-400">BMI</p>
+                </div>
+                <div className="text-center">
+                  <Scale className="h-8 w-8 mx-auto mb-2 text-[#7C3AED]" />
+                  <p className="text-2xl font-bold text-white">{category}</p>
+                  <p className="text-sm text-gray-400">Category</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Single bottom ad */}
+        <div className="flex justify-center mt-8">
+          <AdSlot adSlot="4000000005" className="w-full max-w-2xl" />
+        </div>
+
+        <button
+          onClick={() => window.location.href = "/"}
+          className="mt-6 text-[#00E5FF] hover:underline"
+        >
+          ← Back to Home
+        </button>
+      </div>
+    </div>
+  )
+}

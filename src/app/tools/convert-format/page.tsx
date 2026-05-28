@@ -1,0 +1,141 @@
+"use client"
+
+import { useState } from "react"
+import { Upload, Download, FileImage } from "lucide-react"
+import AdSlot from "@/components/ad-slot"
+
+export default function ConvertFormat() {
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [preview, setPreview] = useState<string | null>(null)
+  const [targetFormat, setTargetFormat] = useState("png")
+  const [isProcessing, setIsProcessing] = useState(false)
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file && file.type.startsWith('image/')) {
+      setImageFile(file)
+      setPreview(URL.createObjectURL(file))
+    }
+  }
+
+  const convertFormat = async () => {
+    if (!imageFile || !preview) return
+
+    setIsProcessing(true)
+
+    try {
+      const img = new Image()
+      img.src = preview
+      
+      await new Promise((resolve) => {
+        img.onload = resolve
+      })
+
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+      
+      if (!ctx) {
+        throw new Error('Could not get canvas context')
+      }
+
+      canvas.width = img.width
+      canvas.height = img.height
+      ctx.drawImage(img, 0, 0)
+
+      const mimeType = targetFormat === 'jpg' ? 'image/jpeg' : `image/${targetFormat}`
+      const dataUrl = canvas.toDataURL(mimeType, 0.92)
+      
+      const response = await fetch(dataUrl)
+      const blob = await response.blob()
+      const url = URL.createObjectURL(blob)
+      
+      const link = document.createElement('a')
+      link.href = url
+      const extension = targetFormat === 'jpg' ? 'jpg' : targetFormat
+      link.download = `converted-${imageFile.name.split('.')[0]}.${extension}`
+      link.click()
+      
+      URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error('Error converting format:', error)
+      alert('Error converting image format. Please try again.')
+    }
+
+    setIsProcessing(false)
+  }
+
+  return (
+    <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-3 text-center text-white">Convert Image Format</h1>
+        <p className="text-gray-400 text-base text-center mb-8">Convert PNG/JPG/WebP formats</p>
+        
+        <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
+          {/* Upload Area */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-2 text-white">Upload Image</label>
+            <div className="border-2 border-dashed border-white/8 rounded-xl p-8 text-center hover:border-[#3B82F6] hover:bg-[#3B82F6]/5 transition-all">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+                id="image-upload"
+              />
+              <label htmlFor="image-upload" className="cursor-pointer">
+                <Upload className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+                <p className="text-gray-400">Click to upload image</p>
+              </label>
+            </div>
+          </div>
+
+          {/* Target Format */}
+          {imageFile && (
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2 text-white">Target Format</label>
+              <select
+                value={targetFormat}
+                onChange={(e) => setTargetFormat(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
+              >
+                <option value="png">PNG</option>
+                <option value="jpg">JPG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="webp">WebP</option>
+              </select>
+            </div>
+          )}
+
+          {/* Preview */}
+          {preview && (
+            <div className="mb-6">
+              <h3 className="font-medium mb-4 text-white">Preview</h3>
+              <img src={preview} alt="Preview" className="w-full max-w-md mx-auto rounded-xl" />
+            </div>
+          )}
+
+          {/* Convert Button */}
+          <button
+            onClick={convertFormat}
+            disabled={!imageFile || isProcessing}
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
+          >
+            {isProcessing ? "Converting..." : "Convert Format"}
+          </button>
+        </div>
+
+        {/* Single bottom ad */}
+        <div className="flex justify-center mt-8">
+          <AdSlot adSlot="2000000011" className="w-full max-w-2xl" />
+        </div>
+
+        <button
+          onClick={() => window.location.href = "/"}
+          className="mt-6 text-[#00E5FF] hover:underline"
+        >
+          ← Back to Home
+        </button>
+      </div>
+    </div>
+  )
+}
