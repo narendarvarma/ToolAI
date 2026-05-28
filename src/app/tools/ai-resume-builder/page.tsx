@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { FileText, Download, Wand2 } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import { tokenManager } from "@/lib/token-manager"
 
 export default function AIResumeBuilder() {
   const [name, setName] = useState("")
@@ -16,6 +17,13 @@ export default function AIResumeBuilder() {
 
   const generateResume = async () => {
     if (!name || !email) return
+
+    // Check token limit (estimate: ~800 tokens for this operation)
+    const estimatedTokens = 800
+    if (!tokenManager.canUseTokens(estimatedTokens)) {
+      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+      return
+    }
 
     setIsGenerating(true)
 
@@ -46,6 +54,8 @@ export default function AIResumeBuilder() {
       
       if (data.choices && data.choices[0]) {
         setGeneratedResume(data.choices[0].message.content)
+        // Deduct tokens
+        tokenManager.useTokens(estimatedTokens)
       } else {
         throw new Error('No response from AI')
       }

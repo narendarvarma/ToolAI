@@ -1,12 +1,27 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Search, Menu, X, User, LogIn } from "lucide-react"
+import { Search, Menu, X, Zap } from "lucide-react"
+import { tokenManager } from "@/lib/token-manager"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
+  const [remainingTokens, setRemainingTokens] = useState(0)
+  const [tokenPercentage, setTokenPercentage] = useState(0)
+
+  useEffect(() => {
+    const updateTokens = () => {
+      setRemainingTokens(tokenManager.getRemainingTokens())
+      setTokenPercentage(tokenManager.getTokenUsagePercentage())
+    }
+
+    updateTokens()
+    const interval = setInterval(updateTokens, 60000) // Update every minute
+
+    return () => clearInterval(interval)
+  }, [])
 
   const categories = [
     "PDF Tools",
@@ -51,6 +66,13 @@ export default function Navbar() {
                   {category}
                 </Link>
               ))}
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/8">
+                <Zap className="h-4 w-4 text-[#00E5FF]" />
+                <span className="text-sm text-white">{remainingTokens.toLocaleString()}</span>
+                <span className="text-xs text-gray-400">tokens</span>
+              </div>
             </div>
           </div>
 

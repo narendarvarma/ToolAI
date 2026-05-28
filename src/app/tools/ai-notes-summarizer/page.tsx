@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { FileText, Copy, Wand2 } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import { tokenManager } from "@/lib/token-manager"
 
 export default function AINotesSummarizer() {
   const [notes, setNotes] = useState("")
@@ -12,6 +13,13 @@ export default function AINotesSummarizer() {
 
   const generateSummary = async () => {
     if (!notes) return
+
+    // Check token limit (estimate: ~450 tokens for this operation)
+    const estimatedTokens = 450
+    if (!tokenManager.canUseTokens(estimatedTokens)) {
+      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+      return
+    }
 
     setIsGenerating(true)
 
@@ -42,6 +50,8 @@ export default function AINotesSummarizer() {
       
       if (data.choices && data.choices[0]) {
         setGeneratedSummary(data.choices[0].message.content)
+        // Deduct tokens
+        tokenManager.useTokens(estimatedTokens)
       } else {
         throw new Error('No response from AI')
       }

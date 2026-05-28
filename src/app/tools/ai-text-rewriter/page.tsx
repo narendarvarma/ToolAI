@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { RefreshCw, Copy, Wand2 } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import { tokenManager } from "@/lib/token-manager"
 
 export default function AITextRewriter() {
   const [originalText, setOriginalText] = useState("")
@@ -12,6 +13,13 @@ export default function AITextRewriter() {
 
   const rewriteText = async () => {
     if (!originalText) return
+
+    // Check token limit (estimate: ~500 tokens for this operation)
+    const estimatedTokens = 500
+    if (!tokenManager.canUseTokens(estimatedTokens)) {
+      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+      return
+    }
 
     setIsRewriting(true)
 
@@ -42,6 +50,8 @@ export default function AITextRewriter() {
       
       if (data.choices && data.choices[0]) {
         setRewrittenText(data.choices[0].message.content)
+        // Deduct tokens (actual usage would be from API response)
+        tokenManager.useTokens(estimatedTokens)
       } else {
         throw new Error('No response from AI')
       }

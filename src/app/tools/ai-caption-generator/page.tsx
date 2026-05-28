@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Wand2, Copy } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import { tokenManager } from "@/lib/token-manager"
 
 export default function AICaptionGenerator() {
   const [imageDescription, setImageDescription] = useState("")
@@ -12,6 +13,13 @@ export default function AICaptionGenerator() {
 
   const generateCaption = async () => {
     if (!imageDescription) return
+
+    // Check token limit (estimate: ~300 tokens for this operation)
+    const estimatedTokens = 300
+    if (!tokenManager.canUseTokens(estimatedTokens)) {
+      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+      return
+    }
 
     setIsGenerating(true)
 
@@ -42,6 +50,8 @@ export default function AICaptionGenerator() {
       
       if (data.choices && data.choices[0]) {
         setGeneratedCaption(data.choices[0].message.content)
+        // Deduct tokens
+        tokenManager.useTokens(estimatedTokens)
       } else {
         throw new Error('No response from AI')
       }

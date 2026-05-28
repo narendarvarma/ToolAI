@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Upload, Download, Sparkles } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import { tokenManager } from "@/lib/token-manager"
 
 export default function AIImageEnhancer() {
   const [imageFile, setImageFile] = useState<File | null>(null)
@@ -20,6 +21,13 @@ export default function AIImageEnhancer() {
 
   const enhanceImage = async () => {
     if (!imageFile || !preview) return
+
+    // Check token limit (estimate: ~1000 tokens for this operation)
+    const estimatedTokens = 1000
+    if (!tokenManager.canUseTokens(estimatedTokens)) {
+      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+      return
+    }
 
     setIsProcessing(true)
 
@@ -68,6 +76,8 @@ export default function AIImageEnhancer() {
         if (data.choices && data.choices[0]) {
           const analysis = data.choices[0].message.content
           alert(`AI Analysis:\n\n${analysis}\n\nNote: For actual image processing, you would need a dedicated image AI API. This tool provides expert analysis and suggestions.`)
+          // Deduct tokens
+          tokenManager.useTokens(estimatedTokens)
         } else {
           throw new Error('No response from AI')
         }
