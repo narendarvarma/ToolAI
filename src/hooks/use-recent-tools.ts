@@ -2,12 +2,19 @@
 
 import { useEffect } from "react"
 
-export function useRecentTools(toolPath: string) {
+interface RecentTool {
+  name: string
+  url: string
+  icon: string
+}
+
+export function useRecentTools(toolPath: string, toolName: string, toolIcon: string) {
   useEffect(() => {
     if (typeof window === "undefined") return
 
-    const recentTools = JSON.parse(localStorage.getItem("recentTools") || "[]")
-    const updated = [toolPath, ...recentTools.filter((t: string) => t !== toolPath)].slice(0, 3)
-    localStorage.setItem("recentTools", JSON.stringify(updated))
-  }, [toolPath])
+    const recentTools: RecentTool[] = JSON.parse(localStorage.getItem("toolhub_recent") || "[]")
+    const newTool: RecentTool = { name: toolName, url: toolPath, icon: toolIcon }
+    const updated = [newTool, ...recentTools.filter((t: RecentTool) => t.url !== toolPath)].slice(0, 5)
+    localStorage.setItem("toolhub_recent", JSON.stringify(updated))
+  }, [toolPath, toolName, toolIcon])
 }

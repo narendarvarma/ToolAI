@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { Search, ArrowRight, Sparkles, Clock, Heart, Star, MessageCircle } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
@@ -130,12 +130,13 @@ const popularTools = [
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("")
-  const [recentTools, setRecentTools] = useState<typeof tools>([])
+  const [recentTools, setRecentTools] = useState<{name: string, url: string, icon: string}[]>([])
   const [newsletterEmail, setNewsletterEmail] = useState("")
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false)
   const [showToast, setShowToast] = useState(false)
   const { favourites, toggleFavourite, isFavourite } = useFavouriteTools()
   const { getAverageRating, isClient } = useToolRatings("")
+  const searchInputRef = React.useRef<HTMLInputElement>(null)
 
   // Tool of the Day - based on date
   const today = new Date()
@@ -143,12 +144,31 @@ export default function Home() {
   const toolOfTheDay = tools[dayOfYear % tools.length]
 
   useEffect(() => {
-    const stored = localStorage.getItem("recentTools")
+    const stored = localStorage.getItem("toolhub_recent")
     if (stored) {
-      const recentPaths = JSON.parse(stored)
-      const recent = tools.filter(tool => recentPaths.includes(tool.path))
-      setRecentTools(recent)
+      const recentData = JSON.parse(stored)
+      setRecentTools(recentData)
     }
+  }, [])
+
+  const clearHistory = () => {
+    localStorage.removeItem("toolhub_recent")
+    setRecentTools([])
+  }
+
+  // Keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === '/' && searchInputRef.current) {
+        e.preventDefault()
+        searchInputRef.current.focus()
+      }
+      if (e.key === 'Escape') {
+        setSearchQuery("")
+      }
+    }
+    window.addEventListener('keydown', handleKeyPress)
+    return () => window.removeEventListener('keydown', handleKeyPress)
   }, [])
 
   const handleFavouriteClick = (e: React.MouseEvent, toolPath: string) => {
@@ -163,6 +183,12 @@ export default function Home() {
     tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     tool.description.toLowerCase().includes(searchQuery.toLowerCase())
   )
+
+  const highlightText = (text: string, query: string) => {
+    if (!query) return text
+    const regex = new RegExp(`(${query})`, 'gi')
+    return text.replace(regex, '<mark class="bg-[#00E5FF]/30 text-white px-1 rounded">$1</mark>')
+  }
 
   return (
     <div className="min-h-screen bg-[#0B0F1A]">
@@ -221,13 +247,26 @@ export default function Home() {
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
+                ref={searchInputRef}
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search 66+ tools... e.g. PDF, QR, CGPA"
+                placeholder="🔍 Search 66+ tools... try 'PDF', 'CGPA', 'password'"
                 className="w-full pl-12 pr-4 py-4 rounded-2xl bg-[#111827] border border-white/8 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
               />
             </div>
+            {searchQuery && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-2 text-sm text-gray-400"
+              >
+                {filteredTools.length > 0 
+                  ? `Showing ${filteredTools.length} tools for '${searchQuery}'`
+                  : `No tools found. Try 'calculator'`
+                }
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Category Chips */}
@@ -324,36 +363,45 @@ export default function Home() {
           className="py-14 px-4"
         >
           <div className="max-w-7xl mx-auto">
-            <div className="mb-8">
-              <h2 className="text-3xl font-semibold mb-2 text-white">Recently Used Tools</h2>
-              <p className="text-gray-400">Quick access to your last used tools</p>
+            <div className="mb-8 flex items-center justify-between">
+              <div>
+                <h2 className="text-3xl font-semibold mb-2 text-white">🕐 Recently Used</h2>
+                <p className="text-gray-400">Quick access to your last used tools</p>
+              </div>
+              <button
+                onClick={clearHistory}
+                className="text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                Clear History
+              </button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {recentTools.slice(0, 3).map((tool, index) => {
-                const Icon = tool.icon
+                const toolData = tools.find(t => t.path === tool.url)
+                const Icon = toolData?.icon || FileText
                 return (
                   <motion.div
-                    key={tool.path}
+                    key={tool.url}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.7 + (index * 0.05) }}
                   >
                     <Link
-                      href={tool.path}
+                      href={tool.url}
                       className="group bg-gradient-to-br from-[#111827] to-[#1a1f2e] rounded-2xl p-6 border border-white/8 hover:border-[#00E5FF]/50 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#00E5FF]/10 transition-all duration-300 block relative"
                     >
                       <button
-                        onClick={(e) => handleFavouriteClick(e, tool.path)}
+                        onClick={(e) => handleFavouriteClick(e, tool.url)}
                         className="absolute top-4 right-4 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors z-10"
                       >
-                        <Heart className={`h-5 w-5 ${isFavourite(tool.path) ? 'text-red-500 fill-red-500' : 'text-gray-400'}`} />
+                        <Heart className={`h-5 w-5 ${isFavourite(tool.url) ? 'text-red-500 fill-red-500' : 'text-gray-400'}`} />
                       </button>
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#00E5FF]/20 to-[#7C4DFF]/20 flex items-center justify-center mb-4 group-hover:from-[#00E5FF]/30 group-hover:to-[#7C4DFF]/30 transition-all">
                         <Icon className="h-6 w-6 text-[#00E5FF]" />
                       </div>
                       <h3 className="font-semibold text-white mb-2">{tool.name}</h3>
-                      <p className="text-sm text-gray-400">{tool.description}</p>
+                      <p className="text-sm text-gray-400">{toolData?.description || ""}</p>
                       <div className="mt-4 flex items-center text-[#00E5FF] text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                         <span>Open Tool</span>
                         <ArrowRight className="h-4 w-4 ml-1" />
@@ -481,20 +529,6 @@ export default function Home() {
         </motion.div>
       )}
 
-      {/* WhatsApp Community Invite Button */}
-      <motion.a
-        href="https://chat.whatsapp.com/YOUR_COMMUNITY_LINK"
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 1 }}
-        className="fixed bottom-8 right-8 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white p-4 rounded-full shadow-lg shadow-[#25D366]/30 hover:scale-110 transition-transform z-50 flex items-center gap-2 group"
-      >
-        <MessageCircle className="h-6 w-6" />
-        <span className="hidden group-hover:block whitespace-nowrap font-medium">Join Community</span>
-      </motion.a>
-
       {/* Banner ad between Most Popular Tools and PDF Tools */}
       <div className="flex justify-center px-4">
         <div className="ad-slot w-full max-w-7xl" style={{minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
@@ -551,7 +585,10 @@ export default function Home() {
                           <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#00E5FF]/20 to-[#7C4DFF]/20 flex items-center justify-center mb-4 group-hover:from-[#00E5FF]/30 group-hover:to-[#7C4DFF]/30 transition-all">
                             <Icon className="h-6 w-6 text-[#00E5FF]" />
                           </div>
-                          <h3 className="font-semibold text-white mb-2">{tool.name}</h3>
+                          <h3 
+                            className="font-semibold text-white mb-2"
+                            dangerouslySetInnerHTML={{ __html: highlightText(tool.name, searchQuery) }}
+                          />
                           <p className="text-sm text-gray-400">{tool.description}</p>
                           {isClient && getAverageRating(tool.path) > 0 && (
                             <div className="mt-2 flex items-center gap-1">

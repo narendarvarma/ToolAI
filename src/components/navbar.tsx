@@ -10,14 +10,14 @@ export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
-    const stored = localStorage.getItem("darkMode")
+    const stored = localStorage.getItem("toolhub_theme")
     if (stored !== null) {
-      setIsDarkMode(JSON.parse(stored))
+      setIsDarkMode(stored === "dark")
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("darkMode", JSON.stringify(isDarkMode))
+    localStorage.setItem("toolhub_theme", isDarkMode ? "dark" : "light")
     if (isDarkMode) {
       document.documentElement.classList.add("dark")
     } else {

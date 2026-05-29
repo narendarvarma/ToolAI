@@ -30,11 +30,30 @@ export default function CgpaCalculator() {
 
   const addCourse = () => {
     if (name.trim() && credits && grade) {
-      setCourses([...courses, { id: Date.now(), name, credits: parseFloat(credits), grade: parseFloat(grade) }])
+      const creditsNum = parseFloat(credits)
+      if (creditsNum < 1 || creditsNum > 6) {
+        alert("Credits must be between 1 and 6")
+        return
+      }
+      setCourses([...courses, { id: Date.now(), name, credits: creditsNum, grade: parseFloat(grade) }])
       setName("")
       setCredits("")
       setGrade("")
     }
+  }
+
+  const clearAll = () => {
+    setCourses([])
+    setHasCalculated(false)
+    setShowSharePrompt(false)
+  }
+
+  const getGradeClassification = (cgpa: number) => {
+    if (cgpa >= 9.0) return { text: "Outstanding", emoji: "🏆", color: "text-yellow-400" }
+    if (cgpa >= 8.0) return { text: "Excellent", emoji: "⭐", color: "text-green-400" }
+    if (cgpa >= 7.0) return { text: "Good", emoji: "✅", color: "text-blue-400" }
+    if (cgpa >= 6.0) return { text: "Average", emoji: "📘", color: "text-purple-400" }
+    return { text: "Needs Improvement", emoji: "⚠️", color: "text-orange-400" }
   }
 
   const removeCourse = (id: number) => {
@@ -95,8 +114,10 @@ export default function CgpaCalculator() {
               type="number"
               value={credits}
               onChange={(e) => setCredits(e.target.value)}
+              min="1"
+              max="6"
               className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
-              placeholder="Credits"
+              placeholder="Credits (1-6)"
             />
             <select
               value={grade}
@@ -157,18 +178,29 @@ export default function CgpaCalculator() {
             <div className="p-6 bg-gradient-to-r from-[#3B82F6]/20 to-[#7C3AED]/20 rounded-xl border border-[#3B82F6]/30">
               <div className="text-center mb-4">
                 <Calculator className="h-8 w-8 mx-auto mb-2 text-[#00E5FF]" />
-                <p className="text-4xl font-bold text-white">{cgpa.toFixed(2)}</p>
-                <p className="text-sm text-gray-400 mt-1">CGPA</p>
-              </div>
-              <button
-                onClick={downloadPDF}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20"
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <Download className="h-5 w-5" />
-                  Download Result as PDF
+                <p className="text-4xl font-bold text-white">{cgpa.toFixed(2)} <span className="text-2xl text-gray-400">/ 10.0</span></p>
+                <p className="text-sm text-gray-400 mt-1">Your CGPA</p>
+                <div className={`mt-2 text-lg font-semibold ${getGradeClassification(cgpa).color}`}>
+                  {getGradeClassification(cgpa).emoji} {getGradeClassification(cgpa).text}
                 </div>
-              </button>
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={downloadPDF}
+                  className="flex-1 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20"
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <Download className="h-5 w-5" />
+                    Download PDF
+                  </div>
+                </button>
+                <button
+                  onClick={clearAll}
+                  className="flex-1 py-3 rounded-xl bg-white/5 border border-white/8 text-white font-semibold hover:bg-white/10 transition-colors"
+                >
+                  Clear All
+                </button>
+              </div>
             </div>
           )}
         </div>

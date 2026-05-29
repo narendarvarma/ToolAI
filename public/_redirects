@@ -1,0 +1,5 @@
+# Netlify redirects
+# Force HTTPS
+https://gettoolai.in/* https://gettoolai.in/:splat 301
+# Redirect www to non-www
+https://www.gettoolai.in/* https://gettoolai.in/:splat 301

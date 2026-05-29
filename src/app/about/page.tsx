@@ -1,3 +1,33 @@
+import { BASE_URL } from "@/lib/config"
+
+export const metadata = {
+  title: "About ToolHub AI - Our Mission & Story",
+  description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our founder's story, values, and commitment to privacy and accessibility.",
+  keywords: "ToolHub AI about, free online tools, mission, founder story, privacy first, productivity tools",
+  openGraph: {
+    title: "About ToolHub AI - Our Mission & Story",
+    description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our founder's story, values, and commitment to privacy and accessibility.",
+    url: `${BASE_URL}/about`,
+    siteName: "ToolHub AI",
+    images: [
+      {
+        url: `${BASE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "ToolHub AI - About Us"
+      }
+    ],
+    locale: "en_US",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About ToolHub AI - Our Mission & Story",
+    description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our founder's story, values, and commitment to privacy and accessibility.",
+    images: [`${BASE_URL}/og-image.png`]
+  }
+}
+
 export default function About() {
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-14 px-4">

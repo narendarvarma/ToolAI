@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, Share2, Copy, Check } from "lucide-react"
+import { X, Share2, Copy, Check, MessageCircle } from "lucide-react"
 
 interface SharePromptProps {
   show: boolean
@@ -16,7 +16,7 @@ export default function SharePrompt({ show, onClose, toolName }: SharePromptProp
     if (show) {
       const timer = setTimeout(() => {
         onClose()
-      }, 10000) // Auto-close after 10 seconds
+      }, 15000) // Auto-close after 15 seconds
       return () => clearTimeout(timer)
     }
   }, [show, onClose])
@@ -28,66 +28,63 @@ export default function SharePrompt({ show, onClose, toolName }: SharePromptProp
   }
 
   const handleWhatsAppShare = () => {
-    const text = `Check out ${toolName} on ToolHub AI! ${window.location.href}`
+    const text = `🎉 Found this useful? Share ToolHub AI with your friends! ${window.location.href}`
     const url = `https://wa.me/?text=${encodeURIComponent(text)}`
+    window.open(url, '_blank')
+  }
+
+  const handleTwitterShare = () => {
+    const text = `🎉 Found this useful? Check out ${toolName} on ToolHub AI! ${window.location.href}`
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`
     window.open(url, '_blank')
   }
 
   if (!show) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-[#111827] rounded-2xl p-6 max-w-md w-full border border-white/8 shadow-2xl">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <Share2 className="h-5 w-5 text-[#00E5FF]" />
-            <h3 className="text-lg font-semibold text-white">Share ToolHub AI</h3>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-1 rounded-lg hover:bg-white/5 transition-colors"
-          >
-            <X className="h-5 w-5 text-gray-400" />
-          </button>
-        </div>
-
-        <p className="text-gray-400 mb-6">
-          Got your result! 😊 Share ToolHub AI with friends to help them discover these amazing tools too!
+    <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] shadow-lg z-50 p-4">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-white text-sm text-center md:text-left">
+          🎉 Found this useful? Share ToolHub AI with your friends!
         </p>
-
-        <div className="space-y-3">
+        <div className="flex gap-2">
+          <button
+            onClick={handleWhatsAppShare}
+            className="px-3 py-2 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors flex items-center gap-2 text-sm"
+          >
+            <MessageCircle className="h-4 w-4" />
+            <span className="hidden md:inline">WhatsApp</span>
+          </button>
+          <button
+            onClick={handleTwitterShare}
+            className="px-3 py-2 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors flex items-center gap-2 text-sm"
+          >
+            <Share2 className="h-4 w-4" />
+            <span className="hidden md:inline">Twitter</span>
+          </button>
           <button
             onClick={handleCopyLink}
-            className="w-full py-3 rounded-xl bg-white/5 border border-white/8 text-white hover:border-[#00E5FF]/50 transition-colors flex items-center justify-center gap-2"
+            className="px-3 py-2 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors flex items-center gap-2 text-sm"
           >
             {copied ? (
               <>
-                <Check className="h-5 w-5 text-green-400" />
-                <span>Copied!</span>
+                <Check className="h-4 w-4" />
+                <span className="hidden md:inline">Copied!</span>
               </>
             ) : (
               <>
-                <Copy className="h-5 w-5 text-gray-400" />
-                <span>Copy Link</span>
+                <Copy className="h-4 w-4" />
+                <span className="hidden md:inline">Copy Link</span>
               </>
             )}
           </button>
-
           <button
-            onClick={handleWhatsAppShare}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#25D366]/20 flex items-center justify-center gap-2"
+            onClick={onClose}
+            className="px-3 py-2 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
           >
-            <Share2 className="h-5 w-5" />
-            <span>Share on WhatsApp</span>
+            <X className="h-4 w-4" />
           </button>
         </div>
-
-        <button
-          onClick={onClose}
-          className="mt-4 w-full text-sm text-gray-400 hover:text-white transition-colors"
-        >
-          Maybe later
-        </button>
       </div>
     </div>
   )

@@ -100,8 +100,8 @@ export default function Contact() {
             {submitted ? (
               <div className="flex flex-col items-center justify-center py-12">
                 <CheckCircle className="h-16 w-16 text-green-400 mb-4" />
-                <h3 className="text-2xl font-semibold text-white mb-2">Message Sent!</h3>
-                <p className="text-gray-400 text-center">Thank you for reaching out. We'll get back to you soon.</p>
+                <h3 className="text-2xl font-semibold text-white mb-2">✅ Message sent!</h3>
+                <p className="text-gray-400 text-center">We'll reply within 24 hours.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -155,6 +155,15 @@ export default function Contact() {
                     required
                   />
                 </div>
+
+                {/* Honeypot field to prevent spam */}
+                <input
+                  type="text"
+                  name="_gotcha"
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
 
                 <button
                   type="submit"
