@@ -3,6 +3,9 @@
 import { useState } from "react"
 import { Mail, Copy, Wand2 } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import HowToUse from "@/components/how-to-use"
+import SocialShare from "@/components/social-share"
+import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 
 export default function AIEmailWriter() {
@@ -75,6 +78,11 @@ export default function AIEmailWriter() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Email Writer</h1>
         <p className="text-gray-400 text-base text-center mb-8">Write professional emails with AI assistance</p>
+
+        {/* Ad below tool title */}
+        <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Recipient */}
@@ -160,7 +168,9 @@ export default function AIEmailWriter() {
 
         {/* Single bottom ad */}
         <div className="flex justify-center mt-8">
-          <AdSlot adSlot="4000000005" className="w-full max-w-2xl" />
+          <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         </div>
 
         <button
@@ -173,3 +183,7 @@ export default function AIEmailWriter() {
     </div>
   )
 }
+
+
+
+

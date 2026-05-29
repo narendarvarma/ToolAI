@@ -3,10 +3,13 @@
 import { useState } from "react"
 import { Calendar, Clock } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import HowToUse from "@/components/how-to-use"
+import SocialShare from "@/components/social-share"
+import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function AgeCalculator() {
   const [birthDate, setBirthDate] = useState("")
-  const [result, setResult] = useState<{ years: number; months: number; days: number } | null>(null)
+  const [result, setResult] = useState<{ years: number; months: number; days: number; nextBirthday: string; daysUntilBirthday: number } | null>(null)
 
   const calculateAge = () => {
     if (!birthDate) return
@@ -29,7 +32,16 @@ export default function AgeCalculator() {
       months += 12
     }
 
-    setResult({ years, months, days })
+    // Calculate next birthday
+    const nextBirthday = new Date(today.getFullYear(), birth.getMonth(), birth.getDate())
+    if (nextBirthday <= today) {
+      nextBirthday.setFullYear(today.getFullYear() + 1)
+    }
+
+    const daysUntilBirthday = Math.ceil((nextBirthday.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+    const nextBirthdayStr = nextBirthday.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+
+    setResult({ years, months, days, nextBirthday: nextBirthdayStr, daysUntilBirthday })
   }
 
   return (
@@ -37,6 +49,11 @@ export default function AgeCalculator() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">Age Calculator</h1>
         <p className="text-gray-400 text-base text-center mb-8">Calculate your age precisely</p>
+
+        {/* Ad below tool title */}
+        <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Date Input */}
@@ -62,7 +79,7 @@ export default function AgeCalculator() {
           {/* Result */}
           {result && (
             <div className="mt-6 p-6 bg-gradient-to-r from-[#3B82F6]/20 to-[#7C3AED]/20 rounded-xl border border-[#3B82F6]/30">
-              <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-3 gap-4 text-center mb-6">
                 <div>
                   <Clock className="h-8 w-8 mx-auto mb-2 text-[#00E5FF]" />
                   <p className="text-3xl font-bold text-white">{result.years}</p>
@@ -79,14 +96,35 @@ export default function AgeCalculator() {
                   <p className="text-sm text-gray-400">Days</p>
                 </div>
               </div>
+
+              {/* Next Birthday */}
+              <div className="mt-6 pt-6 border-t border-white/10">
+                <div className="text-center">
+                  <Calendar className="h-6 w-6 mx-auto mb-2 text-[#00E5FF]" />
+                  <p className="text-lg font-semibold text-white mb-1">Next Birthday</p>
+                  <p className="text-sm text-gray-400 mb-2">{result.nextBirthday}</p>
+                  <p className="text-2xl font-bold text-[#00E5FF]">{result.daysUntilBirthday} days away!</p>
+                </div>
+              </div>
             </div>
           )}
         </div>
 
         {/* Single bottom ad */}
-        <div className="flex justify-center mt-8">
-          <AdSlot adSlot="4000000002" className="w-full max-w-2xl" />
+        <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
         </div>
+
+        {/* How to Use Section */}
+        <HowToUse steps={[
+          "Select your date of birth from the date picker",
+          "Click Calculate Age to see your exact age",
+          "View your age in years, months, and days",
+          "See when your next birthday is and how many days away"
+        ]} />
+
+        {/* Social Share */}
+        <SocialShare title="Age Calculator - Calculate your age precisely" />
 
         <button
           onClick={() => window.location.href = "/"}
@@ -98,3 +136,7 @@ export default function AgeCalculator() {
     </div>
   )
 }
+
+
+
+

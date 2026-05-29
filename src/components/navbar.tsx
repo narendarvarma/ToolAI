@@ -2,26 +2,28 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Search, Menu, X, Zap } from "lucide-react"
-import { tokenManager } from "@/lib/token-manager"
+import { Search, Menu, X, Moon, Sun } from "lucide-react"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [remainingTokens, setRemainingTokens] = useState(0)
-  const [tokenPercentage, setTokenPercentage] = useState(0)
+  const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
-    const updateTokens = () => {
-      setRemainingTokens(tokenManager.getRemainingTokens())
-      setTokenPercentage(tokenManager.getTokenUsagePercentage())
+    const stored = localStorage.getItem("darkMode")
+    if (stored !== null) {
+      setIsDarkMode(JSON.parse(stored))
     }
-
-    updateTokens()
-    const interval = setInterval(updateTokens, 60000) // Update every minute
-
-    return () => clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(isDarkMode))
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+  }, [isDarkMode])
 
   const categories = [
     "PDF Tools",
@@ -66,13 +68,13 @@ export default function Navbar() {
                   {category}
                 </Link>
               ))}
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/8">
-                <Zap className="h-4 w-4 text-[#00E5FF]" />
-                <span className="text-sm text-white">{remainingTokens.toLocaleString()}</span>
-                <span className="text-xs text-gray-400">tokens</span>
-              </div>
+              <button
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className="p-2 rounded-lg hover:bg-white/5 transition-colors"
+                title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              >
+                {isDarkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-gray-400" />}
+              </button>
             </div>
           </div>
 
@@ -110,6 +112,13 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors py-2"
+            >
+              {isDarkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-gray-400" />}
+              <span>{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
+            </button>
           </div>
         )}
       </div>

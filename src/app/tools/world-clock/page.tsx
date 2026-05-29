@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react"
 import { Globe, Copy } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import HowToUse from "@/components/how-to-use"
+import SocialShare from "@/components/social-share"
+import { useRecentTools } from "@/hooks/use-recent-tools"
 
 const cities = [
   { name: "New York", timezone: "America/New_York", country: "USA" },
@@ -69,6 +72,11 @@ export default function WorldClock() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">World Clock</h1>
         <p className="text-gray-400 text-base text-center mb-8">Track time across multiple cities</p>
+
+        {/* Ad below tool title */}
+        <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* City Selection */}
@@ -120,7 +128,9 @@ export default function WorldClock() {
 
         {/* Single bottom ad */}
         <div className="flex justify-center mt-8">
-          <AdSlot adSlot="4000000005" className="w-full max-w-2xl" />
+          <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         </div>
 
         <button
@@ -133,3 +143,7 @@ export default function WorldClock() {
     </div>
   )
 }
+
+
+
+

@@ -3,6 +3,9 @@
 import { useState } from "react"
 import { Copy, RefreshCw, Shield } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import HowToUse from "@/components/how-to-use"
+import SocialShare from "@/components/social-share"
+import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function PasswordGenerator() {
   const [password, setPassword] = useState("")
@@ -11,6 +14,7 @@ export default function PasswordGenerator() {
   const [includeLowercase, setIncludeLowercase] = useState(true)
   const [includeNumbers, setIncludeNumbers] = useState(true)
   const [includeSymbols, setIncludeSymbols] = useState(true)
+  const [copied, setCopied] = useState(false)
 
   const generatePassword = () => {
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -38,15 +42,40 @@ export default function PasswordGenerator() {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(password)
-    alert("Password copied to clipboard!")
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
+
+  const calculateStrength = () => {
+    if (!password) return { strength: "None", color: "text-gray-400", percentage: 0 }
+
+    let score = 0
+    if (length >= 8) score += 1
+    if (length >= 12) score += 1
+    if (length >= 16) score += 1
+    if (includeUppercase) score += 1
+    if (includeLowercase) score += 1
+    if (includeNumbers) score += 1
+    if (includeSymbols) score += 1
+
+    if (score <= 3) return { strength: "Weak", color: "text-red-400", percentage: 33 }
+    if (score <= 5) return { strength: "Medium", color: "text-yellow-400", percentage: 66 }
+    return { strength: "Strong", color: "text-green-400", percentage: 100 }
+  }
+
+  const strength = calculateStrength()
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">Password Generator</h1>
         <p className="text-gray-400 text-base text-center mb-8">Generate secure passwords instantly</p>
-        
+
+        {/* Ad below tool title */}
+        <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
+
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Password Display */}
           <div className="mb-6">
@@ -65,7 +94,28 @@ export default function PasswordGenerator() {
                 <Copy className="h-5 w-5" />
               </button>
             </div>
+            {copied && <p className="text-green-400 text-sm mt-2">✓ Copied to clipboard!</p>}
           </div>
+
+          {/* Strength Meter */}
+          {password && (
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm text-gray-400">Password Strength:</span>
+                <span className={`text-sm font-semibold ${strength.color}`}>{strength.strength}</span>
+              </div>
+              <div className="h-2 rounded-full bg-gray-700 overflow-hidden">
+                <div
+                  className={`h-full transition-all duration-300 ${
+                    strength.strength === "Weak" ? "bg-red-400" :
+                    strength.strength === "Medium" ? "bg-yellow-400" :
+                    strength.strength === "Strong" ? "bg-green-400" : "bg-gray-400"
+                  }`}
+                  style={{ width: `${strength.percentage}%` }}
+                />
+              </div>
+            </div>
+          )}
 
           {/* Length Slider */}
           <div className="mb-6">
@@ -135,9 +185,21 @@ export default function PasswordGenerator() {
         </div>
 
         {/* Single bottom ad */}
-        <div className="flex justify-center mt-8">
-          <AdSlot adSlot="4000000008" className="w-full max-w-2xl" />
+        <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
         </div>
+
+        {/* How to Use Section */}
+        <HowToUse steps={[
+          "Adjust the password length using the slider (8-64 characters)",
+          "Select which character types to include (uppercase, lowercase, numbers, symbols)",
+          "Click Generate Password to create a secure password",
+          "Click the copy button to copy the password to clipboard",
+          "Check the strength meter to ensure your password is strong enough"
+        ]} />
+
+        {/* Social Share */}
+        <SocialShare title="Password Generator - Generate secure passwords instantly" />
 
         <button
           onClick={() => window.location.href = "/"}
@@ -149,3 +211,7 @@ export default function PasswordGenerator() {
     </div>
   )
 }
+
+
+
+

@@ -1,0 +1,25 @@
+import { Metadata } from "next"
+import Script from "next/script"
+import { getToolMetadata } from "@/lib/tool-metadata"
+
+export const metadata: Metadata = {
+  title: getToolMetadata("pdf-to-image").title,
+  description: getToolMetadata("pdf-to-image").description,
+  keywords: getToolMetadata("pdf-to-image").keywords,
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/pdf-to-image",
+  },
+  openGraph: {
+    title: getToolMetadata("pdf-to-image").title,
+    description: getToolMetadata("pdf-to-image").description,
+    type: "website",
+    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/pdf-to-image",
+  },
+}
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return children
+}
+
+

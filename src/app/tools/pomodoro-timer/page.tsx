@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react"
 import { Play, Pause, RotateCw, Clock } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import HowToUse from "@/components/how-to-use"
+import SocialShare from "@/components/social-share"
+import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function PomodoroTimer() {
   const [time, setTime] = useState(25 * 60)
@@ -19,10 +22,27 @@ export default function PomodoroTimer() {
     } else if (time === 0) {
       setIsRunning(false)
       setCompleted(completed + 1)
+      playSound()
       alert("Time's up!")
     }
     return () => clearInterval(interval)
   }, [isRunning, time])
+
+  const playSound = () => {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    const oscillator = audioContext.createOscillator()
+    const gainNode = audioContext.createGain()
+
+    oscillator.connect(gainNode)
+    gainNode.connect(audioContext.destination)
+
+    oscillator.frequency.value = 800
+    oscillator.type = "sine"
+    gainNode.gain.value = 0.3
+
+    oscillator.start()
+    oscillator.stop(audioContext.currentTime + 0.5)
+  }
 
   const toggleTimer = () => {
     setIsRunning(!isRunning)
@@ -54,6 +74,11 @@ export default function PomodoroTimer() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">Pomodoro Timer</h1>
         <p className="text-gray-400 text-base text-center mb-8">Boost your productivity with focused work sessions</p>
+
+        {/* Ad below tool title */}
+        <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Mode Selection */}
@@ -128,9 +153,21 @@ export default function PomodoroTimer() {
         </div>
 
         {/* Single bottom ad */}
-        <div className="flex justify-center mt-8">
-          <AdSlot adSlot="4000000005" className="w-full max-w-2xl" />
+        <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
         </div>
+
+        {/* How to Use Section */}
+        <HowToUse steps={[
+          "Select a timer mode: Work (25min), Short break (5min), or Long break (15min)",
+          "Click Start to begin the countdown",
+          "Work or take a break until the timer ends",
+          "A sound alert will play when time is up",
+          "Click Reset to restart the timer at any time"
+        ]} />
+
+        {/* Social Share */}
+        <SocialShare title="Pomodoro Timer - Boost your productivity with focused work sessions" />
 
         <button
           onClick={() => window.location.href = "/"}
@@ -142,3 +179,7 @@ export default function PomodoroTimer() {
     </div>
   )
 }
+
+
+
+

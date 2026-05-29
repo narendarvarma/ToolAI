@@ -3,6 +3,9 @@
 import { useState } from "react"
 import { Activity, Scale } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import HowToUse from "@/components/how-to-use"
+import SocialShare from "@/components/social-share"
+import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function BMICalculator() {
   const [weight, setWeight] = useState("")
@@ -30,6 +33,11 @@ export default function BMICalculator() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">BMI Calculator</h1>
         <p className="text-gray-400 text-base text-center mb-8">Calculate your Body Mass Index</p>
+
+        {/* Ad below tool title */}
+        <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Input Fields */}
@@ -68,7 +76,7 @@ export default function BMICalculator() {
           {/* Result */}
           {bmi !== null && (
             <div className="mt-6 p-6 bg-gradient-to-r from-[#3B82F6]/20 to-[#7C3AED]/20 rounded-xl border border-[#3B82F6]/30">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="text-center">
                   <Activity className="h-8 w-8 mx-auto mb-2 text-[#00E5FF]" />
                   <p className="text-4xl font-bold text-white">{bmi.toFixed(1)}</p>
@@ -80,14 +88,52 @@ export default function BMICalculator() {
                   <p className="text-sm text-gray-400">Category</p>
                 </div>
               </div>
+
+              {/* BMI Indicator Bar */}
+              <div className="mt-4">
+                <div className="h-4 rounded-full bg-gradient-to-r from-blue-500 via-green-500 via-yellow-500 to-red-500 relative">
+                  <div
+                    className="absolute top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full border-2 border-gray-800 shadow-lg"
+                    style={{
+                      left: `${Math.min(Math.max((bmi - 15) / (35 - 15) * 100, 0), 100)}%`,
+                      marginLeft: '-6px'
+                    }}
+                  />
+                </div>
+                <div className="flex justify-between mt-2 text-xs text-gray-400">
+                  <span>15</span>
+                  <span>18.5</span>
+                  <span>25</span>
+                  <span>30</span>
+                  <span>35</span>
+                </div>
+                <div className="flex justify-between mt-1 text-xs text-gray-500">
+                  <span>Under</span>
+                  <span>Normal</span>
+                  <span>Over</span>
+                  <span>Obese</span>
+                </div>
+              </div>
             </div>
           )}
         </div>
 
         {/* Single bottom ad */}
-        <div className="flex justify-center mt-8">
-          <AdSlot adSlot="4000000005" className="w-full max-w-2xl" />
+        <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
         </div>
+
+        {/* How to Use Section */}
+        <HowToUse steps={[
+          "Enter your weight in kilograms (kg)",
+          "Enter your height in centimeters (cm)",
+          "Click Calculate BMI to see your result",
+          "View your BMI number and category",
+          "Check the colored indicator bar to see where you stand"
+        ]} />
+
+        {/* Social Share */}
+        <SocialShare title="BMI Calculator - Calculate your Body Mass Index" />
 
         <button
           onClick={() => window.location.href = "/"}
@@ -99,3 +145,7 @@ export default function BMICalculator() {
     </div>
   )
 }
+
+
+
+

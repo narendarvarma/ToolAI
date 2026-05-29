@@ -1,31 +1,59 @@
 "use client"
 
-import { useState } from "react"
-import { DollarSign, ArrowRightLeft } from "lucide-react"
+import { useState, useEffect } from "react"
+import { DollarSign, ArrowRightLeft, RefreshCw } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import HowToUse from "@/components/how-to-use"
+import SocialShare from "@/components/social-share"
+import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function CurrencyConverter() {
   const [amount, setAmount] = useState("")
   const [fromCurrency, setFromCurrency] = useState("USD")
   const [toCurrency, setToCurrency] = useState("EUR")
   const [result, setResult] = useState<number | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [rates, setRates] = useState<Record<string, number>>({})
 
-  const exchangeRates: Record<string, number> = {
-    USD: 1,
-    EUR: 0.85,
-    GBP: 0.73,
-    JPY: 110.0,
-    INR: 83.0,
-    CAD: 1.25,
-    AUD: 1.35,
+  const currencies = ["USD", "EUR", "GBP", "INR", "AED", "SGD", "JPY", "CAD", "AUD", "CHF", "CNY"]
+
+  useEffect(() => {
+    fetchRates()
+  }, [])
+
+  const fetchRates = async () => {
+    setLoading(true)
+    try {
+      const response = await fetch("https://api.exchangerate-api.com/v4/latest/USD")
+      const data = await response.json()
+      setRates(data.rates)
+    } catch (error) {
+      console.error("Failed to fetch rates:", error)
+      // Fallback to hardcoded rates if API fails
+      setRates({
+        USD: 1,
+        EUR: 0.85,
+        GBP: 0.73,
+        JPY: 110.0,
+        INR: 83.0,
+        CAD: 1.25,
+        AUD: 1.35,
+        CHF: 0.92,
+        CNY: 7.2,
+        SGD: 1.35,
+        AED: 3.67,
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   const convert = () => {
-    if (!amount) return
+    if (!amount || !rates[fromCurrency] || !rates[toCurrency]) return
 
     const amountNum = parseFloat(amount)
-    const fromRate = exchangeRates[fromCurrency]
-    const toRate = exchangeRates[toCurrency]
+    const fromRate = rates[fromCurrency]
+    const toRate = rates[toCurrency]
     const converted = (amountNum / fromRate) * toRate
     setResult(converted)
   }
@@ -35,6 +63,11 @@ export default function CurrencyConverter() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">Currency Converter</h1>
         <p className="text-gray-400 text-base text-center mb-8">Convert currencies instantly</p>
+
+        {/* Ad below tool title */}
+        <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Amount Input */}
@@ -58,7 +91,7 @@ export default function CurrencyConverter() {
                 onChange={(e) => setFromCurrency(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
               >
-                {Object.keys(exchangeRates).map(currency => (
+                {currencies.map(currency => (
                   <option key={currency} value={currency}>{currency}</option>
                 ))}
               </select>
@@ -70,17 +103,29 @@ export default function CurrencyConverter() {
                 onChange={(e) => setToCurrency(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
               >
-                {Object.keys(exchangeRates).map(currency => (
+                {currencies.map(currency => (
                   <option key={currency} value={currency}>{currency}</option>
                 ))}
               </select>
             </div>
           </div>
 
+          {/* Refresh Rates Button */}
+          <button
+            onClick={fetchRates}
+            disabled={loading}
+            className="w-full mb-4 py-2 rounded-xl bg-white/5 border border-white/8 text-white hover:border-[#3B82F6] transition-colors disabled:opacity-50"
+          >
+            <div className="flex items-center justify-center gap-2">
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              {loading ? 'Loading Rates...' : 'Refresh Exchange Rates'}
+            </div>
+          </button>
+
           {/* Convert Button */}
           <button
             onClick={convert}
-            disabled={!amount}
+            disabled={!amount || loading}
             className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
           >
             <div className="flex items-center justify-center gap-2">
@@ -104,9 +149,21 @@ export default function CurrencyConverter() {
         </div>
 
         {/* Single bottom ad */}
-        <div className="flex justify-center mt-8">
-          <AdSlot adSlot="4000000005" className="w-full max-w-2xl" />
+        <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
         </div>
+
+        {/* How to Use Section */}
+        <HowToUse steps={[
+          "Enter the amount you want to convert",
+          "Select the source currency (From)",
+          "Select the target currency (To)",
+          "Click Convert to see the result",
+          "Refresh rates for the latest exchange rates"
+        ]} />
+
+        {/* Social Share */}
+        <SocialShare title="Currency Converter - Convert currencies instantly" />
 
         <button
           onClick={() => window.location.href = "/"}
@@ -118,3 +175,7 @@ export default function CurrencyConverter() {
     </div>
   )
 }
+
+
+
+

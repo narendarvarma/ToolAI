@@ -3,8 +3,12 @@
 import { useState } from "react"
 import { FileText, Hash, Type, Clock } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import HowToUse from "@/components/how-to-use"
+import SocialShare from "@/components/social-share"
+import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function WordCounter() {
+  useRecentTools("/tools/word-counter")
   const [text, setText] = useState("")
 
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0
@@ -23,6 +27,11 @@ export default function WordCounter() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">Word Counter</h1>
         <p className="text-gray-400 text-base text-center mb-8">Count words, characters, and more</p>
+
+        {/* Ad below tool title */}
+        <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
+        </div>
         
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Text Input */}
@@ -99,9 +108,18 @@ export default function WordCounter() {
         </div>
 
         {/* Single bottom ad */}
-        <div className="flex justify-center mt-8">
-          <AdSlot adSlot="4000000005" className="w-full max-w-2xl" />
+        <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
+          Advertisement
         </div>
+
+        <HowToUse steps={[
+          "Enter or paste your text in the text area",
+          "View real-time word, character, sentence, and paragraph counts",
+          "Check the estimated reading time for your text",
+          "Use the Clear Text button to reset the counter"
+        ]} />
+
+        <SocialShare title="Word Counter" />
 
         <button
           onClick={() => window.location.href = "/"}
@@ -113,3 +131,6 @@ export default function WordCounter() {
     </div>
   )
 }
+
+
+
