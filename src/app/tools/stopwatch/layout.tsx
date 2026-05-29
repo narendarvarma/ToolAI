@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("stopwatch").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/stopwatch",
+    canonical: "https://gettoolai.in/tools/stopwatch",
   },
   openGraph: {
     title: getToolMetadata("stopwatch").title,
     description: getToolMetadata("stopwatch").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/stopwatch",
+    url: "https://gettoolai.in/tools/stopwatch",
   },
 }
 

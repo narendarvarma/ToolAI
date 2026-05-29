@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("currency-converter").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/currency-converter",
+    canonical: "https://gettoolai.in/tools/currency-converter",
   },
   openGraph: {
     title: getToolMetadata("currency-converter").title,
     description: getToolMetadata("currency-converter").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/currency-converter",
+    url: "https://gettoolai.in/tools/currency-converter",
   },
 }
 

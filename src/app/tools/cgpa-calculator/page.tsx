@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Plus, Trash2, Calculator, Download } from "lucide-react"
 import { jsPDF } from "jspdf"
 import AdSlot from "@/components/ad-slot"
@@ -13,7 +13,7 @@ import SharePrompt from "@/components/share-prompt"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function CgpaCalculator() {
-  useRecentTools("/tools/cgpa-calculator")
+  useRecentTools("/tools/cgpa-calculator", "CGPA Calculator", "Calculator")
   const [courses, setCourses] = useState<{ id: number; name: string; credits: number; grade: number }[]>([])
   const [name, setName] = useState("")
   const [credits, setCredits] = useState("")
@@ -29,6 +29,7 @@ export default function CgpaCalculator() {
   }, [courses.length, hasCalculated])
 
   const addCourse = () => {
+    console.log("clicked", { name, credits, grade })
     if (name.trim() && credits && grade) {
       const creditsNum = parseFloat(credits)
       if (creditsNum < 1 || creditsNum > 6) {
@@ -89,6 +90,8 @@ export default function CgpaCalculator() {
     pdf.save("cgpa-result.pdf")
   }
 
+  const handleCloseSharePrompt = useCallback(() => setShowSharePrompt(false), [])
+
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
@@ -135,6 +138,7 @@ export default function CgpaCalculator() {
               <option value="0">F (0)</option>
             </select>
             <button
+              type="button"
               onClick={addCourse}
               className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20"
             >
@@ -186,6 +190,7 @@ export default function CgpaCalculator() {
               </div>
               <div className="flex gap-3">
                 <button
+                  type="button"
                   onClick={downloadPDF}
                   className="flex-1 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20"
                 >
@@ -195,6 +200,7 @@ export default function CgpaCalculator() {
                   </div>
                 </button>
                 <button
+                  type="button"
                   onClick={clearAll}
                   className="flex-1 py-3 rounded-xl bg-white/5 border border-white/8 text-white font-semibold hover:bg-white/10 transition-colors"
                 >
@@ -268,7 +274,7 @@ export default function CgpaCalculator() {
       {/* Share Prompt */}
       <SharePrompt
         show={showSharePrompt}
-        onClose={() => setShowSharePrompt(false)}
+        onClose={handleCloseSharePrompt}
         toolName="CGPA Calculator"
       />
     </div>

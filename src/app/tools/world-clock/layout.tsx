@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("world-clock").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/world-clock",
+    canonical: "https://gettoolai.in/tools/world-clock",
   },
   openGraph: {
     title: getToolMetadata("world-clock").title,
     description: getToolMetadata("world-clock").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/world-clock",
+    url: "https://gettoolai.in/tools/world-clock",
   },
 }
 

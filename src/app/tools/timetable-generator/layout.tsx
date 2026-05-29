@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("timetable-generator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/timetable-generator",
+    canonical: "https://gettoolai.in/tools/timetable-generator",
   },
   openGraph: {
     title: getToolMetadata("timetable-generator").title,
     description: getToolMetadata("timetable-generator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/timetable-generator",
+    url: "https://gettoolai.in/tools/timetable-generator",
   },
 }
 

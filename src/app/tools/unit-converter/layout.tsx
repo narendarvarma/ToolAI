@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("unit-converter").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/unit-converter",
+    canonical: "https://gettoolai.in/tools/unit-converter",
   },
   openGraph: {
     title: getToolMetadata("unit-converter").title,
     description: getToolMetadata("unit-converter").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/unit-converter",
+    url: "https://gettoolai.in/tools/unit-converter",
   },
 }
 

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("habit-tracker").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/habit-tracker",
+    canonical: "https://gettoolai.in/tools/habit-tracker",
   },
   openGraph: {
     title: getToolMetadata("habit-tracker").title,
     description: getToolMetadata("habit-tracker").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/habit-tracker",
+    url: "https://gettoolai.in/tools/habit-tracker",
   },
 }
 

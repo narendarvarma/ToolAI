@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("notes-organizer").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/notes-organizer",
+    canonical: "https://gettoolai.in/tools/notes-organizer",
   },
   openGraph: {
     title: getToolMetadata("notes-organizer").title,
     description: getToolMetadata("notes-organizer").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/notes-organizer",
+    url: "https://gettoolai.in/tools/notes-organizer",
   },
 }
 

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("case-converter").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/case-converter",
+    canonical: "https://gettoolai.in/tools/case-converter",
   },
   openGraph: {
     title: getToolMetadata("case-converter").title,
     description: getToolMetadata("case-converter").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/case-converter",
+    url: "https://gettoolai.in/tools/case-converter",
   },
 }
 

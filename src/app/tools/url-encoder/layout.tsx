@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("url-encoder").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/url-encoder",
+    canonical: "https://gettoolai.in/tools/url-encoder",
   },
   openGraph: {
     title: getToolMetadata("url-encoder").title,
     description: getToolMetadata("url-encoder").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/url-encoder",
+    url: "https://gettoolai.in/tools/url-encoder",
   },
 }
 

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("bmi-calculator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/bmi-calculator",
+    canonical: "https://gettoolai.in/tools/bmi-calculator",
   },
   openGraph: {
     title: getToolMetadata("bmi-calculator").title,
     description: getToolMetadata("bmi-calculator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/bmi-calculator",
+    url: "https://gettoolai.in/tools/bmi-calculator",
   },
 }
 

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("ai-text-rewriter").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-text-rewriter",
+    canonical: "https://gettoolai.in/tools/ai-text-rewriter",
   },
   openGraph: {
     title: getToolMetadata("ai-text-rewriter").title,
     description: getToolMetadata("ai-text-rewriter").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-text-rewriter",
+    url: "https://gettoolai.in/tools/ai-text-rewriter",
   },
 }
 

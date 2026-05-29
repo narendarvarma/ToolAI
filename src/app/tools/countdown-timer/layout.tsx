@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("countdown-timer").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/countdown-timer",
+    canonical: "https://gettoolai.in/tools/countdown-timer",
   },
   openGraph: {
     title: getToolMetadata("countdown-timer").title,
     description: getToolMetadata("countdown-timer").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/countdown-timer",
+    url: "https://gettoolai.in/tools/countdown-timer",
   },
 }
 

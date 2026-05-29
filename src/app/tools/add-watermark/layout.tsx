@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("add-watermark").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/add-watermark",
+    canonical: "https://gettoolai.in/tools/add-watermark",
   },
   openGraph: {
     title: getToolMetadata("add-watermark").title,
     description: getToolMetadata("add-watermark").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/add-watermark",
+    url: "https://gettoolai.in/tools/add-watermark",
   },
 }
 

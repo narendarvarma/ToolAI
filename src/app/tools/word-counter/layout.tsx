@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("word-counter").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/word-counter",
+    canonical: "https://gettoolai.in/tools/word-counter",
   },
   openGraph: {
     title: getToolMetadata("word-counter").title,
     description: getToolMetadata("word-counter").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/word-counter",
+    url: "https://gettoolai.in/tools/word-counter",
   },
 }
 

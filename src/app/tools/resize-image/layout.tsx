@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("resize-image").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/resize-image",
+    canonical: "https://gettoolai.in/tools/resize-image",
   },
   openGraph: {
     title: getToolMetadata("resize-image").title,
     description: getToolMetadata("resize-image").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/resize-image",
+    url: "https://gettoolai.in/tools/resize-image",
   },
 }
 

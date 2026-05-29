@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("calorie-calculator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/calorie-calculator",
+    canonical: "https://gettoolai.in/tools/calorie-calculator",
   },
   openGraph: {
     title: getToolMetadata("calorie-calculator").title,
     description: getToolMetadata("calorie-calculator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/calorie-calculator",
+    url: "https://gettoolai.in/tools/calorie-calculator",
   },
 }
 

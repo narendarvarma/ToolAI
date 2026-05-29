@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("date-calculator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/date-calculator",
+    canonical: "https://gettoolai.in/tools/date-calculator",
   },
   openGraph: {
     title: getToolMetadata("date-calculator").title,
     description: getToolMetadata("date-calculator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/date-calculator",
+    url: "https://gettoolai.in/tools/date-calculator",
   },
 }
 

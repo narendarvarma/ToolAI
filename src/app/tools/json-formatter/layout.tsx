@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("json-formatter").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/json-formatter",
+    canonical: "https://gettoolai.in/tools/json-formatter",
   },
   openGraph: {
     title: getToolMetadata("json-formatter").title,
     description: getToolMetadata("json-formatter").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/json-formatter",
+    url: "https://gettoolai.in/tools/json-formatter",
   },
 }
 

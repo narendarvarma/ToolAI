@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("ai-code-helper").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-code-helper",
+    canonical: "https://gettoolai.in/tools/ai-code-helper",
   },
   openGraph: {
     title: getToolMetadata("ai-code-helper").title,
     description: getToolMetadata("ai-code-helper").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-code-helper",
+    url: "https://gettoolai.in/tools/ai-code-helper",
   },
 }
 

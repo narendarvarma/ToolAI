@@ -1,0 +1,37 @@
+import { Metadata } from "next"
+import { BASE_URL } from "@/lib/config"
+
+export const metadata: Metadata = {
+  title: "Random Name Picker - Pick Random Winner Online Free",
+  description: "Free random name picker tool. Enter names separated by commas or newlines, click to pick random winner. Animation effect. Remove winner option for multiple picks. Great for teachers and group projects.",
+  keywords: "random name picker, random winner picker, name generator, random selector, group picker",
+  robots: "index, follow",
+  alternates: {
+    canonical: `${BASE_URL}/tools/name-picker`,
+  },
+  openGraph: {
+    title: "Random Name Picker - Pick Random Winner Online Free",
+    description: "Free random name picker tool. Enter names separated by commas or newlines, click to pick random winner. Animation effect. Remove winner option for multiple picks. Great for teachers and group projects.",
+    type: "website",
+    url: `${BASE_URL}/tools/name-picker`,
+    siteName: "ToolHub AI",
+    images: [
+      {
+        url: `${BASE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "Random Name Picker - ToolHub AI",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Random Name Picker - Pick Random Winner Online Free",
+    description: "Free random name picker tool. Enter names separated by commas or newlines, click to pick random winner. Animation effect. Remove winner option for multiple picks. Great for teachers and group projects.",
+    images: [`${BASE_URL}/og-image.png`],
+  },
+}
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return children
+}

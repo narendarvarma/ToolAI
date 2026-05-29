@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("compress-pdf").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/compress-pdf",
+    canonical: "https://gettoolai.in/tools/compress-pdf",
   },
   openGraph: {
     title: getToolMetadata("compress-pdf").title,
     description: getToolMetadata("compress-pdf").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/compress-pdf",
+    url: "https://gettoolai.in/tools/compress-pdf",
   },
 }
 

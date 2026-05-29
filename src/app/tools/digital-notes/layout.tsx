@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("digital-notes").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/digital-notes",
+    canonical: "https://gettoolai.in/tools/digital-notes",
   },
   openGraph: {
     title: getToolMetadata("digital-notes").title,
     description: getToolMetadata("digital-notes").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/digital-notes",
+    url: "https://gettoolai.in/tools/digital-notes",
   },
 }
 

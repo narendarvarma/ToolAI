@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("json-to-csv").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/json-to-csv",
+    canonical: "https://gettoolai.in/tools/json-to-csv",
   },
   openGraph: {
     title: getToolMetadata("json-to-csv").title,
     description: getToolMetadata("json-to-csv").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/json-to-csv",
+    url: "https://gettoolai.in/tools/json-to-csv",
   },
 }
 

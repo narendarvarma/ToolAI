@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("merge-pdf").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/merge-pdf",
+    canonical: "https://gettoolai.in/tools/merge-pdf",
   },
   openGraph: {
     title: getToolMetadata("merge-pdf").title,
     description: getToolMetadata("merge-pdf").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/merge-pdf",
+    url: "https://gettoolai.in/tools/merge-pdf",
   },
 }
 

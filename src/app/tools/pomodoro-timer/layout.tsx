@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("pomodoro-timer").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/pomodoro-timer",
+    canonical: "https://gettoolai.in/tools/pomodoro-timer",
   },
   openGraph: {
     title: getToolMetadata("pomodoro-timer").title,
     description: getToolMetadata("pomodoro-timer").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/pomodoro-timer",
+    url: "https://gettoolai.in/tools/pomodoro-timer",
   },
 }
 

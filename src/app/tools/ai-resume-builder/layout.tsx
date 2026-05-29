@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("ai-resume-builder").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-resume-builder",
+    canonical: "https://gettoolai.in/tools/ai-resume-builder",
   },
   openGraph: {
     title: getToolMetadata("ai-resume-builder").title,
     description: getToolMetadata("ai-resume-builder").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-resume-builder",
+    url: "https://gettoolai.in/tools/ai-resume-builder",
   },
 }
 

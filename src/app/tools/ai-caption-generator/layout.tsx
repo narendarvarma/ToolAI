@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("ai-caption-generator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-caption-generator",
+    canonical: "https://gettoolai.in/tools/ai-caption-generator",
   },
   openGraph: {
     title: getToolMetadata("ai-caption-generator").title,
     description: getToolMetadata("ai-caption-generator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-caption-generator",
+    url: "https://gettoolai.in/tools/ai-caption-generator",
   },
 }
 

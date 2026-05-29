@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("todo-list").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/todo-list",
+    canonical: "https://gettoolai.in/tools/todo-list",
   },
   openGraph: {
     title: getToolMetadata("todo-list").title,
     description: getToolMetadata("todo-list").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/todo-list",
+    url: "https://gettoolai.in/tools/todo-list",
   },
 }
 

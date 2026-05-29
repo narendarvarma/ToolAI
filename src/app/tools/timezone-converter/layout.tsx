@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("timezone-converter").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/timezone-converter",
+    canonical: "https://gettoolai.in/tools/timezone-converter",
   },
   openGraph: {
     title: getToolMetadata("timezone-converter").title,
     description: getToolMetadata("timezone-converter").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/timezone-converter",
+    url: "https://gettoolai.in/tools/timezone-converter",
   },
 }
 

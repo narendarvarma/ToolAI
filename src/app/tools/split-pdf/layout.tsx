@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("split-pdf").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/split-pdf",
+    canonical: "https://gettoolai.in/tools/split-pdf",
   },
   openGraph: {
     title: getToolMetadata("split-pdf").title,
     description: getToolMetadata("split-pdf").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/split-pdf",
+    url: "https://gettoolai.in/tools/split-pdf",
   },
 }
 

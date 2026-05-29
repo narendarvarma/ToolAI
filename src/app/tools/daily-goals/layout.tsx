@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("daily-goals").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/daily-goals",
+    canonical: "https://gettoolai.in/tools/daily-goals",
   },
   openGraph: {
     title: getToolMetadata("daily-goals").title,
     description: getToolMetadata("daily-goals").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/daily-goals",
+    url: "https://gettoolai.in/tools/daily-goals",
   },
 }
 

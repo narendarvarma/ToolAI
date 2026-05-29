@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("ai-notes-summarizer").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-notes-summarizer",
+    canonical: "https://gettoolai.in/tools/ai-notes-summarizer",
   },
   openGraph: {
     title: getToolMetadata("ai-notes-summarizer").title,
     description: getToolMetadata("ai-notes-summarizer").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-notes-summarizer",
+    url: "https://gettoolai.in/tools/ai-notes-summarizer",
   },
 }
 

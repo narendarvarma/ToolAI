@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("tip-calculator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/tip-calculator",
+    canonical: "https://gettoolai.in/tools/tip-calculator",
   },
   openGraph: {
     title: getToolMetadata("tip-calculator").title,
     description: getToolMetadata("tip-calculator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/tip-calculator",
+    url: "https://gettoolai.in/tools/tip-calculator",
   },
 }
 

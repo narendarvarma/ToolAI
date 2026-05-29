@@ -6,14 +6,14 @@ export default function CookieConsent() {
   const [showConsent, setShowConsent] = useState(false)
 
   useEffect(() => {
-    const hasConsented = localStorage.getItem("toolhub_cookie_consent")
+    const hasConsented = localStorage.getItem("toolhub_cookie")
     if (!hasConsented) {
-      setTimeout(() => setShowConsent(true), 2000)
+      setTimeout(() => setShowConsent(true), 1500)
     }
   }, [])
 
   const handleAccept = () => {
-    localStorage.setItem("toolhub_cookie_consent", "true")
+    localStorage.setItem("toolhub_cookie", "accepted")
     setShowConsent(false)
   }
 
@@ -24,15 +24,15 @@ export default function CookieConsent() {
   if (!showConsent) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#111827] border-t border-white/8 shadow-lg p-4 z-50">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-gray-300 text-sm text-center md:text-left">
-          🍪 We use cookies to enhance your experience and show relevant ads. By using ToolHub AI, you agree to our Privacy Policy.
+    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-[#1e293b] shadow-2xl p-3 z-[9999]">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+        <p className="text-gray-800 dark:text-[#f1f5f9] text-sm text-center md:text-left">
+          🍪 We use cookies to improve your experience and show relevant ads.
         </p>
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <button
             onClick={handlePrivacyPolicy}
-            className="px-4 py-2 rounded-lg border border-white/8 text-white text-sm hover:bg-white/5 transition-colors"
+            className="px-3 py-2 rounded-lg border border-gray-300 dark:border-[#334155] text-gray-800 dark:text-[#f1f5f9] text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
           >
             Privacy Policy →
           </button>

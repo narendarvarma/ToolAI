@@ -14,7 +14,7 @@ export default function Footer() {
               <span className="text-white font-semibold text-xl">ToolHub AI</span>
             </div>
             <p className="text-gray-400 text-sm">
-              66+ free online tools for PDF, images, AI, students, productivity, and utilities.
+              75+ free online tools for PDF, images, AI, students, productivity, and utilities.
             </p>
           </div>
 
@@ -84,6 +84,16 @@ export default function Footer() {
               <li>
                 <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
                   Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/disclaimer" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  Disclaimer
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookie-policy" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  Cookie Policy
                 </Link>
               </li>
             </ul>

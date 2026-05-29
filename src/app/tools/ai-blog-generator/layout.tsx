@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("ai-blog-generator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-blog-generator",
+    canonical: "https://gettoolai.in/tools/ai-blog-generator",
   },
   openGraph: {
     title: getToolMetadata("ai-blog-generator").title,
     description: getToolMetadata("ai-blog-generator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-blog-generator",
+    url: "https://gettoolai.in/tools/ai-blog-generator",
   },
 }
 

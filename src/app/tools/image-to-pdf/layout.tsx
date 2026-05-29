@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("image-to-pdf").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/image-to-pdf",
+    canonical: "https://gettoolai.in/tools/image-to-pdf",
   },
   openGraph: {
     title: getToolMetadata("image-to-pdf").title,
     description: getToolMetadata("image-to-pdf").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/image-to-pdf",
+    url: "https://gettoolai.in/tools/image-to-pdf",
   },
 }
 

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("remove-pages").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/remove-pages",
+    canonical: "https://gettoolai.in/tools/remove-pages",
   },
   openGraph: {
     title: getToolMetadata("remove-pages").title,
     description: getToolMetadata("remove-pages").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/remove-pages",
+    url: "https://gettoolai.in/tools/remove-pages",
   },
 }
 

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("attendance-calculator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/attendance-calculator",
+    canonical: "https://gettoolai.in/tools/attendance-calculator",
   },
   openGraph: {
     title: getToolMetadata("attendance-calculator").title,
     description: getToolMetadata("attendance-calculator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/attendance-calculator",
+    url: "https://gettoolai.in/tools/attendance-calculator",
   },
 }
 

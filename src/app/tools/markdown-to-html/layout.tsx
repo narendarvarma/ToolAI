@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("markdown-to-html").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/markdown-to-html",
+    canonical: "https://gettoolai.in/tools/markdown-to-html",
   },
   openGraph: {
     title: getToolMetadata("markdown-to-html").title,
     description: getToolMetadata("markdown-to-html").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/markdown-to-html",
+    url: "https://gettoolai.in/tools/markdown-to-html",
   },
 }
 

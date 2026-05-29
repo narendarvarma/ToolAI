@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("base64-encoder").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/base64-encoder",
+    canonical: "https://gettoolai.in/tools/base64-encoder",
   },
   openGraph: {
     title: getToolMetadata("base64-encoder").title,
     description: getToolMetadata("base64-encoder").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/base64-encoder",
+    url: "https://gettoolai.in/tools/base64-encoder",
   },
 }
 

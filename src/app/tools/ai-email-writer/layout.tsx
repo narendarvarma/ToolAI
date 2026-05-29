@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("ai-email-writer").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-email-writer",
+    canonical: "https://gettoolai.in/tools/ai-email-writer",
   },
   openGraph: {
     title: getToolMetadata("ai-email-writer").title,
     description: getToolMetadata("ai-email-writer").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-email-writer",
+    url: "https://gettoolai.in/tools/ai-email-writer",
   },
 }
 

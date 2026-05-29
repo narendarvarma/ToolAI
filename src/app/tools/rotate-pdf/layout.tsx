@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("rotate-pdf").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/rotate-pdf",
+    canonical: "https://gettoolai.in/tools/rotate-pdf",
   },
   openGraph: {
     title: getToolMetadata("rotate-pdf").title,
     description: getToolMetadata("rotate-pdf").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/rotate-pdf",
+    url: "https://gettoolai.in/tools/rotate-pdf",
   },
 }
 

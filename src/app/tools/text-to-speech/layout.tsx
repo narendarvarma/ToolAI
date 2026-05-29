@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("text-to-speech").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/text-to-speech",
+    canonical: "https://gettoolai.in/tools/text-to-speech",
   },
   openGraph: {
     title: getToolMetadata("text-to-speech").title,
     description: getToolMetadata("text-to-speech").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/text-to-speech",
+    url: "https://gettoolai.in/tools/text-to-speech",
   },
 }
 

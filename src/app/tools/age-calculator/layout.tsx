@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("age-calculator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/age-calculator",
+    canonical: "https://gettoolai.in/tools/age-calculator",
   },
   openGraph: {
     title: getToolMetadata("age-calculator").title,
     description: getToolMetadata("age-calculator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/age-calculator",
+    url: "https://gettoolai.in/tools/age-calculator",
   },
 }
 

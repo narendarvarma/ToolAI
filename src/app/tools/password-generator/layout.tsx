@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("password-generator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/password-generator",
+    canonical: "https://gettoolai.in/tools/password-generator",
   },
   openGraph: {
     title: getToolMetadata("password-generator").title,
     description: getToolMetadata("password-generator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/password-generator",
+    url: "https://gettoolai.in/tools/password-generator",
   },
 }
 

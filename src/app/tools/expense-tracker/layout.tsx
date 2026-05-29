@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("expense-tracker").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/expense-tracker",
+    canonical: "https://gettoolai.in/tools/expense-tracker",
   },
   openGraph: {
     title: getToolMetadata("expense-tracker").title,
     description: getToolMetadata("expense-tracker").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/expense-tracker",
+    url: "https://gettoolai.in/tools/expense-tracker",
   },
 }
 

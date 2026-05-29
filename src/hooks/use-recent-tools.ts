@@ -8,12 +8,16 @@ interface RecentTool {
   icon: string
 }
 
-export function useRecentTools(toolPath: string, toolName: string, toolIcon: string) {
+export function useRecentTools(toolPath: string, toolName?: string, toolIcon?: string) {
   useEffect(() => {
     if (typeof window === "undefined") return
 
     const recentTools: RecentTool[] = JSON.parse(localStorage.getItem("toolhub_recent") || "[]")
-    const newTool: RecentTool = { name: toolName, url: toolPath, icon: toolIcon }
+    const newTool: RecentTool = { 
+      name: toolName || "Tool", 
+      url: toolPath, 
+      icon: toolIcon || "Tool" 
+    }
     const updated = [newTool, ...recentTools.filter((t: RecentTool) => t.url !== toolPath)].slice(0, 5)
     localStorage.setItem("toolhub_recent", JSON.stringify(updated))
   }, [toolPath, toolName, toolIcon])

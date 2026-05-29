@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("ai-study-assistant").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-study-assistant",
+    canonical: "https://gettoolai.in/tools/ai-study-assistant",
   },
   openGraph: {
     title: getToolMetadata("ai-study-assistant").title,
     description: getToolMetadata("ai-study-assistant").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/ai-study-assistant",
+    url: "https://gettoolai.in/tools/ai-study-assistant",
   },
 }
 

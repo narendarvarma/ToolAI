@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("password-strength").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/password-strength",
+    canonical: "https://gettoolai.in/tools/password-strength",
   },
   openGraph: {
     title: getToolMetadata("password-strength").title,
     description: getToolMetadata("password-strength").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/password-strength",
+    url: "https://gettoolai.in/tools/password-strength",
   },
 }
 

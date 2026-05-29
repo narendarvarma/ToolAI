@@ -13,40 +13,22 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Formspree integration - replace YOUR_FORMSPREE_ID with your actual Formspree form ID
-    const formId = "YOUR_FORMSPREE_ID"
-    const formDataObj = new FormData()
-    formDataObj.append("name", formData.name)
-    formDataObj.append("email", formData.email)
-    formDataObj.append("subject", formData.subject)
-    formDataObj.append("message", formData.message)
-
-    try {
-      const response = await fetch(`https://formspree.io/f/${formId}`, {
-        method: "POST",
-        body: formDataObj,
-        headers: {
-          Accept: "application/json"
-        }
-      })
-
-      if (response.ok) {
-        setSubmitted(true)
-        setFormData({ name: "", email: "", subject: "", message: "" })
-        setTimeout(() => setSubmitted(false), 5000)
-      } else {
-        alert("There was a problem submitting the form. Please try again.")
-      }
-    } catch (error) {
-      console.error("Form submission error:", error)
-      alert("There was a problem submitting the form. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    // Redirect to email client with pre-filled message
+    const subject = encodeURIComponent(formData.subject)
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )
+    
+    window.location.href = `mailto:vnarendar233@gmail.com?subject=${subject}&body=${body}`
+    
+    setSubmitted(true)
+    setFormData({ name: "", email: "", subject: "", message: "" })
+    setTimeout(() => setSubmitted(false), 5000)
+    setIsSubmitting(false)
   }
 
   return (
@@ -65,7 +47,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">Email</h3>
-                  <p className="text-gray-400 text-sm">support@toolhub.ai</p>
+                  <p className="text-gray-400 text-sm">Send us a message via the form</p>
                 </div>
               </div>
             </div>

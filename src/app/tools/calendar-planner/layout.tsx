@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("calendar-planner").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/calendar-planner",
+    canonical: "https://gettoolai.in/tools/calendar-planner",
   },
   openGraph: {
     title: getToolMetadata("calendar-planner").title,
     description: getToolMetadata("calendar-planner").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/calendar-planner",
+    url: "https://gettoolai.in/tools/calendar-planner",
   },
 }
 

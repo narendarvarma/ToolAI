@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("qr-generator").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/qr-generator",
+    canonical: "https://gettoolai.in/tools/qr-generator",
   },
   openGraph: {
     title: getToolMetadata("qr-generator").title,
     description: getToolMetadata("qr-generator").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/qr-generator",
+    url: "https://gettoolai.in/tools/qr-generator",
   },
 }
 

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("image-compressor").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/image-compressor",
+    canonical: "https://gettoolai.in/tools/image-compressor",
   },
   openGraph: {
     title: getToolMetadata("image-compressor").title,
     description: getToolMetadata("image-compressor").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/image-compressor",
+    url: "https://gettoolai.in/tools/image-compressor",
   },
 }
 

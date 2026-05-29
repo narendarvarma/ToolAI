@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   keywords: getToolMetadata("study-planner").keywords,
   robots: "index, follow",
   alternates: {
-    canonical: "https://magnificent-nougat-9be2d0.netlify.app/tools/study-planner",
+    canonical: "https://gettoolai.in/tools/study-planner",
   },
   openGraph: {
     title: getToolMetadata("study-planner").title,
     description: getToolMetadata("study-planner").description,
     type: "website",
-    url: "https://magnificent-nougat-9be2d0.netlify.app/tools/study-planner",
+    url: "https://gettoolai.in/tools/study-planner",
   },
 }
 

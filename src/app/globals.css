@@ -23,4 +23,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  
+  .ad-slot {
+    display: none;
+  }
+  
+  .ad-slot.loaded {
+    display: block;
+  }
 }
