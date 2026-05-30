@@ -59,7 +59,6 @@ export class TokenManager {
 
   private cleanOldUsageKeys(): void {
     if (typeof window === 'undefined') return;
-    const today = this.getToday();
     Object.keys(localStorage).forEach((key) => {
       if (key.startsWith('toolhub_usage_') && key !== STORAGE_KEY) {
         localStorage.removeItem(key);
@@ -94,6 +93,12 @@ export class TokenManager {
 
   canUseRequest(): boolean {
     return this.getRemainingRequests() > 0;
+  }
+
+  // Used by AI tool pages that pass an estimated token count.
+  // Since we track by requests (not raw tokens), we just check if a slot is free.
+  canUseTokens(_estimatedTokens: number): boolean {
+    return this.canUseRequest();
   }
 
   useRequest(): boolean {
