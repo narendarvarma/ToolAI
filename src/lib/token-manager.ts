@@ -101,6 +101,11 @@ export class TokenManager {
     return this.canUseRequest();
   }
 
+  // Alias for useRequest() — used by tool pages that call useTokens(estimatedTokens)
+  useTokens(_estimatedTokens: number): boolean {
+    return this.useRequest();
+  }
+
   useRequest(): boolean {
     if (!this.canUseRequest()) {
       return false;
