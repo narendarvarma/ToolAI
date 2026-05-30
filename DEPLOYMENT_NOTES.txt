@@ -1,0 +1,17 @@
+Domain: gettoolai.in
+Hosting: Netlify
+
+Build command:
+npm run build
+
+Publish directory:
+(blank)
+
+Plugin:
+@netlify/plugin-nextjs
+
+Custom Domain:
+gettoolai.in
+
+DNS:
+Netlify DNS
