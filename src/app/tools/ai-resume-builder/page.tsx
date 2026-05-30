@@ -8,7 +8,6 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
-import html2pdf from "html2pdf.js"
 
 export default function AIResumeBuilder() {
   const [name, setName] = useState("")
@@ -155,10 +154,11 @@ ${userDetails}
     setIsGenerating(false)
   }
 
-  const downloadPDF = () => {
+  const downloadPDF = async () => {
     const element = resumeRef.current
     if (!element) return
 
+    const html2pdf = (await import('html2pdf.js')).default
     html2pdf().set({
       margin: 0,
       filename: 'resume.pdf',
