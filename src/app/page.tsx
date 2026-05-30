@@ -389,26 +389,25 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.7 + (index * 0.05) }}
                   >
-                    <Link
-                      href={tool.url}
-                      className="group bg-gradient-to-br from-[#111827] to-[#1a1f2e] rounded-2xl p-6 border border-white/8 hover:border-[#00E5FF]/50 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#00E5FF]/10 transition-all duration-300 block relative"
-                    >
+                    <div className="relative group bg-gradient-to-br from-[#111827] to-[#1a1f2e] rounded-2xl p-6 border border-white/8 hover:border-[#00E5FF]/50 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#00E5FF]/10 transition-all duration-300">
                       <button
                         onClick={(e) => handleFavouriteClick(e, tool.url)}
                         className="absolute top-4 right-4 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors z-10"
                       >
                         <Heart className={`h-5 w-5 ${isFavourite(tool.url) ? 'text-red-500 fill-red-500' : 'text-gray-400'}`} />
                       </button>
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#00E5FF]/20 to-[#7C4DFF]/20 flex items-center justify-center mb-4 group-hover:from-[#00E5FF]/30 group-hover:to-[#7C4DFF]/30 transition-all">
-                        <Icon className="h-6 w-6 text-[#00E5FF]" />
-                      </div>
-                      <h3 className="font-semibold text-white mb-2">{tool.name}</h3>
-                      <p className="text-sm text-gray-400">{toolData?.description || ""}</p>
-                      <div className="mt-4 flex items-center text-[#00E5FF] text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>Open Tool</span>
-                        <ArrowRight className="h-4 w-4 ml-1" />
-                      </div>
-                    </Link>
+                      <Link href={tool.url} className="block">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#00E5FF]/20 to-[#7C4DFF]/20 flex items-center justify-center mb-4 group-hover:from-[#00E5FF]/30 group-hover:to-[#7C4DFF]/30 transition-all">
+                          <Icon className="h-6 w-6 text-[#00E5FF]" />
+                        </div>
+                        <h3 className="font-semibold text-white mb-2">{tool.name}</h3>
+                        <p className="text-sm text-gray-400">{toolData?.description || ""}</p>
+                        <div className="mt-4 flex items-center text-[#00E5FF] text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span>Open Tool</span>
+                          <ArrowRight className="h-4 w-4 ml-1" />
+                        </div>
+                      </Link>
+                    </div>
                   </motion.div>
                 )
               })}
@@ -441,26 +440,25 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.8 + (index * 0.05) }}
                   >
-                    <Link
-                      href={tool.path}
-                      className="group bg-gradient-to-br from-[#111827] to-[#1a1f2e] rounded-2xl p-6 border border-white/8 hover:border-[#00E5FF]/50 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#00E5FF]/10 transition-all duration-300 block relative"
-                    >
+                    <div className="relative group bg-gradient-to-br from-[#111827] to-[#1a1f2e] rounded-2xl p-6 border border-white/8 hover:border-[#00E5FF]/50 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#00E5FF]/10 transition-all duration-300">
                       <button
                         onClick={(e) => handleFavouriteClick(e, tool.path)}
                         className="absolute top-4 right-4 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors z-10"
                       >
                         <Heart className="h-5 w-5 text-red-500 fill-red-500" />
                       </button>
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#00E5FF]/20 to-[#7C4DFF]/20 flex items-center justify-center mb-4 group-hover:from-[#00E5FF]/30 group-hover:to-[#7C4DFF]/30 transition-all">
-                        <Icon className="h-6 w-6 text-[#00E5FF]" />
-                      </div>
-                      <h3 className="font-semibold text-white mb-2">{tool.name}</h3>
-                      <p className="text-sm text-gray-400">{tool.description}</p>
-                      <div className="mt-4 flex items-center text-[#00E5FF] text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>Open Tool</span>
-                        <ArrowRight className="h-4 w-4 ml-1" />
-                      </div>
-                    </Link>
+                      <Link href={tool.path} className="block">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#00E5FF]/20 to-[#7C4DFF]/20 flex items-center justify-center mb-4 group-hover:from-[#00E5FF]/30 group-hover:to-[#7C4DFF]/30 transition-all">
+                          <Icon className="h-6 w-6 text-[#00E5FF]" />
+                        </div>
+                        <h3 className="font-semibold text-white mb-2">{tool.name}</h3>
+                        <p className="text-sm text-gray-400">{tool.description}</p>
+                        <div className="mt-4 flex items-center text-[#00E5FF] text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span>Open Tool</span>
+                          <ArrowRight className="h-4 w-4 ml-1" />
+                        </div>
+                      </Link>
+                    </div>
                   </motion.div>
                 )
               })}
@@ -640,6 +638,99 @@ export default function Home() {
               <Smartphone className="h-8 w-8 text-[#00E5FF] mb-4" />
               <h3 className="text-lg font-semibold text-white mb-2">Works on Any Device</h3>
               <p className="text-gray-400 text-sm">Fully optimized for mobile, tablet, and desktop. Use your tools anywhere.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-14 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-semibold text-white mb-4">What Our Users Say</h2>
+            <p className="text-gray-400">Trusted by thousands of users worldwide</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400">★</span>
+                ))}
+              </div>
+              <p className="text-gray-300 mb-4">"The PDF tools are incredibly fast and easy to use. I use them daily for my work. No signup required is a huge plus!"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] flex items-center justify-center text-white font-semibold">S</div>
+                <div>
+                  <p className="text-white font-medium">Sarah M.</p>
+                  <p className="text-gray-400 text-sm">Marketing Manager</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400">★</span>
+                ))}
+              </div>
+              <p className="text-gray-300 mb-4">"As a student, the CGPA calculator and study tools have been a lifesaver. Everything is in one place and works perfectly."</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] flex items-center justify-center text-white font-semibold">R</div>
+                <div>
+                  <p className="text-white font-medium">Rahul K.</p>
+                  <p className="text-gray-400 text-sm">Engineering Student</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400">★</span>
+                ))}
+              </div>
+              <p className="text-gray-300 mb-4">"Finally, a tool platform that respects privacy. All processing happens in-browser. Highly recommend for anyone concerned about data security."</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] flex items-center justify-center text-white font-semibold">J</div>
+                <div>
+                  <p className="text-white font-medium">James L.</p>
+                  <p className="text-gray-400 text-sm">Software Developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Updates Section */}
+      <section className="py-14 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-semibold text-white mb-4">Latest Updates</h2>
+            <p className="text-gray-400">New tools and features added recently</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="px-2 py-1 rounded-md bg-[#00E5FF]/20 text-[#00E5FF] text-xs font-medium">New</span>
+                <span className="text-gray-400 text-sm">May 2025</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">AI Resume Builder</h3>
+              <p className="text-gray-400 text-sm">Create professional, ATS-friendly resumes with AI assistance in minutes.</p>
+            </div>
+            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="px-2 py-1 rounded-md bg-[#7C4DFF]/20 text-[#7C4DFF] text-xs font-medium">Updated</span>
+                <span className="text-gray-400 text-sm">May 2025</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">PDF Tools Enhanced</h3>
+              <p className="text-gray-400 text-sm">Faster processing and improved quality for all PDF manipulation tools.</p>
+            </div>
+            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="px-2 py-1 rounded-md bg-[#00E5FF]/20 text-[#00E5FF] text-xs font-medium">New</span>
+                <span className="text-gray-400 text-sm">April 2025</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">CGPA Calculator</h3>
+              <p className="text-gray-400 text-sm">Calculate semester CGPA and cumulative GPA for Indian university students.</p>
             </div>
           </div>
         </div>

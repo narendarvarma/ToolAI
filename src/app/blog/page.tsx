@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { ArrowRight, Calendar, Clock } from "lucide-react"
 

@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Link, Copy, ArrowUpDown } from "lucide-react"
+import { Link as LinkIcon, Copy, ArrowUpDown } from "lucide-react"
+import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
@@ -105,7 +106,7 @@ export default function URLEncoder() {
               className="flex-1 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
             >
               <div className="flex items-center justify-center gap-2">
-                <Link className="h-5 w-5" />
+                <LinkIcon className="h-5 w-5" />
                 {mode === "encode" ? "Encode" : "Decode"}
               </div>
             </button>
@@ -154,12 +155,12 @@ export default function URLEncoder() {
         </div>
         </div>
 
-        <button
-          onClick={() => window.location.href = "/"}
-          className="mt-6 text-[#00E5FF] hover:underline"
+        <Link
+          href="/"
+          className="mt-6 text-[#00E5FF] hover:underline inline-block"
         >
           ← Back to Home
-        </button>
+        </Link>
       </div>
     </div>
   )

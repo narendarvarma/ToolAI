@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { Plus, Trash2, Calculator, Download } from "lucide-react"
 import { jsPDF } from "jspdf"
+import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
@@ -263,12 +264,12 @@ export default function CgpaCalculator() {
         {/* Social Share */}
         <SocialShare title="CGPA Calculator - Calculate your CGPA instantly" />
 
-        <button
-          onClick={() => window.location.href = "/"}
-          className="mt-6 text-[#00E5FF] hover:underline"
+        <Link
+          href="/"
+          className="mt-6 text-[#00E5FF] hover:underline inline-block"
         >
           ← Back to Home
-        </button>
+        </Link>
       </div>
 
       {/* Share Prompt */}

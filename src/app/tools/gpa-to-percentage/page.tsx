@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Calculator, GraduationCap } from "lucide-react"
+import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
@@ -139,12 +140,12 @@ export default function GpaToPercentage() {
         {/* Social Share */}
         <SocialShare title="GPA to Percentage Converter - Convert CGPA using university formulas" />
 
-        <button
-          onClick={() => window.location.href = "/"}
-          className="mt-6 text-[#00E5FF] hover:underline"
+        <Link
+          href="/"
+          className="mt-6 text-[#00E5FF] hover:underline inline-block"
         >
           ← Back to Home
-        </button>
+        </Link>
       </div>
     </div>
   )

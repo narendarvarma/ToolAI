@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Code, Copy, Wand2 } from "lucide-react"
+import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
@@ -150,12 +151,12 @@ export default function AICodeHelper() {
         </div>
         </div>
 
-        <button
-          onClick={() => window.location.href = "/"}
-          className="mt-6 text-[#00E5FF] hover:underline"
+        <Link
+          href="/"
+          className="mt-6 text-[#00E5FF] hover:underline inline-block"
         >
           ← Back to Home
-        </button>
+        </Link>
       </div>
     </div>
   )

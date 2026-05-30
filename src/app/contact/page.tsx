@@ -1,35 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Send, MapPin, Phone, CheckCircle } from "lucide-react"
+import { Mail, Send, MapPin, Phone, CheckCircle, Twitter, Linkedin, Github, Facebook } from "lucide-react"
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Redirect to email client with pre-filled message
-    const subject = encodeURIComponent(formData.subject)
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )
-    
-    window.location.href = `mailto:vnarendar233@gmail.com?subject=${subject}&body=${body}`
-    
-    setSubmitted(true)
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setTimeout(() => setSubmitted(false), 5000)
-    setIsSubmitting(false)
-  }
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-14 px-4">
@@ -47,7 +22,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">Email</h3>
-                  <p className="text-gray-400 text-sm">Send us a message via the form</p>
+                  <p className="text-gray-400 text-sm">servicestoolai@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -86,14 +61,16 @@ export default function Contact() {
                 <p className="text-gray-400 text-center">We'll reply within 24 hours.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                action="https://formspree.io/f/maqkkyvy" 
+                method="POST"
+                className="space-y-6"
+              >
                 <div>
                   <label className="block text-sm font-medium mb-2 text-white">Name</label>
                   <input
                     type="text"
                     name="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
                     className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
                     placeholder="Your name"
                     required
@@ -105,8 +82,6 @@ export default function Contact() {
                   <input
                     type="email"
                     name="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
                     className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
                     placeholder="your@email.com"
                     required
@@ -118,8 +93,6 @@ export default function Contact() {
                   <input
                     type="text"
                     name="subject"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
                     className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
                     placeholder="What's this about?"
                     required
@@ -130,8 +103,6 @@ export default function Contact() {
                   <label className="block text-sm font-medium mb-2 text-white">Message</label>
                   <textarea
                     name="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
                     className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all h-32 resize-none"
                     placeholder="Your message..."
                     required
@@ -149,20 +120,53 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20"
                 >
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <div className="flex items-center justify-center gap-2">
-                      <Send className="h-5 w-5" />
-                      Send Message
-                    </div>
-                  )}
+                  <div className="flex items-center justify-center gap-2">
+                    <Send className="h-5 w-5" />
+                    Send Message
+                  </div>
                 </button>
               </form>
             )}
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-semibold mb-6 text-white">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
+              <h3 className="font-semibold text-white mb-2">How quickly will you respond to my message?</h3>
+              <p className="text-gray-400 text-sm">We typically respond within 24 hours on business days.</p>
+            </div>
+            <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
+              <h3 className="font-semibold text-white mb-2">Can I request a new tool?</h3>
+              <p className="text-gray-400 text-sm">Yes! We love hearing from users. Send us your tool suggestions and we'll consider adding them.</p>
+            </div>
+            <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
+              <h3 className="font-semibold text-white mb-2">Are all tools really free?</h3>
+              <p className="text-gray-400 text-sm">Yes, every tool on ToolHub AI is 100% free with no hidden charges.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Social Media Links */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-semibold mb-6 text-white">Follow Us</h2>
+          <div className="flex gap-4">
+            <a href="#" className="w-12 h-12 rounded-xl bg-[#111827] border border-white/8 flex items-center justify-center text-gray-400 hover:text-[#00E5FF] hover:border-[#00E5FF]/50 transition-all">
+              <Twitter className="h-5 w-5" />
+            </a>
+            <a href="#" className="w-12 h-12 rounded-xl bg-[#111827] border border-white/8 flex items-center justify-center text-gray-400 hover:text-[#00E5FF] hover:border-[#00E5FF]/50 transition-all">
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a href="#" className="w-12 h-12 rounded-xl bg-[#111827] border border-white/8 flex items-center justify-center text-gray-400 hover:text-[#00E5FF] hover:border-[#00E5FF]/50 transition-all">
+              <Github className="h-5 w-5" />
+            </a>
+            <a href="#" className="w-12 h-12 rounded-xl bg-[#111827] border border-white/8 flex items-center justify-center text-gray-400 hover:text-[#00E5FF] hover:border-[#00E5FF]/50 transition-all">
+              <Facebook className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Linkedin, Sparkles, Copy, Check } from "lucide-react"
+import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
@@ -190,12 +191,12 @@ I'm always excited to connect with professionals in the industry and explore opp
         {/* Social Share */}
         <SocialShare title="AI LinkedIn Bio Generator - Generate professional LinkedIn bio" />
 
-        <button
-          onClick={() => window.location.href = "/"}
-          className="mt-6 text-[#00E5FF] hover:underline"
+        <Link
+          href="/"
+          className="mt-6 text-[#00E5FF] hover:underline inline-block"
         >
           ← Back to Home
-        </button>
+        </Link>
       </div>
     </div>
   )

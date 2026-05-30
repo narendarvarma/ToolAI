@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import CookieBanner from "@/components/cookie-banner"
+import dynamic from "next/dynamic"
 import { BASE_URL } from "@/lib/config"
+import Script from "next/script"
+
+const Navbar = dynamic(() => import("@/components/navbar"), { ssr: false })
+const Footer = dynamic(() => import("@/components/footer"), { ssr: false })
+const CookieBanner = dynamic(() => import("@/components/cookie-banner"), { ssr: false })
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
@@ -99,6 +102,19 @@ export default function RootLayout({
         }} />
       </head>
       <body className={inter.className}>
+        {/* Google Analytics Placeholder */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          `}
+        </Script>
         <Navbar />
         {children}
         <Footer />

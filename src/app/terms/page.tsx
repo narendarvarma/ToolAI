@@ -1,3 +1,5 @@
+"use client"
+
 export default function Terms() {
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-14 px-4">

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Upload, Image as ImageIcon, Copy, Check, Download } from "lucide-react"
+import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
@@ -170,12 +171,12 @@ export default function ImageToBase64() {
         {/* Social Share */}
         <SocialShare title="Image to Base64 Converter - Convert images to base64 strings" />
 
-        <button
-          onClick={() => window.location.href = "/"}
-          className="mt-6 text-[#00E5FF] hover:underline"
+        <Link
+          href="/"
+          className="mt-6 text-[#00E5FF] hover:underline inline-block"
         >
           ← Back to Home
-        </button>
+        </Link>
       </div>
     </div>
   )

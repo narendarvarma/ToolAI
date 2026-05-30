@@ -1,3 +1,9 @@
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://gettoolai.in
+
+# Sitemaps
 Sitemap: https://gettoolai.in/sitemap.xml

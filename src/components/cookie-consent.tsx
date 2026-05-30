@@ -1,9 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export default function CookieConsent() {
   const [showConsent, setShowConsent] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const hasConsented = localStorage.getItem("toolhub_cookie")
@@ -18,7 +20,7 @@ export default function CookieConsent() {
   }
 
   const handlePrivacyPolicy = () => {
-    window.location.href = "/privacy"
+    router.push("/privacy")
   }
 
   if (!showConsent) return null

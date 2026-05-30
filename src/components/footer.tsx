@@ -96,6 +96,11 @@ export default function Footer() {
                   Cookie Policy
                 </Link>
               </li>
+              <li>
+                <Link href="/sitemap.xml" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  Sitemap
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

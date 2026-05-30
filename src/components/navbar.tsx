@@ -1,29 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { Search, Menu, X, Moon, Sun } from "lucide-react"
+import { Search, Menu, X } from "lucide-react"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [isDarkMode, setIsDarkMode] = useState(true)
-
-  useEffect(() => {
-    const stored = localStorage.getItem("toolhub_theme")
-    if (stored !== null) {
-      setIsDarkMode(stored === "dark")
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem("toolhub_theme", isDarkMode ? "dark" : "light")
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-  }, [isDarkMode])
 
   const categories = [
     "PDF Tools",
@@ -68,13 +51,6 @@ export default function Navbar() {
                   {category}
                 </Link>
               ))}
-              <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                className="p-2 rounded-lg hover:bg-white/5 transition-colors"
-                title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              >
-                {isDarkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-gray-400" />}
-              </button>
             </div>
           </div>
 
@@ -106,19 +82,11 @@ export default function Navbar() {
                   key={category}
                   href={`/#${category.toLowerCase().replace(' ', '-')}`}
                   className="block text-gray-300 hover:text-white transition-colors py-2"
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   {category}
                 </Link>
               ))}
             </div>
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors py-2"
-            >
-              {isDarkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-gray-400" />}
-              <span>{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
-            </button>
           </div>
         )}
       </div>

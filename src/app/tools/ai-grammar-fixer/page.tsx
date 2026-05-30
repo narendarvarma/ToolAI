@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { CheckCircle, Copy, Sparkles } from "lucide-react"
+import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
@@ -182,12 +183,12 @@ export default function AiGrammarFixer() {
         {/* Social Share */}
         <SocialShare title="AI Grammar Fixer - Fix grammar and spelling" />
 
-        <button
-          onClick={() => window.location.href = "/"}
-          className="mt-6 text-[#00E5FF] hover:underline"
+        <Link
+          href="/"
+          className="mt-6 text-[#00E5FF] hover:underline inline-block"
         >
           ← Back to Home
-        </button>
+        </Link>
       </div>
     </div>
   )
