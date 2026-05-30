@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free AI assignment helper for students. Enter subject and question, get structured answer with introduction, main points, and conclusion. Word count selector. Most needed tool for Indian students.",
   keywords: "AI assignment helper, assignment help, homework helper, student AI, study assistant",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/ai-assignment-helper`,
   },

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("world-clock").description,
   keywords: getToolMetadata("world-clock").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/world-clock",
   },

@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free random name picker tool. Enter names separated by commas or newlines, click to pick random winner. Animation effect. Remove winner option for multiple picks. Great for teachers and group projects.",
   keywords: "random name picker, random winner picker, name generator, random selector, group picker",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/name-picker`,
   },

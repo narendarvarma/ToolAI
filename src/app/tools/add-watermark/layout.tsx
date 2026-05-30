@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("add-watermark").description,
   keywords: getToolMetadata("add-watermark").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/add-watermark",
   },

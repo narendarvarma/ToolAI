@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free GST calculator for Indian users. Calculate GST amount, final price with GST, and reverse GST calculation. Support for 5%, 12%, 18%, 28% GST rates.",
   keywords: "GST calculator, GST calculation, Indian GST, GST amount, reverse GST, GST rates",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/gst-calculator`,
   },

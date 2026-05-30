@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("rotate-pdf").description,
   keywords: getToolMetadata("rotate-pdf").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/rotate-pdf",
   },

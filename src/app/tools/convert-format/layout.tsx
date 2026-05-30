@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("convert-format").description,
   keywords: getToolMetadata("convert-format").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/convert-format",
   },

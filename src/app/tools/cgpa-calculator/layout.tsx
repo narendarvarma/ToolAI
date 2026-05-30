@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description: toolMeta.description,
   keywords: toolMeta.keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: toolMeta.canonical,
   },

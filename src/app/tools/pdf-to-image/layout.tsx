@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("pdf-to-image").description,
   keywords: getToolMetadata("pdf-to-image").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/pdf-to-image",
   },

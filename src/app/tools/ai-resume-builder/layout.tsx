@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("ai-resume-builder").description,
   keywords: getToolMetadata("ai-resume-builder").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/ai-resume-builder",
   },

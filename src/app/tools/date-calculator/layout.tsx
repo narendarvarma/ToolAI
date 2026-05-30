@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("date-calculator").description,
   keywords: getToolMetadata("date-calculator").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/date-calculator",
   },

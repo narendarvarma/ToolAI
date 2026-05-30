@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("age-calculator").description,
   keywords: getToolMetadata("age-calculator").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/age-calculator",
   },

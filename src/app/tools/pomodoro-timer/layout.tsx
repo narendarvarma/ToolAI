@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("pomodoro-timer").description,
   keywords: getToolMetadata("pomodoro-timer").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/pomodoro-timer",
   },

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("daily-goals").description,
   keywords: getToolMetadata("daily-goals").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/daily-goals",
   },

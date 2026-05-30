@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free number to words converter. Convert numbers to words in Indian format (lakhs, crores) and international format (millions, billions). Also shows cheque writing format.",
   keywords: "number to words, convert number to words, Indian number format, cheque writing, lakhs crores",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/number-to-words`,
   },

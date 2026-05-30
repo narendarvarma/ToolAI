@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("json-to-csv").description,
   keywords: getToolMetadata("json-to-csv").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/json-to-csv",
   },

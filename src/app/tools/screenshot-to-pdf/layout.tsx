@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free screenshot to PDF converter tool. Upload multiple images (PNG/JPG), arrange order, convert to PDF with each image as a page. Download final PDF. Perfect for students submitting assignments.",
   keywords: "screenshot to PDF, images to PDF, JPG to PDF, PNG to PDF, photo to PDF",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/screenshot-to-pdf`,
   },

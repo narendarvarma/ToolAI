@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free PDF to text extractor tool. Upload PDF, extract all text content instantly. Copy text or download as TXT file. Perfect for students copying notes from PDF.",
   keywords: "PDF to text, extract text from PDF, PDF text extractor, copy PDF text, PDF to TXT",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/pdf-to-text`,
   },

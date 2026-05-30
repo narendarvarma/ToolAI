@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free EMI calculator for Indian users. Calculate monthly EMI, total interest, and total payment for home loan, car loan, personal loan. Show amortization breakdown.",
   keywords: "EMI calculator, loan calculator, home loan EMI, car loan EMI, personal loan EMI, loan interest calculator",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/emi-calculator`,
   },

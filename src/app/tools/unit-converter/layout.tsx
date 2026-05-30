@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("unit-converter").description,
   keywords: getToolMetadata("unit-converter").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/unit-converter",
   },

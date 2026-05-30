@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free typing speed test tool. Type the given paragraph and measure your WPM (words per minute), accuracy percentage, and errors. Perfect for improving typing skills.",
   keywords: "typing speed test, WPM test, typing practice, typing speed calculator, accuracy test",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/typing-speed`,
   },

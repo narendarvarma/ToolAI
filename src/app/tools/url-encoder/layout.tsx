@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("url-encoder").description,
   keywords: getToolMetadata("url-encoder").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/url-encoder",
   },

@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free loan eligibility calculator for Indian users. Calculate maximum loan amount eligible based on monthly salary, existing EMIs, interest rate, and tenure. For home loan, personal loan, education loan.",
   keywords: "loan eligibility calculator, home loan eligibility, personal loan eligibility, loan amount calculator, EMI calculator",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/loan-eligibility`,
   },

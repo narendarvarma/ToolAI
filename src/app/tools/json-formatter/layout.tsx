@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("json-formatter").description,
   keywords: getToolMetadata("json-formatter").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/json-formatter",
   },

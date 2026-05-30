@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("expense-tracker").description,
   keywords: getToolMetadata("expense-tracker").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/expense-tracker",
   },

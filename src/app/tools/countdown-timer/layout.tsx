@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("countdown-timer").description,
   keywords: getToolMetadata("countdown-timer").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/countdown-timer",
   },

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("password-strength").description,
   keywords: getToolMetadata("password-strength").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/password-strength",
   },

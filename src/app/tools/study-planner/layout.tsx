@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("study-planner").description,
   keywords: getToolMetadata("study-planner").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/study-planner",
   },

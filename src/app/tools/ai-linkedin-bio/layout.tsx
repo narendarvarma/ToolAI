@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free AI LinkedIn bio generator. Enter your name, role, skills, and experience. AI generates a professional LinkedIn About section. Perfect for freshers and job seekers in India.",
   keywords: "LinkedIn bio generator, LinkedIn about section, professional bio, job seeker bio, resume bio",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/ai-linkedin-bio`,
   },

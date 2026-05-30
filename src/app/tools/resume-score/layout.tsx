@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free resume score checker for students and freshers. Analyze your resume for key sections, get score out of 100, see what's missing, and get improvement tips.",
   keywords: "resume score checker, resume analyzer, resume checker, resume tips, student resume, fresher resume",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/resume-score`,
   },

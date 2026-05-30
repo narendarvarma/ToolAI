@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("ai-code-helper").description,
   keywords: getToolMetadata("ai-code-helper").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/ai-code-helper",
   },

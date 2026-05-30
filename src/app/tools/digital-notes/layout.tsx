@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("digital-notes").description,
   keywords: getToolMetadata("digital-notes").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/digital-notes",
   },

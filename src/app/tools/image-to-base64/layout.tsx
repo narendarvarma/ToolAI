@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free image to base64 converter tool. Upload any image, instantly convert to base64 string. Copy base64, see image preview, check file size. Perfect for developers and students.",
   keywords: "image to base64, base64 converter, image encoder, base64 string, image to data URL",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/image-to-base64`,
   },

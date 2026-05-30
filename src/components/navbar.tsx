@@ -23,9 +23,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] flex items-center justify-center">
-              <span className="text-white font-bold text-lg">T</span>
-            </div>
+            <img src="/logo.svg" alt="ToolHub AI Logo" className="w-8 h-8" />
             <span className="text-white font-semibold text-xl">ToolHub AI</span>
           </Link>
 

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("timetable-generator").description,
   keywords: getToolMetadata("timetable-generator").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/timetable-generator",
   },

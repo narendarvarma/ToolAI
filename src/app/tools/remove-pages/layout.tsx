@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("remove-pages").description,
   keywords: getToolMetadata("remove-pages").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/remove-pages",
   },

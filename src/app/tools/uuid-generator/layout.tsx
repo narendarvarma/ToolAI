@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("uuid-generator").description,
   keywords: getToolMetadata("uuid-generator").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/uuid-generator",
   },

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("case-converter").description,
   keywords: getToolMetadata("case-converter").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/case-converter",
   },

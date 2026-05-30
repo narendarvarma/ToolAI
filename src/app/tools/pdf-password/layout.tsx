@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free PDF watermark protector tool. Upload PDF, add a visual 'PROTECTED DOCUMENT' watermark using pdf-lib. Download watermarked PDF instantly.",
   keywords: "PDF watermark protector, PDF watermark, secure PDF, protect PDF, PDF security",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/pdf-password`,
   },

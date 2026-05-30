@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free online percentage calculator for students. Calculate exam marks percentage, reverse percentage, percentage increase/decrease. Instant results for Indian students.",
   keywords: "percentage calculator, marks calculator, exam percentage, percentage increase, percentage decrease, student tools",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/percentage-calculator`,
   },

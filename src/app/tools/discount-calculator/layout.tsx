@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free discount calculator. Calculate discount amount, final price after discount, and reverse discount calculation. Perfect for shopping, sales, and offers.",
   keywords: "discount calculator, discount amount, sale calculator, price after discount, reverse discount",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/discount-calculator`,
   },

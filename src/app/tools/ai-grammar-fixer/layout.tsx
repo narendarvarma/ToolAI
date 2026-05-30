@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free AI grammar fixer tool. Paste English text, AI corrects grammar, spelling, and sentence structure. Shows original vs corrected side by side. Copy corrected text. High demand for non-native English speakers.",
   keywords: "grammar fixer, spelling checker, grammar corrector, AI grammar, English grammar fix",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/ai-grammar-fixer`,
   },

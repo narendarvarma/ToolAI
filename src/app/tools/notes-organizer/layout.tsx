@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("notes-organizer").description,
   keywords: getToolMetadata("notes-organizer").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/notes-organizer",
   },

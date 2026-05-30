@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Convert CGPA to percentage using Anna University, VTU, Mumbai University formulas. Instant CGPA to percentage conversion for Indian engineering students.",
   keywords: "CGPA to percentage, GPA converter, Anna University CGPA, VTU CGPA, Mumbai University CGPA, engineering students",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/gpa-to-percentage`,
   },

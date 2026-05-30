@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("image-compressor").description,
   keywords: getToolMetadata("image-compressor").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/image-compressor",
   },

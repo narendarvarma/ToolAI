@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("ai-notes-summarizer").description,
   keywords: getToolMetadata("ai-notes-summarizer").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/ai-notes-summarizer",
   },

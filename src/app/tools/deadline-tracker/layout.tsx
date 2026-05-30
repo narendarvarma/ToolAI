@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description: "Free assignment deadline tracker for students. Add assignments with deadlines, priority levels, color-coded alerts. Save to localStorage. Sort by nearest deadline.",
   keywords: "assignment tracker, deadline tracker, student planner, assignment organizer, study planner",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: `${BASE_URL}/tools/deadline-tracker`,
   },

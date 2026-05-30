@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("todo-list").description,
   keywords: getToolMetadata("todo-list").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/todo-list",
   },

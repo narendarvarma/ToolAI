@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("qr-generator").description,
   keywords: getToolMetadata("qr-generator").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/qr-generator",
   },

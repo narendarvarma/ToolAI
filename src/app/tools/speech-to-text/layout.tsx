@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("speech-to-text").description,
   keywords: getToolMetadata("speech-to-text").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/speech-to-text",
   },

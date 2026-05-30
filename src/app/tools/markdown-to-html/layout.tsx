@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("markdown-to-html").description,
   keywords: getToolMetadata("markdown-to-html").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/markdown-to-html",
   },

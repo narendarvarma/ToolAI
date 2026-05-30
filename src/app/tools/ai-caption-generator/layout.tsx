@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("ai-caption-generator").description,
   keywords: getToolMetadata("ai-caption-generator").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/ai-caption-generator",
   },

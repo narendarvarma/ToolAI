@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: getToolMetadata("attendance-calculator").description,
   keywords: getToolMetadata("attendance-calculator").keywords,
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     canonical: "https://gettoolai.in/tools/attendance-calculator",
   },
