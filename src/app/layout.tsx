@@ -8,6 +8,7 @@ import Script from "next/script"
 const Navbar = dynamic(() => import("@/components/navbar"), { ssr: false })
 const Footer = dynamic(() => import("@/components/footer"), { ssr: false })
 const CookieBanner = dynamic(() => import("@/components/cookie-banner"), { ssr: false })
+const DailyLimitPopup = dynamic(() => import("@/components/daily-limit-popup"), { ssr: false })
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
@@ -120,6 +121,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <CookieBanner />
+        <DailyLimitPopup />
       </body>
     </html>
   )

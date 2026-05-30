@@ -1,25 +1,43 @@
 // Token Manager for AI Tools
-// Tracks daily token usage per user using localStorage
+// Tracks daily request usage per user using localStorage
 
-const DAILY_TOKEN_LIMIT = 10000; // 10,000 tokens per day
-const STORAGE_KEY = 'token_usage';
-const LAST_RESET_KEY = 'token_last_reset';
+const DAILY_REQUEST_LIMIT = 5; // 5 free requests per day
+const STORAGE_KEY = 'toolhub_usage';
+const LAST_RESET_KEY = 'toolhub_last_reset';
+const DEVICE_ID_KEY = 'toolhub_device_id';
 
 interface TokenUsage {
   date: string;
-  tokensUsed: number;
+  requestsUsed: number;
 }
 
 export class TokenManager {
   private static instance: TokenManager;
 
-  private constructor() {}
+  private constructor() {
+    this.initializeDeviceID();
+  }
 
   static getInstance(): TokenManager {
     if (!TokenManager.instance) {
       TokenManager.instance = new TokenManager();
     }
     return TokenManager.instance;
+  }
+
+  private getDeviceID(): string {
+    let id = localStorage.getItem(DEVICE_ID_KEY);
+    if (!id) {
+      id = "dev_" + Math.random().toString(36).substr(2, 12) + "_" + Date.now();
+      localStorage.setItem(DEVICE_ID_KEY, id);
+    }
+    return id;
+  }
+
+  private initializeDeviceID(): void {
+    if (typeof window !== 'undefined') {
+      this.getDeviceID();
+    }
   }
 
   private getToday(): string {
@@ -33,62 +51,86 @@ export class TokenManager {
     if (lastReset !== today) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         date: today,
-        tokensUsed: 0
+        requestsUsed: 0
       }));
       localStorage.setItem(LAST_RESET_KEY, today);
     }
   }
 
+  private cleanOldUsageKeys(): void {
+    if (typeof window === 'undefined') return;
+    const today = this.getToday();
+    Object.keys(localStorage).forEach((key) => {
+      if (key.startsWith('toolhub_usage_') && key !== STORAGE_KEY) {
+        localStorage.removeItem(key);
+      }
+    });
+  }
+
   private getUsage(): TokenUsage {
     this.resetIfNeeded();
+    this.cleanOldUsageKeys();
     const usage = localStorage.getItem(STORAGE_KEY);
-    return usage ? JSON.parse(usage) : { date: this.getToday(), tokensUsed: 0 };
+    return usage ? JSON.parse(usage) : { date: this.getToday(), requestsUsed: 0 };
   }
 
   private setUsage(usage: TokenUsage): void {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(usage));
   }
 
-  getRemainingTokens(): number {
+  getRemainingRequests(): number {
     const usage = this.getUsage();
-    return Math.max(0, DAILY_TOKEN_LIMIT - usage.tokensUsed);
+    return Math.max(0, DAILY_REQUEST_LIMIT - usage.requestsUsed);
   }
 
-  getTokensUsed(): number {
+  getRequestsUsed(): number {
     const usage = this.getUsage();
-    return usage.tokensUsed;
+    return usage.requestsUsed;
   }
 
   getDailyLimit(): number {
-    return DAILY_TOKEN_LIMIT;
+    return DAILY_REQUEST_LIMIT;
   }
 
-  canUseTokens(tokensNeeded: number): boolean {
-    return this.getRemainingTokens() >= tokensNeeded;
+  canUseRequest(): boolean {
+    return this.getRemainingRequests() > 0;
   }
 
-  useTokens(tokensUsed: number): boolean {
-    if (!this.canUseTokens(tokensUsed)) {
+  useRequest(): boolean {
+    if (!this.canUseRequest()) {
       return false;
     }
 
     const usage = this.getUsage();
-    usage.tokensUsed += tokensUsed;
+    usage.requestsUsed += 1;
     this.setUsage(usage);
     return true;
   }
 
-  getTokenUsagePercentage(): number {
-    const used = this.getTokensUsed();
-    return Math.min(100, (used / DAILY_TOKEN_LIMIT) * 100);
+  getRequestUsagePercentage(): number {
+    const used = this.getRequestsUsed();
+    return Math.min(100, (used / DAILY_REQUEST_LIMIT) * 100);
   }
 
   resetDaily(): void {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       date: this.getToday(),
-      tokensUsed: 0
+      requestsUsed: 0
     }));
     localStorage.setItem(LAST_RESET_KEY, this.getToday());
+  }
+
+  getTimeUntilReset(): { hours: number; minutes: number; seconds: number } {
+    const now = new Date();
+    const midnight = new Date();
+    midnight.setHours(24, 0, 0, 0);
+    const diff = midnight.getTime() - now.getTime();
+
+    const hours = Math.floor(diff / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+
+    return { hours, minutes, seconds };
   }
 }
 

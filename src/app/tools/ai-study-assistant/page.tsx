@@ -8,6 +8,7 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
+import { callWithFallback } from "@/lib/ai-fallback"
 
 export default function AIStudyAssistant() {
   const [topic, setTopic] = useState("")
@@ -22,7 +23,7 @@ export default function AIStudyAssistant() {
     // Check token limit (estimate: ~700 tokens for this operation)
     const estimatedTokens = 700
     if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
       return
     }
 

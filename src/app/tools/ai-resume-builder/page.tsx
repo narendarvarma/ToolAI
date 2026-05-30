@@ -8,6 +8,7 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
+import { callWithFallback } from "@/lib/ai-fallback"
 
 export default function AIResumeBuilder() {
   const [name, setName] = useState("")
@@ -27,10 +28,9 @@ export default function AIResumeBuilder() {
   const generateResume = async () => {
     if (!name || !email) return
 
-    // Check token limit (estimate: ~900 tokens for this operation)
-    const estimatedTokens = 900
-    if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+    // Check request limit
+    if (!tokenManager.canUseRequest()) {
+      alert(`Daily request limit reached. You have ${tokenManager.getRemainingRequests()} requests remaining. Requests reset daily at midnight.`)
       return
     }
 
@@ -117,35 +117,23 @@ ${userDetails}
 `
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'anthropic/claude-3-haiku',
-          messages: [
-            {
-              role: 'user',
-              content: prompt
-            }
-          ],
-          max_tokens: 2000,
-        }),
-      })
+      const { reply, error } = await callWithFallback(
+        [{ role: "user", content: prompt }],
+        ""
+      )
 
-      const data = await response.json()
-      
-      if (data.choices && data.choices[0]) {
-        const raw = data.choices[0].message.content
-        const clean = raw.replace(/```json|```/g, '').trim()
-        const resume = JSON.parse(clean)
-        setGeneratedResume(resume)
-        tokenManager.useTokens(estimatedTokens)
-      } else {
+      if (error) {
+        throw new Error(error)
+      }
+
+      if (!reply) {
         throw new Error('No response from AI')
       }
+
+      const clean = reply.replace(/```json|```/g, '').trim()
+      const resume = JSON.parse(clean)
+      setGeneratedResume(resume)
+      tokenManager.useRequest()
     } catch (error) {
       console.error('Error generating resume:', error)
       alert('Error generating resume. Please try again.')

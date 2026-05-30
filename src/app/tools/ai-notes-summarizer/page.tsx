@@ -8,6 +8,7 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
+import { callWithFallback } from "@/lib/ai-fallback"
 
 export default function AINotesSummarizer() {
   const [notes, setNotes] = useState("")
@@ -21,7 +22,7 @@ export default function AINotesSummarizer() {
     // Check token limit (estimate: ~450 tokens for this operation)
     const estimatedTokens = 450
     if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
       return
     }
 

@@ -8,6 +8,7 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
+import { callWithFallback } from "@/lib/ai-fallback"
 
 export default function AITextRewriter() {
   const [originalText, setOriginalText] = useState("")
@@ -21,7 +22,7 @@ export default function AITextRewriter() {
     // Check token limit (estimate: ~500 tokens for this operation)
     const estimatedTokens = 500
     if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingTokens()} tokens remaining. Tokens reset daily at midnight.`)
+      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
       return
     }
 
