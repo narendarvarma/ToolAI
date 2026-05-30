@@ -1,7 +1,11 @@
 import Link from "next/link"
-import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, Share2, Github } from "lucide-react"
 import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
+
+const GITHUB_REPO = "https://github.com/narendarvarma/ToolAI"
+const BLOG_FILE_PATH = "src/app/blog/%5Bslug%5D/page.tsx"
+const GITHUB_EDIT_URL = `${GITHUB_REPO}/edit/main/${BLOG_FILE_PATH}`
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const article = articles[params.slug]
@@ -1180,15 +1184,26 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
 
         <h1 className="text-4xl font-bold mb-4 text-white">{article.title}</h1>
 
-        <div className="flex items-center gap-4 text-gray-500 text-sm mb-8">
-          <div className="flex items-center gap-1">
-            <Calendar className="h-4 w-4" />
-            <span>{article.date}</span>
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div className="flex items-center gap-4 text-gray-500 text-sm">
+            <div className="flex items-center gap-1">
+              <Calendar className="h-4 w-4" />
+              <span>{article.date}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Clock className="h-4 w-4" />
+              <span>{article.readTime}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            <span>{article.readTime}</span>
-          </div>
+          <a
+            href={GITHUB_EDIT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-[#00E5FF]/50 text-sm transition-colors"
+          >
+            <Github className="h-4 w-4" />
+            Edit on GitHub
+          </a>
         </div>
 
         <div className="prose prose-invert prose-lg max-w-none">
@@ -1209,14 +1224,25 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
-        <div className="mt-8 flex items-center justify-between">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
           <Link href="/blog" className="inline-block px-6 py-3 rounded-xl bg-white/5 border border-white/8 text-white font-semibold hover:border-[#00E5FF]/50 transition-colors">
             ← Back to Blog
           </Link>
-          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/8 text-white font-semibold hover:border-[#00E5FF]/50 transition-colors">
-            <Share2 className="h-4 w-4" />
-            Share
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href={GITHUB_EDIT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 border border-white/8 text-gray-400 hover:text-white hover:border-[#00E5FF]/50 font-semibold transition-colors"
+            >
+              <Github className="h-4 w-4" />
+              Edit on GitHub
+            </a>
+            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/8 text-white font-semibold hover:border-[#00E5FF]/50 transition-colors">
+              <Share2 className="h-4 w-4" />
+              Share
+            </button>
+          </div>
         </div>
       </div>
     </div>
