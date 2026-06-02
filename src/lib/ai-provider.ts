@@ -232,9 +232,9 @@ async function tryCerebras(messages: Message[], maxTokens: number = 2000, retryC
 async function tryOpenRouter(messages: Message[], maxTokens: number = 2000, retryCount: number = 0): Promise<AIResponse> {
   console.log("Trying OpenRouter")
   
-  const apiKey = process.env.OPENROUTER_API_KEY
+  const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY
   if (!apiKey) {
-    throw new Error("OPENROUTER_API_KEY not configured")
+    throw new Error("NEXT_PUBLIC_OPENROUTER_API_KEY not configured")
   }
 
   const FREE_MODELS = [
