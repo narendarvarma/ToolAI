@@ -8,9 +8,15 @@ import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
 import RelatedTools from "@/components/tool-faq"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import { tokenManager } from "@/lib/token-manager"
+import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AiAssignmentHelper() {
   useRecentTools("/tools/ai-assignment-helper", "AI Assignment Helper", "BookOpen")
+  
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
   
   const [subject, setSubject] = useState("")
   const [question, setQuestion] = useState("")
@@ -21,6 +27,11 @@ export default function AiAssignmentHelper() {
 
   const generateAnswer = async () => {
     if (!subject || !question) return
+
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
+      return
+    }
 
     setIsLoading(true)
     setAnswer("")
@@ -34,6 +45,7 @@ export default function AiAssignmentHelper() {
       }
 
       setAnswer(responses[wordCount as keyof typeof responses] || responses["500"])
+      tokenManager.useRequest()
       setIsLoading(false)
     }, 2000)
   }
@@ -49,6 +61,13 @@ export default function AiAssignmentHelper() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Assignment Helper</h1>
         <p className="text-gray-400 text-base text-center mb-8">Get structured answers for your assignments with AI assistance</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8">

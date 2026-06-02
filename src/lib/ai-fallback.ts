@@ -1,18 +1,35 @@
-// AI Model Fallback Utility for Free OpenRouter Models
+// src/lib/ai-fallback.ts
 
 const FREE_MODELS = [
-  "nvidia/nemotron-nano-3b-v1:free",
-  "deepseek/deepseek-v4-flash:free",
-  "moonshotai/kimi-k2.6:free",
-  "google/gemma-4-26b-a4b-it:free",
-  "google/gemma-4-31b-it:free",
-  "minimax/minimax-m2.5:free",
-  "liquid/lfm2.5-1.2b-instruct:free",
+  // Premium free models
+  "openai/gpt-oss-120b:free",
+  "meta-llama/llama-3.3-70b-instruct:free",
+  "google/gemma-4-31b:free",
+  "z-ai/glm-4.5-air:free",
+
+  // Strong backups
+  "openai/gpt-oss-20b:free",
+  "google/gemma-4-26b-a4b:free",
   "qwen/qwen3-next-80b-a3b-instruct:free",
+  "qwen/qwen3-coder-480b-a35b:free",
+
+  // Additional backups
+  "nousresearch/hermes-3-405b-instruct:free",
+  "nvidia/nemotron-3-super:free",
+  "moonshotai/kimi-k2.6:free",
+  "meta-llama/llama-3.2-3b-instruct:free",
+
+  // Emergency fallbacks
+  "nvidia/nemotron-3-nano-omni:free",
+  "nvidia/nemotron-3-nano-30b-a3b:free",
+  "liquid/lfm2.5-1.2b-instruct:free",
+  "liquid/lfm2.5-1.2b-thinking:free"
 ];
 
-let currentModelIndex = 0;
-const exhaustedModels = new Set<number>();
+interface Message {
+  role: string;
+  content: string;
+}
 
 export interface AIResponse {
   reply: string | null;
@@ -21,81 +38,63 @@ export interface AIResponse {
 }
 
 export async function callWithFallback(
-  messages: { role: string; content: string }[],
-  systemPrompt: string = ""
+  messages: Message[],
+  systemPrompt = ""
 ): Promise<AIResponse> {
   const allMessages = systemPrompt
     ? [{ role: "system", content: systemPrompt }, ...messages]
     : messages;
 
-  while (currentModelIndex < FREE_MODELS.length) {
-    if (exhaustedModels.has(currentModelIndex)) {
-      currentModelIndex++;
-      continue;
-    }
-
-    const model = FREE_MODELS[currentModelIndex];
-
+  for (const model of FREE_MODELS) {
     try {
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          "HTTP-Referer": "https://gettoolai.in",
-          "X-Title": "ToolHub",
-        },
-        body: JSON.stringify({
-          model: model,
-          messages: allMessages,
-          max_tokens: 1024,
-        }),
-      });
+      console.log("=================================");
+      console.log("Trying model:", model);
+      console.log(
+        "Key exists:",
+        !!process.env.NEXT_PUBLIC_OPENROUTER_API_KEY
+      );
+      console.log("=================================");
 
-      // Success
+      const response = await fetch(
+        "https://openrouter.ai/api/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
+            "HTTP-Referer": "https://gettoolai.in",
+            "X-Title": "ToolHub AI",
+          },
+          body: JSON.stringify({
+            model,
+            messages: allMessages,
+            max_tokens: 1024,
+            temperature: 0.7,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      console.log("Status:", response.status);
+      console.log("Response:", data);
+
       if (response.ok) {
-        const data = await response.json();
-        const reply = data.choices?.[0]?.message?.content;
-        console.log(`✅ Responded by: ${model}`);
-        return { reply, model };
+        return {
+          reply: data?.choices?.[0]?.message?.content || "",
+          model,
+        };
       }
 
-      // Rate limit or payment — switch model
-      if ([429, 402, 503, 502].includes(response.status)) {
-        console.warn(`⚠️ Model ${model} hit limit (${response.status}), switching...`);
-        exhaustedModels.add(currentModelIndex);
-        currentModelIndex++;
-        continue;
-      }
-
-      // Other error — also skip
-      const err = await response.json().catch(() => ({}));
-      console.error(`❌ Model ${model} error:`, err?.error?.message);
-      exhaustedModels.add(currentModelIndex);
-      currentModelIndex++;
-
-    } catch (networkError) {
-      console.error(`🔌 Network error on ${model}:`, networkError);
-      exhaustedModels.add(currentModelIndex);
-      currentModelIndex++;
+      console.log(`❌ Failed model: ${model}`);
+    } catch (error) {
+      console.error(`❌ Error with ${model}:`, error);
     }
   }
 
-  // All models exhausted
-  return { 
-    reply: null, 
-    model: null, 
-    error: "All free models exhausted. Try again later." 
+  return {
+    reply: null,
+    model: null,
+    error: "All free models are currently unavailable.",
   };
-}
-
-export function resetModelFallback() {
-  currentModelIndex = 0;
-  exhaustedModels.clear();
-  console.log("🔁 Model fallback queue reset.");
-}
-
-// Auto-reset every 60 minutes (free model limits refresh)
-if (typeof window !== 'undefined') {
-  setInterval(resetModelFallback, 60 * 60 * 1000);
 }

@@ -8,9 +8,15 @@ import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
 import RelatedTools from "@/components/tool-faq"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import { tokenManager } from "@/lib/token-manager"
+import DailyUsageBar from "@/components/DailyUsageBar";
 
 export default function AiGrammarFixer() {
   useRecentTools("/tools/ai-grammar-fixer", "AI Grammar Fixer", "CheckCircle")
+  
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
   
   const [originalText, setOriginalText] = useState("")
   const [correctedText, setCorrectedText] = useState("")
@@ -19,6 +25,11 @@ export default function AiGrammarFixer() {
 
   const fixGrammar = async () => {
     if (!originalText.trim()) return
+
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
+      return
+    }
 
     setIsLoading(true)
     setCorrectedText("")
@@ -57,6 +68,7 @@ export default function AiGrammarFixer() {
       fixed = fixed.replace(/(^|[.!?]\s+)([a-z])/g, (match, p1, p2) => p1 + p2.toUpperCase())
 
       setCorrectedText(fixed)
+      tokenManager.useRequest()
       setIsLoading(false)
     }, 1500)
   }
@@ -72,6 +84,13 @@ export default function AiGrammarFixer() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Grammar Fixer</h1>
         <p className="text-gray-400 text-base text-center mb-8">Fix grammar, spelling, and sentence structure with AI assistance</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8">

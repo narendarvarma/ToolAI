@@ -8,9 +8,14 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
-import { callWithFallback } from "@/lib/ai-fallback"
+import { callAI } from "@/lib/ai"
+import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AIBlogGenerator() {
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
+
   const [topic, setTopic] = useState("")
   const [keywords, setKeywords] = useState("")
   const [tone, setTone] = useState("professional")
@@ -20,47 +25,22 @@ export default function AIBlogGenerator() {
   const generateBlog = async () => {
     if (!topic) return
 
-    // Check token limit (estimate: ~900 tokens for this operation)
-    const estimatedTokens = 900
-    if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
       return
     }
 
     setIsGenerating(true)
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'anthropic/claude-3-haiku',
-          messages: [
-            {
-              role: 'system',
-              content: `You are a professional blog writer. Write engaging, well-structured blog posts. Use a ${tone} tone. ${keywords ? `Include these keywords: ${keywords}` : ''}`
-            },
-            {
-              role: 'user',
-              content: `Write a blog post about: ${topic}`
-            }
-          ],
-          max_tokens: 2000,
-        }),
-      })
+      const reply = await callAI(`Write a blog post about: ${topic}. Use a ${tone} tone. ${keywords ? `Include these keywords: ${keywords}` : ''}`, `You are a professional blog writer. Write engaging, well-structured blog posts.`)
 
-      const data = await response.json()
-      
-      if (data.choices && data.choices[0]) {
-        setGeneratedBlog(data.choices[0].message.content)
-        // Deduct tokens
-        tokenManager.useTokens(estimatedTokens)
-      } else {
+      if (!reply) {
         throw new Error('No response from AI')
       }
+
+      setGeneratedBlog(reply)
+      tokenManager.useRequest()
     } catch (error) {
       console.error('Error generating blog:', error)
       alert('Error generating blog. Please try again.')
@@ -89,6 +69,13 @@ export default function AIBlogGenerator() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Blog Generator</h1>
         <p className="text-gray-400 text-base text-center mb-8">Generate blog posts with AI</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>

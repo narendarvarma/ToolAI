@@ -45,6 +45,7 @@ export class TokenManager {
   }
 
   private resetIfNeeded(): void {
+    if (typeof window === 'undefined') return;
     const lastReset = localStorage.getItem(LAST_RESET_KEY);
     const today = this.getToday();
 
@@ -67,6 +68,9 @@ export class TokenManager {
   }
 
   private getUsage(): TokenUsage {
+    if (typeof window === 'undefined') {
+      return { date: this.getToday(), requestsUsed: 0 };
+    }
     this.resetIfNeeded();
     this.cleanOldUsageKeys();
     const usage = localStorage.getItem(STORAGE_KEY);
@@ -74,6 +78,7 @@ export class TokenManager {
   }
 
   private setUsage(usage: TokenUsage): void {
+    if (typeof window === 'undefined') return;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(usage));
   }
 
@@ -123,6 +128,7 @@ export class TokenManager {
   }
 
   resetDaily(): void {
+    if (typeof window === 'undefined') return;
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       date: this.getToday(),
       requestsUsed: 0

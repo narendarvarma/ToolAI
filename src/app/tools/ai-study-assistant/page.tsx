@@ -8,9 +8,15 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
-import { callWithFallback } from "@/lib/ai-fallback"
+import { callAI } from "@/lib/ai"
+import DailyUsageBar from "@/components/DailyUsageBar"
+
 
 export default function AIStudyAssistant() {
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
+
   const [topic, setTopic] = useState("")
   const [question, setQuestion] = useState("")
   const [responseType, setResponseType] = useState("explanation")
@@ -20,47 +26,22 @@ export default function AIStudyAssistant() {
   const generateResponse = async () => {
     if (!topic) return
 
-    // Check token limit (estimate: ~700 tokens for this operation)
-    const estimatedTokens = 700
-    if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
       return
     }
 
     setIsGenerating(true)
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'anthropic/claude-3-haiku',
-          messages: [
-            {
-              role: 'system',
-              content: `You are an expert tutor and study assistant. Provide helpful, educational content. ${responseType === 'explanation' ? 'Give detailed explanations with examples.' : responseType === 'summary' ? 'Provide concise summaries of key concepts.' : responseType === 'examples' ? 'Focus on practical examples and practice problems.' : 'Create quiz questions to test understanding.'}`
-            },
-            {
-              role: 'user',
-              content: `Help me study: ${topic}${question ? `\n\nMy question: ${question}` : ''}`
-            }
-          ],
-          max_tokens: 2000,
-        }),
-      })
+      const reply = await callAI(`Help me study: ${topic}${question ? `\n\nMy question: ${question}` : ''}`, `You are an expert tutor and study assistant. Provide helpful, educational content. ${responseType === 'explanation' ? 'Give detailed explanations with examples.' : responseType === 'summary' ? 'Provide concise summaries of key concepts.' : responseType === 'examples' ? 'Focus on practical examples and practice problems.' : 'Create quiz questions to test understanding.'}`)
 
-      const data = await response.json()
-      
-      if (data.choices && data.choices[0]) {
-        setGeneratedResponse(data.choices[0].message.content)
-        // Deduct tokens
-        tokenManager.useTokens(estimatedTokens)
-      } else {
+      if (!reply) {
         throw new Error('No response from AI')
       }
+
+      setGeneratedResponse(reply)
+      tokenManager.useRequest()
     } catch (error) {
       console.error('Error generating response:', error)
       alert('Error generating response. Please try again.')
@@ -79,6 +60,13 @@ export default function AIStudyAssistant() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Study Assistant</h1>
         <p className="text-gray-400 text-base text-center mb-8">Get help with your studies using AI</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>

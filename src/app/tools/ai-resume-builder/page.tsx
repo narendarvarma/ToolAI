@@ -1,5 +1,5 @@
 "use client"
-
+import GeneratingAnimation from "@/components/generating-animation"
 import { useState, useRef } from "react"
 import { FileText, Download, Wand2 } from "lucide-react"
 import Link from "next/link"
@@ -8,7 +8,8 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
-import { callWithFallback } from "@/lib/ai-fallback"
+import { callAI } from "@/lib/ai"
+import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AIResumeBuilder() {
   const [name, setName] = useState("")
@@ -24,6 +25,9 @@ export default function AIResumeBuilder() {
   const [generatedResume, setGeneratedResume] = useState<any>(null)
   const [isGenerating, setIsGenerating] = useState(false)
   const resumeRef = useRef<HTMLDivElement>(null)
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
 
   const generateResume = async () => {
     if (!name || !email) return
@@ -117,23 +121,32 @@ ${userDetails}
 `
 
     try {
-      const { reply, error } = await callWithFallback(
-        [{ role: "user", content: prompt }],
-        ""
-      )
-
-      if (error) {
-        throw new Error(error)
-      }
+      const reply = await callAI(prompt, "")
 
       if (!reply) {
         throw new Error('No response from AI')
       }
 
-      const clean = reply.replace(/```json|```/g, '').trim()
-      const resume = JSON.parse(clean)
-      setGeneratedResume(resume)
-      tokenManager.useRequest()
+      const clean = reply
+  .replace(/```json/g, "")
+  .replace(/```/g, "")
+  .trim();
+
+    const start = clean.indexOf("{");
+    const end = clean.lastIndexOf("}");
+
+    if (start === -1 || end === -1) {
+      throw new Error("No JSON found");
+    }
+
+    const jsonString = clean.substring(start, end + 1);
+
+    console.log("AI Response:", jsonString);
+
+    const resume = JSON.parse(jsonString);
+
+    setGeneratedResume(resume);
+    tokenManager.useRequest();
     } catch (error) {
       console.error('Error generating resume:', error)
       alert('Error generating resume. Please try again.')
@@ -161,7 +174,14 @@ ${userDetails}
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Resume Builder</h1>
         <p className="text-gray-400 text-base text-center mb-8">Build professional resumes with AI</p>
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
+        
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
           Advertisement
@@ -284,15 +304,24 @@ ${userDetails}
                 </div>
 
                 <button
-                  onClick={generateResume}
-                  disabled={!name || !email || isGenerating}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    <Wand2 className="h-5 w-5" />
-                    {isGenerating ? "Generating..." : "Generate Resume"}
-                  </div>
-                </button>
+                    onClick={generateResume}
+                    disabled={!name || !email || isGenerating}
+                    className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <Wand2 className="h-5 w-5" />
+                      {isGenerating ? "Generating..." : "Generate Resume"}
+                    </div>
+                  </button>
+
+                  {isGenerating && (
+                    <div className="mt-6">
+                      <GeneratingAnimation
+                            type="resume"
+                            accentColor="#00E5FF"
+                          />
+                    </div>
+                  )}
               </div>
             </div>
           </div>

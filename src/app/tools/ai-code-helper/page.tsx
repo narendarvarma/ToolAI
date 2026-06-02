@@ -8,9 +8,14 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
-import { callWithFallback } from "@/lib/ai-fallback"
+import { callAI } from "@/lib/ai"
+import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AICodeHelper() {
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
+
   const [prompt, setPrompt] = useState("")
   const [language, setLanguage] = useState("javascript")
   const [generatedCode, setGeneratedCode] = useState("")
@@ -19,47 +24,22 @@ export default function AICodeHelper() {
   const generateCode = async () => {
     if (!prompt) return
 
-    // Check token limit (estimate: ~600 tokens for this operation)
-    const estimatedTokens = 600
-    if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
       return
     }
 
     setIsGenerating(true)
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'anthropic/claude-3-haiku',
-          messages: [
-            {
-              role: 'system',
-              content: `You are an expert ${language} programmer. Write clean, efficient, well-commented code. Provide complete, working solutions.`
-            },
-            {
-              role: 'user',
-              content: `Write ${language} code for: ${prompt}`
-            }
-          ],
-          max_tokens: 2000,
-        }),
-      })
+      const reply = await callAI(`Write ${language} code for: ${prompt}`, `You are an expert ${language} programmer. Write clean, efficient, well-commented code. Provide complete, working solutions.`)
 
-      const data = await response.json()
-      
-      if (data.choices && data.choices[0]) {
-        setGeneratedCode(data.choices[0].message.content)
-        // Deduct tokens
-        tokenManager.useTokens(estimatedTokens)
-      } else {
+      if (!reply) {
         throw new Error('No response from AI')
       }
+
+      setGeneratedCode(reply)
+      tokenManager.useRequest()
     } catch (error) {
       console.error('Error generating code:', error)
       alert('Error generating code. Please try again.')
@@ -78,6 +58,13 @@ export default function AICodeHelper() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Code Helper</h1>
         <p className="text-gray-400 text-base text-center mb-8">Generate code with AI assistance</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>

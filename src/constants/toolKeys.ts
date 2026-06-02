@@ -1,0 +1,15 @@
+export const TOOL_KEYS = {
+  resumeBuilder:    { key: 'resume_builder',    limit: 5  },
+  resumeAnalyzer:   { key: 'resume_analyzer',   limit: 5  },
+  pptMaker:         { key: 'ppt_maker',         limit: 5  },
+  emailWriter:      { key: 'email_writer',      limit: 10 },
+  notesSummarizer:  { key: 'notes_summarizer',  limit: 10 },
+  captionGenerator: { key: 'caption_generator', limit: 10 },
+  studyAssistant:   { key: 'study_assistant',   limit: 10 },
+  codeHelper:       { key: 'code_helper',       limit: 10 },
+  blogGenerator:    { key: 'blog_generator',    limit: 5  },
+  textRewriter:     { key: 'text_rewriter',     limit: 10 },
+  assignmentHelper: { key: 'assignment_helper', limit: 10 },
+  grammarFixer:     { key: 'grammar_fixer',     limit: 10 },
+  linkedinBio:      { key: 'linkedin_bio',      limit: 5  },
+} as const

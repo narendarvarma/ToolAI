@@ -8,9 +8,14 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
-import { callWithFallback } from "@/lib/ai-fallback"
+import { callAI } from "@/lib/ai"
+import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AICaptionGenerator() {
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
+
   const [imageDescription, setImageDescription] = useState("")
   const [style, setStyle] = useState("engaging")
   const [generatedCaption, setGeneratedCaption] = useState("")
@@ -19,47 +24,22 @@ export default function AICaptionGenerator() {
   const generateCaption = async () => {
     if (!imageDescription) return
 
-    // Check token limit (estimate: ~300 tokens for this operation)
-    const estimatedTokens = 300
-    if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
       return
     }
 
     setIsGenerating(true)
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'anthropic/claude-3-haiku',
-          messages: [
-            {
-              role: 'system',
-              content: `You are a social media caption expert. Write ${style} captions that are engaging and include relevant hashtags. Keep captions concise and impactful.`
-            },
-            {
-              role: 'user',
-              content: `Generate a ${style} social media caption for this image: ${imageDescription}`
-            }
-          ],
-          max_tokens: 500,
-        }),
-      })
+      const reply = await callAI(`Generate a ${style} social media caption for this image: ${imageDescription}`, `You are a social media caption expert. Write ${style} captions that are engaging and include relevant hashtags. Keep captions concise and impactful.`)
 
-      const data = await response.json()
-      
-      if (data.choices && data.choices[0]) {
-        setGeneratedCaption(data.choices[0].message.content)
-        // Deduct tokens
-        tokenManager.useTokens(estimatedTokens)
-      } else {
+      if (!reply) {
         throw new Error('No response from AI')
       }
+
+      setGeneratedCaption(reply)
+      tokenManager.useRequest()
     } catch (error) {
       console.error('Error generating caption:', error)
       alert('Error generating caption. Please try again.')
@@ -78,6 +58,13 @@ export default function AICaptionGenerator() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Caption Generator</h1>
         <p className="text-gray-400 text-base text-center mb-8">Generate social media captions with AI</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>

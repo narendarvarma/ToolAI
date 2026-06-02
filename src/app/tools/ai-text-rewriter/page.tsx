@@ -8,9 +8,14 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
-import { callWithFallback } from "@/lib/ai-fallback"
+import { callAI } from "@/lib/ai"
+import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AITextRewriter() {
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
+
   const [originalText, setOriginalText] = useState("")
   const [rewriteStyle, setRewriteStyle] = useState("professional")
   const [rewrittenText, setRewrittenText] = useState("")
@@ -19,47 +24,22 @@ export default function AITextRewriter() {
   const rewriteText = async () => {
     if (!originalText) return
 
-    // Check token limit (estimate: ~500 tokens for this operation)
-    const estimatedTokens = 500
-    if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
       return
     }
 
     setIsRewriting(true)
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'anthropic/claude-3-haiku',
-          messages: [
-            {
-              role: 'system',
-              content: `You are a professional text rewriter. Rewrite text to improve clarity, flow, and engagement. Use a ${rewriteStyle} style. Maintain the original meaning but make it more effective. ${rewriteStyle === 'formal' ? 'Use formal language and professional tone.' : rewriteStyle === 'casual' ? 'Use conversational, friendly language.' : rewriteStyle === 'creative' ? 'Be creative and engaging with vivid language.' : 'Keep it clear, professional, and direct.'}`
-            },
-            {
-              role: 'user',
-              content: `Rewrite this text:\n\n${originalText}`
-            }
-          ],
-          max_tokens: 2000,
-        }),
-      })
+      const reply = await callAI(`Rewrite this text:\n\n${originalText}`, `You are a professional text rewriter. Rewrite text to improve clarity, flow, and engagement. Use a ${rewriteStyle} style. Maintain the original meaning but make it more effective. ${rewriteStyle === 'formal' ? 'Use formal language and professional tone.' : rewriteStyle === 'casual' ? 'Use conversational, friendly language.' : rewriteStyle === 'creative' ? 'Be creative and engaging with vivid language.' : 'Keep it clear, professional, and direct.'}`)
 
-      const data = await response.json()
-      
-      if (data.choices && data.choices[0]) {
-        setRewrittenText(data.choices[0].message.content)
-        // Deduct tokens (actual usage would be from API response)
-        tokenManager.useTokens(estimatedTokens)
-      } else {
+      if (!reply) {
         throw new Error('No response from AI')
       }
+
+      setRewrittenText(reply)
+      tokenManager.useRequest()
     } catch (error) {
       console.error('Error rewriting text:', error)
       alert('Error rewriting text. Please try again.')
@@ -78,6 +58,13 @@ export default function AITextRewriter() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Text Rewriter</h1>
         <p className="text-gray-400 text-base text-center mb-8">Rewrite and improve your text with AI</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>

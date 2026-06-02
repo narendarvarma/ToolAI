@@ -11,7 +11,7 @@ import {
   Users, Activity, Upload, FileImage, QrCode, Smile, Clock as ClockIcon, RefreshCw,
   Hash, Type, Palette, Key, DollarSign, Plus, Type as TypeIcon,
   Shield, Timer, FileSpreadsheet, Globe, Flame, CheckCircle, Linkedin,
-  Zap, Smartphone
+  Zap, Smartphone, Briefcase
 } from "lucide-react"
 import Script from "next/script"
 import { BASE_URL } from "@/lib/config"
@@ -53,6 +53,7 @@ const tools = [
   
   // AI Tools
   { name: "AI Resume Builder", path: "/tools/ai-resume-builder", icon: FileText, category: "AI Tools", description: "Create ATS-friendly professional resumes with AI assistance in minutes", isNew: false },
+  { name: "AI Resume Analyzer", path: "/tools/ai-resume-analyzer", icon: FileText, category: "AI Tools", description: "Analyze your resume with AI for ATS score, strengths, weaknesses and improvement tips", isNew: true },
   { name: "AI Email Writer", path: "/tools/ai-email-writer", icon: Mail, category: "AI Tools", description: "Write professional emails with AI for business, marketing and personal use", isNew: false },
   { name: "AI Notes Summarizer", path: "/tools/ai-notes-summarizer", icon: FileText, category: "AI Tools", description: "Summarize your notes and documents into concise key points instantly", isNew: false },
   { name: "AI Caption Generator", path: "/tools/ai-caption-generator", icon: Wand2, category: "AI Tools", description: "Generate engaging social media captions for Instagram, Twitter and LinkedIn", isNew: false },
@@ -63,6 +64,7 @@ const tools = [
   { name: "AI Assignment Helper", path: "/tools/ai-assignment-helper", icon: BookOpen, category: "AI Tools", description: "Get structured answers for assignments with AI assistance for students", isNew: true },
   { name: "AI Grammar Fixer", path: "/tools/ai-grammar-fixer", icon: CheckCircle, category: "AI Tools", description: "Automatically detect and fix grammar, spelling and punctuation errors using AI", isNew: true },
   { name: "AI LinkedIn Bio Generator", path: "/tools/ai-linkedin-bio", icon: Linkedin, category: "AI Tools", description: "Generate professional LinkedIn About section with AI for job seekers", isNew: true },
+  { name: "Internship Finder", path: "/tools/internship-finder", icon: Briefcase, category: "AI Tools", description: "Find internships matched to your skills with AI-powered recommendations and real apply links", isNew: true },
   
   // Student Tools
   { name: "CGPA Calculator", path: "/tools/cgpa-calculator", icon: Calculator, category: "Student Tools", description: "Calculate semester CGPA and cumulative GPA for Indian university students", isNew: false },
@@ -150,7 +152,8 @@ export default function Home() {
   // Tool of the Day - based on date
   const today = new Date()
   const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000)
-  const toolOfTheDay = tools[dayOfYear % tools.length]
+  // Manually set Internship Finder as Tool of the Day
+  const toolOfTheDay = tools.find(tool => tool.path === "/tools/internship-finder") || tools[dayOfYear % tools.length]
 
   useEffect(() => {
     const stored = localStorage.getItem("toolhub_recent")

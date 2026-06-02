@@ -8,9 +8,15 @@ import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
 import RelatedTools from "@/components/tool-faq"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import { tokenManager } from "@/lib/token-manager"
+import DailyUsageBar from "@/components/DailyUsageBar";
 
 export default function AiLinkedinBio() {
   useRecentTools("/tools/ai-linkedin-bio", "AI LinkedIn Bio Generator", "Linkedin")
+  
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
   
   const [name, setName] = useState("")
   const [role, setRole] = useState("")
@@ -22,6 +28,11 @@ export default function AiLinkedinBio() {
 
   const generateBio = async () => {
     if (!name || !role) return
+
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
+      return
+    }
 
     setIsLoading(true)
     setBio("")
@@ -41,6 +52,7 @@ My approach combines analytical thinking with creative problem-solving, allowing
 I'm always excited to connect with professionals in the industry and explore opportunities for collaboration, knowledge sharing, and professional growth. Let's connect and discuss how we can work together to achieve great results.`
 
       setBio(generatedBio)
+      tokenManager.useRequest()
       setIsLoading(false)
     }, 2000)
   }
@@ -56,6 +68,13 @@ I'm always excited to connect with professionals in the industry and explore opp
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI LinkedIn Bio Generator</h1>
         <p className="text-gray-400 text-base text-center mb-8">Generate a professional LinkedIn About section with AI assistance</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8">

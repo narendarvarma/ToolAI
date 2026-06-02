@@ -120,6 +120,11 @@ export const toolMetadata: Record<string, {
     description: "Rewrite text with AI. Paraphrase, improve clarity, and adjust tone for any content.",
     keywords: "ai text rewriter, paraphrase tool, text paraphraser, rewrite text"
   },
+  "internship-finder": {
+    title: "Internship Finder Online Free | ToolHub AI",
+    description: "Find internships matched to your skills with AI. Get personalized internship recommendations with real apply links.",
+    keywords: "internship finder, find internships, ai internship search, internship recommendations"
+  },
   "cgpa-calculator": {
     title: "CGPA Calculator Online Free | ToolHub AI",
     description: "Calculate your CGPA instantly with our free online CGPA calculator. Add courses, credits, and grades to get accurate results.",

@@ -46,6 +46,7 @@ export default function RelatedTools({ currentToolPath, currentCategory }: Relat
     { name: "AI Code Helper", path: "/tools/ai-code-helper", icon: null, description: "Generate code with AI", category: "AI Tools" },
     { name: "AI Blog Generator", path: "/tools/ai-blog-generator", icon: null, description: "Generate blog posts", category: "AI Tools" },
     { name: "AI Text Rewriter", path: "/tools/ai-text-rewriter", icon: null, description: "Rewrite text with AI", category: "AI Tools" },
+    { name: "Internship Finder", path: "/tools/internship-finder", icon: null, description: "Find internships with AI", category: "AI Tools" },
     
     // Student Tools
     { name: "CGPA Calculator", path: "/tools/cgpa-calculator", icon: null, description: "Calculate your CGPA", category: "Student Tools" },

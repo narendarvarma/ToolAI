@@ -8,9 +8,14 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
-import { callWithFallback } from "@/lib/ai-fallback"
+import { callAI } from "@/lib/ai"
+import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AIEmailWriter() {
+  const used = tokenManager.getRequestsUsed()
+  const limit = tokenManager.getDailyLimit()
+  const remaining = tokenManager.getRemainingRequests()
+
   const [recipient, setRecipient] = useState("")
   const [subject, setSubject] = useState("")
   const [keyPoints, setKeyPoints] = useState("")
@@ -21,47 +26,22 @@ export default function AIEmailWriter() {
   const generateEmail = async () => {
     if (!recipient || !subject) return
 
-    // Check token limit (estimate: ~400 tokens for this operation)
-    const estimatedTokens = 400
-    if (!tokenManager.canUseTokens(estimatedTokens)) {
-      alert(`Daily token limit reached. You have ${tokenManager.getRemainingRequests()} tokens remaining. Tokens reset daily at midnight.`)
+    if (!tokenManager.canUseRequest()) {
+      alert("Daily limit reached. Come back tomorrow.")
       return
     }
 
     setIsGenerating(true)
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'anthropic/claude-3-haiku',
-          messages: [
-            {
-              role: 'system',
-              content: `You are a professional email writer. Write clear, effective emails. Use a ${tone} tone. ${keyPoints ? `Include these key points: ${keyPoints}` : ''}`
-            },
-            {
-              role: 'user',
-              content: `Write an email to ${recipient} with the subject: ${subject}`
-            }
-          ],
-          max_tokens: 1500,
-        }),
-      })
+      const reply = await callAI(`Write an email to ${recipient} with the subject: ${subject}. Use a ${tone} tone. ${keyPoints ? `Include these key points: ${keyPoints}` : ''}`, `You are a professional email writer. Write clear, effective emails.`)
 
-      const data = await response.json()
-      
-      if (data.choices && data.choices[0]) {
-        setGeneratedEmail(data.choices[0].message.content)
-        // Deduct tokens
-        tokenManager.useTokens(estimatedTokens)
-      } else {
+      if (!reply) {
         throw new Error('No response from AI')
       }
+
+      setGeneratedEmail(reply)
+      tokenManager.useRequest()
     } catch (error) {
       console.error('Error generating email:', error)
       alert('Error generating email. Please try again.')
@@ -80,6 +60,13 @@ export default function AIEmailWriter() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Email Writer</h1>
         <p className="text-gray-400 text-base text-center mb-8">Write professional emails with AI assistance</p>
+
+        <DailyUsageBar
+          used={used}
+          limit={limit}
+          remaining={remaining}
+          loaded={true}
+        />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
