@@ -20,7 +20,7 @@ export default function AdSlot({ adSlot, className }: { adSlot: string; classNam
       <ins
         className="adsbygoogle"
         style={{ display: "block" }}
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+        data-ad-client="ca-pub-8360124149016637"
         data-ad-slot={adSlot}
         data-ad-format="auto"
         data-full-width-responsive="true"
