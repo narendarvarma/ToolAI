@@ -4,6 +4,9 @@ import { useState } from 'react'
 import GeneratingAnimation from '@/components/generating-animation'
 import DailyUsageBar from '@/components/DailyUsageBar'
 import { tokenManager } from '@/lib/token-manager'
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 const COLOR_THEMES: Record<string, { bg: string; accent: string; text: string; light: string; darkText: string }> = {
   'midnight-navy': { bg: '#0f3460', accent: '#185FA5', text: '#ffffff', light: '#e6f1fb', darkText: '#1a1a1a' },
@@ -94,6 +97,8 @@ export default function PptMaker() {
   }
 
   const theme = ppt ? (COLOR_THEMES[ppt.colorTheme] || COLOR_THEMES['midnight-navy']) : COLOR_THEMES['midnight-navy']
+
+  const toolContent = getToolContent("ppt-maker")
 
   return (
     <div style={{ display: 'flex', height: '100vh', fontFamily: 'Segoe UI, sans-serif' }}>
@@ -277,6 +282,8 @@ export default function PptMaker() {
             )}
           </div>
         )}
+        <ToolContent content={toolContent} toolName="Ppt Maker" toolPath="/tools/ppt-maker" />
+        <RelatedTools currentToolPath="/tools/ppt-maker" currentCategory={toolContent.category} />
       </div>
     </div>
   )
@@ -302,6 +309,8 @@ function SlidePreview({ slide, theme, font, total }: { slide: Slide; theme: type
     </div>
   )
 
+  const slideTitle = slide.heading ? `${slide.heading} — Slide ${slide.slideNumber}` : ''
+
   if (slide.layout === 'title' || slide.layout === 'closing') {
     return (
       <div style={{ ...base, background: theme.bg, alignItems: 'center', textAlign: 'center' }}>
@@ -326,7 +335,7 @@ function SlidePreview({ slide, theme, font, total }: { slide: Slide; theme: type
       <div style={{ ...base, background: '#fff' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <span style={{ fontSize: 32 }}>{slide.icon}</span>
-          <h2 style={{ fontSize: 26, fontWeight: 700, color: '#000000', fontFamily: font.heading, margin: 0 }}>{slide.heading}</h2>
+          <h2 style={{ fontSize: 26, fontWeight: 700, color: '#000000', fontFamily: font.heading, margin: 0 }}>{slideTitle}</h2>
         </div>
         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
           {(slide.bullets || []).map((b, i) => (
@@ -346,7 +355,7 @@ function SlidePreview({ slide, theme, font, total }: { slide: Slide; theme: type
       <div style={{ ...base, background: '#fff', justifyContent: 'flex-start' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
           <span style={{ fontSize: 28 }}>{slide.icon}</span>
-          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#000000', fontFamily: font.heading, margin: 0 }}>{slide.heading}</h2>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#000000', fontFamily: font.heading, margin: 0 }}>{slideTitle}</h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, flex: 1 }}>
           {[slide.leftColumn, slide.rightColumn].map((col, ci) => col && (
@@ -368,7 +377,7 @@ function SlidePreview({ slide, theme, font, total }: { slide: Slide; theme: type
   if (slide.layout === 'big-stat') {
     return (
       <div style={{ ...base, background: theme.bg, alignItems: 'center', textAlign: 'center' }}>
-        <h2 style={{ fontSize: 22, color: theme.text, opacity: 0.8, fontFamily: font.heading, marginBottom: 24 }}>{slide.heading}</h2>
+        <h2 style={{ fontSize: 22, color: theme.text, opacity: 0.8, fontFamily: font.heading, marginBottom: 24 }}>{slideTitle}</h2>
         <div style={{ display: 'flex', gap: 32, justifyContent: 'center', flexWrap: 'wrap' }}>
           {(slide.stats || []).map((stat, i) => (
             <div key={i} style={{ background: 'rgba(255,255,255,0.12)', borderRadius: 16, padding: '20px 32px' }}>
@@ -401,7 +410,7 @@ function SlidePreview({ slide, theme, font, total }: { slide: Slide; theme: type
       <div style={{ ...base, background: '#fff', justifyContent: 'flex-start' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
           <span style={{ fontSize: 28 }}>{slide.icon}</span>
-          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#000000', fontFamily: font.heading, margin: 0 }}>{slide.heading}</h2>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#000000', fontFamily: font.heading, margin: 0 }}>{slideTitle}</h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {(slide.steps || []).map((step, i) => (
@@ -424,7 +433,7 @@ function SlidePreview({ slide, theme, font, total }: { slide: Slide; theme: type
       <div style={{ ...base, background: '#fff', justifyContent: 'flex-start' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
           <span style={{ fontSize: 28 }}>{slide.icon}</span>
-          <h2 style={{ fontSize: 22, fontWeight: 700, color: '#000000', fontFamily: font.heading, margin: 0 }}>{slide.heading}</h2>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: '#000000', fontFamily: font.heading, margin: 0 }}>{slideTitle}</h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
           {(slide.cards || []).map((card, i) => (
@@ -444,7 +453,7 @@ function SlidePreview({ slide, theme, font, total }: { slide: Slide; theme: type
   return (
     <div style={{ ...base, background: '#fff' }}>
       <span style={{ fontSize: 36, marginBottom: 12 }}>{slide.icon}</span>
-      <h2 style={{ fontSize: 24, color: '#000000', fontFamily: font.heading }}>{slide.heading}</h2>
+      <h2 style={{ fontSize: 24, color: '#000000', fontFamily: font.heading }}>{slideTitle}</h2>
       {slideNum}
     </div>
   )

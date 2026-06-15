@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 const cities = [
   { name: "New York", timezone: "America/New_York", country: "USA" },
@@ -26,6 +29,7 @@ const cities = [
 export default function WorldClock() {
   const [selectedCities, setSelectedCities] = useState<string[]>(["New York", "London", "Tokyo"])
   const [times, setTimes] = useState<Record<string, string>>({})
+  const toolContent = getToolContent("world-clock")
 
   useEffect(() => {
     const updateTimes = () => {
@@ -55,7 +59,7 @@ export default function WorldClock() {
     updateTimes()
     const interval = setInterval(updateTimes, 1000)
 
-    return () => clearInterval(interval)
+  return () => clearInterval(interval)
   }, [selectedCities])
 
   const toggleCity = (cityName: string) => {
@@ -110,7 +114,7 @@ export default function WorldClock() {
                   className="p-4 bg-white/5 rounded-xl border border-white/8 flex items-center justify-between"
                 >
                   <div>
-                    <h3 className="text-white font-semibold">{cityName}</h3>
+                    <h2 className="text-white font-semibold">{cityName}</h2>
                     <p className="text-gray-400 text-sm">{city?.country}</p>
                   </div>
                   <div className="text-right">
@@ -133,6 +137,8 @@ export default function WorldClock() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="World Clock Online Free" toolPath="/tools/world-clock" />
+        <RelatedTools currentToolPath="/tools/world-clock" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -144,7 +150,6 @@ export default function WorldClock() {
     </div>
   )
 }
-
 
 
 

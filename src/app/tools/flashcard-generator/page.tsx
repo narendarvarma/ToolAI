@@ -114,7 +114,7 @@ export default function FlashcardGenerator() {
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Add New Card */}
           <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/8">
-            <h3 className="text-lg font-semibold text-white mb-4">Add New Flashcard</h3>
+            <h2 className="text-lg font-semibold text-white mb-4">Add New Flashcard</h2>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-2 text-white">Front (Question)</label>
@@ -151,7 +151,7 @@ export default function FlashcardGenerator() {
           {flashcards.length > 0 && (
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-white">Study Mode</h3>
+                <h2 className="text-lg font-semibold text-white">Study Mode</h2>
                 <div className="flex gap-2">
                   <button
                     onClick={shuffleCards}
@@ -231,7 +231,7 @@ export default function FlashcardGenerator() {
           {/* Card List */}
           {flashcards.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold text-white mb-4">All Flashcards ({flashcards.length})</h3>
+              <h2 className="text-lg font-semibold text-white mb-4">All Flashcards ({flashcards.length})</h2>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {flashcards.map((card, index) => (
                   <div

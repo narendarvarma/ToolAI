@@ -6,8 +6,11 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolFAQ from "@/components/tool-faq"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function PdfToText() {
   useRecentTools("/tools/pdf-to-text", "PDF to Text", "FileText")
@@ -76,6 +79,8 @@ export default function PdfToText() {
     link.click()
     URL.revokeObjectURL(url)
   }
+
+  const toolContent = getToolContent("pdf-to-text")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -181,7 +186,7 @@ export default function PdfToText() {
         <ToolRating toolPath="/tools/pdf-to-text" toolName="PDF to Text" />
 
         {/* FAQ Section */}
-        <RelatedTools
+        <ToolFAQ
           toolName="PDF to Text"
           faqs={[
             {
@@ -205,6 +210,8 @@ export default function PdfToText() {
 
         {/* Social Share */}
         <SocialShare title="PDF to Text - Extract text from PDF files" />
+        <ToolContent content={toolContent} toolName="Pdf To Text" toolPath="/tools/pdf-to-text" />
+        <RelatedTools currentToolPath="/tools/pdf-to-text" currentCategory={toolContent.category} />
 
         <Link
           href="/"

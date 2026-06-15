@@ -70,7 +70,7 @@ export default function AIStudyAssistant() {
           <div className="flex items-start gap-3">
             <BookOpen className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h3 className="text-yellow-500 font-semibold mb-1">Study Aid Disclaimer</h3>
+              <h2 className="text-yellow-500 font-semibold mb-1">Study Aid Disclaimer</h2>
               <p className="text-gray-300 text-sm">This tool is designed as a study aid to help you understand concepts and learn effectively. Please use the generated content as a reference only. Do not submit AI-generated work as your own. Always review, edit, and add your own insights to ensure academic integrity and genuine learning.</p>
             </div>
           </div>

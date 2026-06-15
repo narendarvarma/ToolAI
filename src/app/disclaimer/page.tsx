@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Disclaimer — ToolHub AI",
-  description: "Disclaimer for ToolHub AI. Tools provided as is without warranty. Read our full disclaimer for details about calculator accuracy, data processing, and professional advice.",
+  description: "Disclaimer for ToolHub AI. Tools are provided as is without warranty. Read our disclaimer for details about calculator accuracy, data processing, and professional advice.",
   keywords: "disclaimer, legal, terms, toolhub ai",
   robots: "index, follow",
   alternates: {

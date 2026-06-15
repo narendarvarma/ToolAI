@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function UnitConverter() {
   const [category, setCategory] = useState("length")
@@ -54,6 +57,8 @@ export default function UnitConverter() {
     setFromUnit(toUnit)
     setToUnit(fromUnit)
   }
+
+  const toolContent = getToolContent("unit-converter")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -160,6 +165,8 @@ export default function UnitConverter() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Unit Converter Online Free" toolPath="/tools/unit-converter" />
+        <RelatedTools currentToolPath="/tools/unit-converter" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -171,7 +178,6 @@ export default function UnitConverter() {
     </div>
   )
 }
-
 
 
 

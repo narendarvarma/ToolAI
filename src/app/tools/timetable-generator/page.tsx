@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function TimetableGenerator() {
   const [entries, setEntries] = useState<{ id: number; day: string; time: string; subject: string }[]>([])
@@ -52,6 +55,8 @@ export default function TimetableGenerator() {
   }
 
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+
+  const toolContent = getToolContent("timetable-generator")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -161,6 +166,8 @@ export default function TimetableGenerator() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Timetable Generator Online Free" toolPath="/tools/timetable-generator" />
+        <RelatedTools currentToolPath="/tools/timetable-generator" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -172,7 +179,6 @@ export default function TimetableGenerator() {
     </div>
   )
 }
-
 
 
 

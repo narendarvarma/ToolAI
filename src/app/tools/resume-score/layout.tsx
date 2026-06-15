@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Resume Score Checker - Analyze Your Resume Instantly",
-  description: "Free resume score checker for students and freshers. Analyze your resume for key sections, get score out of 100, see what's missing, and get improvement tips.",
+  title: "Resume Score Checker - Analyze Your Resume",
+  description: "Free resume score checker for students and freshers. Analyze your resume, get a score out of 100, and receive actionable tips to improve sections.",
   keywords: "resume score checker, resume analyzer, resume checker, resume tips, student resume, fresher resume",
   robots: "index, follow",
   icons: {

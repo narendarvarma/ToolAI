@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function UUIDGenerator() {
   const [uuids, setUuids] = useState<string[]>([])
@@ -41,6 +44,8 @@ export default function UUIDGenerator() {
   const clearAll = () => {
     setUuids([])
   }
+
+  const toolContent = getToolContent("uuid-generator")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -126,6 +131,8 @@ export default function UUIDGenerator() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="UUID Generator Online Free" toolPath="/tools/uuid-generator" />
+        <RelatedTools currentToolPath="/tools/uuid-generator" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -137,7 +144,6 @@ export default function UUIDGenerator() {
     </div>
   )
 }
-
 
 
 

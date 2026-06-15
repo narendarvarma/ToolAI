@@ -68,7 +68,7 @@ export default function AITextRewriter() {
           <div className="flex items-start gap-3">
             <Wand2 className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h3 className="text-blue-500 font-semibold mb-1">Content Disclaimer</h3>
+              <h2 className="text-blue-500 font-semibold mb-1">Content Disclaimer</h2>
               <p className="text-gray-300 text-sm">This tool rewrites text to improve clarity and flow. Always review the rewritten content to ensure it accurately represents your original meaning. Do not use for academic submissions without proper attribution and review.</p>
             </div>
           </div>

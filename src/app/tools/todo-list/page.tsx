@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function TodoList() {
   const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>([])
@@ -26,6 +29,8 @@ export default function TodoList() {
   const deleteTodo = (id: number) => {
     setTodos(todos.filter(todo => todo.id !== id))
   }
+
+  const toolContent = getToolContent("todo-list")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -108,6 +113,8 @@ export default function TodoList() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="To-Do List Online Free" toolPath="/tools/todo-list" />
+        <RelatedTools currentToolPath="/tools/todo-list" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -119,7 +126,6 @@ export default function TodoList() {
     </div>
   )
 }
-
 
 
 

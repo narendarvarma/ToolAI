@@ -117,8 +117,8 @@ export default function RelatedTools({ currentToolPath, currentCategory, toolNam
   if (relatedTools.length === 0) return null
 
   return (
-    <div className="mt-8 p-6 bg-[#111827] rounded-2xl border border-white/8">
-      <h3 className="text-xl font-semibold text-white mb-4">You might also like:</h3>
+    <section className="mt-8 p-6 bg-[#111827] rounded-2xl border border-white/8" aria-labelledby="related-tools-heading">
+      <h2 id="related-tools-heading" className="text-2xl font-semibold text-white mb-4">Related Tools</h2>
       <div className="space-y-3">
         {relatedTools.map(tool => (
           <Link
@@ -134,6 +134,6 @@ export default function RelatedTools({ currentToolPath, currentCategory, toolNam
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

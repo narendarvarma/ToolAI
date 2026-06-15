@@ -1,13 +1,28 @@
+"use client"
+
 import Link from "next/link"
 import { Shield, CheckCircle, Zap, Users, HeadphonesIcon } from "lucide-react"
 import ToolFAQ from "./tool-faq"
 import HowToUse from "./how-to-use"
+import StructuredData from "./structured-data"
 import { ToolContent as ToolContentType } from "@/lib/tool-content"
+import { BASE_URL } from "@/lib/config"
+import { toolMetadata } from "@/lib/tool-metadata"
 
 interface ToolContentProps {
   content: ToolContentType
   toolName: string
   toolPath: string
+}
+
+function formatToolName(title: string) {
+  return title.split(" | ")[0]
+}
+
+function getRelatedToolTitles(relatedTools: string[]) {
+  return relatedTools
+    .map((slug) => formatToolName(toolMetadata[slug]?.title || slug))
+    .filter(Boolean)
 }
 
 export default function ToolContent({ content, toolName, toolPath }: ToolContentProps) {
@@ -33,6 +48,20 @@ export default function ToolContent({ content, toolName, toolPath }: ToolContent
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* Tool fit and workflow section */}
+      <section className="bg-[#111827] rounded-2xl p-6 border border-white/8">
+        <h2 className="text-2xl font-semibold mb-4 text-white">How {toolName} Fits Into Your Workflow</h2>
+        <p className="text-gray-300 leading-relaxed mb-4">
+          {toolName} is designed to streamline the tasks that matter most for people using {content.category.toLowerCase()} tools. Whether you are finishing a project, managing daily work, or preparing materials for study or business, this tool makes the process faster, cleaner, and more reliable.
+        </p>
+        <p className="text-gray-300 leading-relaxed mb-4">
+          Use {toolName} when you need a dependable, browser-based solution that removes manual steps and gives you results in seconds. This tool is optimized for speed, privacy, and ease of use so you can focus on your work instead of complex setup.
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          Many users combine {toolName} with tools like {getRelatedToolTitles(content.relatedTools).slice(0, 3).join(", ")} to create a complete productivity workflow that saves time, reduces errors, and improves output quality.
+        </p>
       </section>
 
       {/* Why Choose GetToolAI section */}
@@ -124,6 +153,16 @@ export default function ToolContent({ content, toolName, toolPath }: ToolContent
           Contact Support
         </Link>
       </section>
+      <StructuredData
+        type="BreadcrumbList"
+        data={{
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+            { "@type": "ListItem", position: 2, name: "Tools", item: `${BASE_URL}/tools` },
+            { "@type": "ListItem", position: 3, name: toolName, item: `${BASE_URL}${toolPath}` }
+          ]
+        }}
+      />
     </div>
   )
 }

@@ -357,7 +357,7 @@ export default function ResumeAnalyzerPage() {
                     style={{ borderLeft: `3px solid ${section.meta.color}` }}
                   >
                     <span style={{ color: section.meta.color }}>{section.meta.icon}</span>
-                    <h3 className="font-semibold text-white text-sm">{section.title}</h3>
+                    <h2 className="font-semibold text-white text-sm">{section.title}</h2>
                   </div>
 
                   {/* Section content */}

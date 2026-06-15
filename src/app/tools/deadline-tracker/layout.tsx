@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Assignment Deadline Tracker - Track Deadlines with Priority",
-  description: "Free assignment deadline tracker for students. Add assignments with deadlines, priority levels, color-coded alerts. Save to localStorage. Sort by nearest deadline.",
+  title: "Assignment Deadline Tracker - Track Deadlines",
+  description: "Free assignment deadline tracker for students. Add deadlines, priorities, and color-coded alerts. Save to localStorage and sort by nearest due date.",
   keywords: "assignment tracker, deadline tracker, student planner, assignment organizer, study planner",
   robots: "index, follow",
   icons: {

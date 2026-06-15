@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Random Name Picker - Pick Random Winner Online Free",
-  description: "Free random name picker tool. Enter names separated by commas or newlines, click to pick random winner. Animation effect. Remove winner option for multiple picks. Great for teachers and group projects.",
+  title: "Random Name Picker - Pick a Winner Online",
+  description: "Free random name picker tool. Enter names, click to pick a winner, remove selected entries, and use it for giveaways, classrooms, or group decisions.",
   keywords: "random name picker, random winner picker, name generator, random selector, group picker",
   robots: "index, follow",
   icons: {

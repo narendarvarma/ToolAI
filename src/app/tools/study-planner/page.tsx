@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function StudyPlanner() {
   const [tasks, setTasks] = useState<{ id: number; subject: string; topic: string; date: string; priority: "high" | "medium" | "low"; completed: boolean }[]>([])
@@ -37,6 +40,8 @@ export default function StudyPlanner() {
     const priorityOrder = { high: 0, medium: 1, low: 2 }
     return priorityOrder[a.priority] - priorityOrder[b.priority]
   })
+
+  const toolContent = getToolContent("study-planner")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -157,6 +162,8 @@ export default function StudyPlanner() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Study Planner Online Free" toolPath="/tools/study-planner" />
+        <RelatedTools currentToolPath="/tools/study-planner" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -168,7 +175,6 @@ export default function StudyPlanner() {
     </div>
   )
 }
-
 
 
 

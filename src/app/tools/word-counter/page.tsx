@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function WordCounter() {
   useRecentTools("/tools/word-counter")
@@ -22,6 +25,8 @@ export default function WordCounter() {
   const clearText = () => {
     setText("")
   }
+
+  const toolContent = getToolContent("word-counter")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -121,6 +126,8 @@ export default function WordCounter() {
         ]} />
 
         <SocialShare title="Word Counter" />
+        <ToolContent content={toolContent} toolName="Word Counter Online Free" toolPath="/tools/word-counter" />
+        <RelatedTools currentToolPath="/tools/word-counter" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -132,6 +139,5 @@ export default function WordCounter() {
     </div>
   )
 }
-
 
 

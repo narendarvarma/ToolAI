@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Number to Words Converter - Convert Numbers to Words in Indian Format",
-  description: "Free number to words converter. Convert numbers to words in Indian format (lakhs, crores) and international format (millions, billions). Also shows cheque writing format.",
+  title: "Number to Words Converter - Indian & International Format",
+  description: "Free number to words converter. Convert numbers to words in Indian and international formats. Supports cheque writing.",
   keywords: "number to words, convert number to words, Indian number format, cheque writing, lakhs crores",
   robots: "index, follow",
   icons: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Number to Words Converter - Convert Numbers to Words in Indian Format",
-    description: "Free number to words converter. Convert numbers to words in Indian format (lakhs, crores) and international format (millions, billions). Also shows cheque writing format.",
+    description: "Free number to words converter. Convert numbers to words in Indian and international formats. Supports cheque writing.",
     type: "website",
     url: `${BASE_URL}/tools/number-to-words`,
     siteName: "ToolHub AI",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Number to Words Converter - Convert Numbers to Words in Indian Format",
-    description: "Free number to words converter. Convert numbers to words in Indian format (lakhs, crores) and international format (millions, billions). Also shows cheque writing format.",
+    description: "Free number to words converter. Convert numbers to words in Indian and international formats. Supports cheque writing.",
     images: [`${BASE_URL}/og-image.png`],
   },
 }

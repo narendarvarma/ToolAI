@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function URLEncoder() {
   const [input, setInput] = useState("")
@@ -54,6 +57,8 @@ export default function URLEncoder() {
     setInput("")
     setOutput("")
   }
+
+  const toolContent = getToolContent("url-encoder")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -154,6 +159,8 @@ export default function URLEncoder() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="URL Encoder Online Free" toolPath="/tools/url-encoder" />
+        <RelatedTools currentToolPath="/tools/url-encoder" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -165,7 +172,6 @@ export default function URLEncoder() {
     </div>
   )
 }
-
 
 
 

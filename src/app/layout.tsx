@@ -4,6 +4,7 @@ import "./globals.css"
 import dynamic from "next/dynamic"
 import { BASE_URL } from "@/lib/config"
 import Script from "next/script"
+import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from "@/components/structured-data"
 
 const Navbar = dynamic(() => import("@/components/navbar"), { ssr: false })
 const Footer = dynamic(() => import("@/components/footer"), { ssr: false })
@@ -17,9 +18,7 @@ export const metadata: Metadata = {
   description: "75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities. Fast, secure, and no signup required.",
   keywords: "online tools, PDF tools, image tools, AI tools, student tools, productivity tools, free tools",
   robots: "index, follow",
-  alternates: {
-    canonical: BASE_URL,
-  },
+  // Note: do not hardcode a single canonical here — use `metadataBase` below
   openGraph: {
     title: "ToolHub AI - Free Online Tools",
     description: "75+ free online tools for PDF, images, AI, students, productivity, and utilities.",
@@ -42,6 +41,10 @@ export const metadata: Metadata = {
     images: [`${BASE_URL}/og-image.png`],
   },
 }
+
+// Use metadataBase so Next.js can generate page-specific canonicals when
+// child pages provide their own metadata or when `generateMetadata` builds URLs.
+export const metadataBase = new URL(BASE_URL)
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -127,6 +130,8 @@ export default function RootLayout({
         <Footer />
         <CookieBanner />
         <DailyLimitPopup />
+        <StructuredData type="Organization" data={generateOrganizationSchema()} />
+        <StructuredData type="WebSite" data={generateWebSiteSchema(BASE_URL)} />
       </body>
     </html>
   )

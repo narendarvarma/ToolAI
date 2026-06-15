@@ -161,7 +161,7 @@ export default function NotesOrganizer() {
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-white mb-1">{note.title}</h3>
+                      <h2 className="font-semibold text-white mb-1">{note.title}</h2>
                       <p className="text-sm text-gray-400 mb-2">{note.content}</p>
                       <span className="text-xs px-2 py-1 rounded-full bg-[#3B82F6]/20 text-[#00E5FF]">{note.category}</span>
                     </div>

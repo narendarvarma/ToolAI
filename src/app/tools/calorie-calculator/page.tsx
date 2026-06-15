@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function CalorieCalculator() {
   const [gender, setGender] = useState("male")
@@ -47,6 +50,8 @@ export default function CalorieCalculator() {
     setBmr(Math.round(bmrValue))
     setDailyCalories(dailyCal)
   }
+
+  const toolContent = getToolContent("calorie-calculator")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -162,6 +167,8 @@ export default function CalorieCalculator() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Calorie Calculator Online Free" toolPath="/tools/calorie-calculator" />
+        <RelatedTools currentToolPath="/tools/calorie-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -173,7 +180,6 @@ export default function CalorieCalculator() {
     </div>
   )
 }
-
 
 
 

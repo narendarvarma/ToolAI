@@ -70,7 +70,7 @@ export default function AiAssignmentHelper() {
           <div className="flex items-start gap-3">
             <BookOpen className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h3 className="text-yellow-500 font-semibold mb-1">Study Aid Disclaimer</h3>
+              <h2 className="text-yellow-500 font-semibold mb-1">Study Aid Disclaimer</h2>
               <p className="text-gray-300 text-sm">This tool is designed as a study aid to help you understand concepts and structure your thoughts. Please use the generated content as a reference only. Do not submit AI-generated work as your own. Always review, edit, and add your own insights to ensure academic integrity and genuine learning.</p>
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function AiAssignmentHelper() {
         {answer && (
           <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8 mb-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-white">Generated Answer</h3>
+              <h2 className="text-lg font-semibold text-white">Generated Answer</h2>
               <button
                 type="button"
                 onClick={copyAnswer}

@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Typing Speed Test - Measure Your Typing Speed Online Free",
-  description: "Free typing speed test tool. Type the given paragraph and measure your WPM (words per minute), accuracy percentage, and errors. Perfect for improving typing skills.",
+  title: "Typing Speed Test - Measure Your Typing Speed",
+  description: "Free typing speed test. Type the paragraph to measure WPM, accuracy, and errors. Improve your typing skills with instant feedback.",
   keywords: "typing speed test, WPM test, typing practice, typing speed calculator, accuracy test",
   robots: "index, follow",
   icons: {

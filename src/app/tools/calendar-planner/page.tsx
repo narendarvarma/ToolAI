@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function CalendarPlanner() {
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -43,6 +46,8 @@ export default function CalendarPlanner() {
 
   const selectedDateStr = selectedDate.toISOString().split('T')[0]
   const selectedDateEvents = events.filter(event => event.date === selectedDateStr)
+
+  const toolContent = getToolContent("calendar-planner")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -166,6 +171,8 @@ export default function CalendarPlanner() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Calendar Planner Online Free" toolPath="/tools/calendar-planner" />
+        <RelatedTools currentToolPath="/tools/calendar-planner" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -177,7 +184,6 @@ export default function CalendarPlanner() {
     </div>
   )
 }
-
 
 
 

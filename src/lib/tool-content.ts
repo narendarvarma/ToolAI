@@ -350,6 +350,193 @@ export const toolContent: Record<string, ToolContent> = {
     category: "PDF Tools",
     relatedTools: ["remove-pages", "split-pdf", "crop-pdf", "merge-pdf"]
   },
+  "pdf-password": {
+    whatIs: "The PDF Password tool is a dedicated PDF security utility built for users who need to lock, unlock, or protect sensitive documents quickly. Whether you are securing a business proposal, locking a financial report, or unlocking a password-protected PDF for editing, this tool gives you complete control over PDF password protection. It supports adding strong encryption to PDF files as well as removing passwords from documents you already have access to. This utility is designed for modern workflow needs where PDF password protection must be fast, reliable, and maintain the original document quality. It is ideal for office teams, legal professionals, students, and anyone who routinely handles confidential files requiring secure distribution and access control.",
+    howToUse: [
+      "Upload your PDF file by clicking the upload area or dragging the file into the converter",
+      "Choose whether you want to add a password or remove an existing one",
+      "For locking a document, enter a strong PDF password and choose user or owner permission levels",
+      "For unlocking a file, enter the current PDF password so the tool can decrypt it",
+      "Review the security options and make sure the correct operations are selected",
+      "Click 'Protect PDF' or 'Unlock PDF' to start the password processing",
+      "Download the secured or unlocked PDF file when the operation completes"
+    ],
+    benefits: [
+      "Protect confidential PDFs with strong password encryption",
+      "Remove existing PDF passwords after you have the correct credentials",
+      "Lock formulas, sensitive data, contracts, and client files with ease",
+      "Keep the original PDF layout intact during encryption or decryption",
+      "Manage PDF password protection instantly without installing software",
+      "Secure document workflow for business proposals, invoices, and reports",
+      "Free and private processing in your browser"
+    ],
+    faqs: [
+      { question: "Can I add a password to any PDF file?", answer: "Yes, you can add a password to any PDF that is not already locked or protected by an incompatible encryption type. Simply upload the file and follow the lock steps." },
+      { question: "How do I remove a password from a PDF?", answer: "Upload the password-protected PDF and provide the current password. Once unlocked, you can download the PDF without password protection." },
+      { question: "What is the difference between user and owner passwords?", answer: "A user password restricts opening the PDF, while an owner password controls permissions like editing, printing, and copying. Choose the option that matches your document security needs." },
+      { question: "Does this tool store my PDF password?", answer: "No, password operations take place in your browser and we do not store your PDF password or file contents. This tool is designed for privacy and security." },
+      { question: "Will PDF encryption affect document quality?", answer: "No, applying or removing a password preserves the original PDF layout, fonts, images, and formatting exactly as they were." },
+      { question: "Is it safe to use this for confidential PDFs?", answer: "Yes, your PDF never leaves your browser during processing. This tool is safe for confidential documents such as contracts, legal records, and financial files." },
+      { question: "What happens if I forget my PDF password?", answer: "If you forget a password for a file you created, you should keep a secure backup. This tool cannot recover passwords without the current credentials." }
+    ],
+    category: "PDF Tools",
+    relatedTools: ["compress-pdf", "merge-pdf", "split-pdf", "remove-pages"]
+  },
+  "pdf-to-text": {
+    whatIs: "The PDF to Text tool is a focused PDF extraction utility designed to convert scanned and digital PDF pages into editable text quickly. This tool simplifies the process of extracting key paragraphs, email addresses, product descriptions, and note-worthy passages from PDF documents. Ideal for researchers, students, and professionals who need to repurpose PDF content, it extracts raw text while preserving the logical order of the document. Using this converter, you can transform reports, manuals, receipts, and long-form PDF content into searchable text that can be copied, edited, or used in other documents. It is optimized for PDF to text conversion, giving you clean results for every page." ,
+    howToUse: [
+      "Upload your PDF file using the drag-and-drop area or browse button",
+      "Choose the pages you want to convert if you need only part of the document",
+      "Click 'Extract Text' to begin the PDF to text conversion process",
+      "Wait for the tool to process the PDF and generate the extracted text",
+      "Review the text output in the preview area and verify the conversion accuracy",
+      "Copy the extracted text, download it, or use it in another document"
+    ],
+    benefits: [
+      "Convert PDF to editable text without needing a PDF editor",
+      "Extract text from PDF files for notes, citations, research, and reuse",
+      "Save time compared to manual transcription from PDF pages",
+      "Improve accessibility by turning PDF content into searchable text",
+      "Supports both digital PDFs and scanned page content with accurate extraction",
+      "No installation required - works in your browser instantly",
+      "Free PDF text extraction for reports, contracts, and documentation"
+    ],
+    faqs: [
+      { question: "What kinds of PDF files can I convert to text?", answer: "This tool works with most digital PDFs including reports, contracts, invoices, and manuals. It also supports scanned pages and image-based PDFs, converting them into text for easier editing." },
+      { question: "Will the extracted text keep the original formatting?", answer: "The tool focuses on clean text extraction and preserves logical order. Formatting like bold or headings may be simplified, but the text content remains accurate and ready for editing." },
+      { question: "Can I extract only selected pages from a PDF?", answer: "Yes, you can choose specific pages or page ranges to extract text from, which is ideal for large documents when you need only certain sections." },
+      { question: "How do I use PDF text extraction for research?", answer: "Extract the text, then copy it into your notes or document editor. This makes it fast to collect quotes, references, and important passages from source PDFs." },
+      { question: "Is the extracted text searchable?", answer: "Yes, once the PDF is converted to text, you can search within the output and reuse it in search-friendly documents and applications." },
+      { question: "Does this tool require uploading my PDF to a server?", answer: "No, PDF to text conversion takes place in your browser. Your file remains private and is never transmitted to a backend server." },
+      { question: "Can I use this for OCR on scanned PDFs?", answer: "Yes, the tool includes OCR-style extraction for scanned pages, creating editable text from image-based PDF content." }
+    ],
+    category: "PDF Tools",
+    relatedTools: ["doc-to-pdf", "pdf-to-image", "compress-pdf", "split-pdf"]
+  },
+  "screenshot-to-pdf": {
+    whatIs: "The Screenshot to PDF tool converts screen captures, browser screenshots, and image snapshots into a polished PDF file instantly. This tool is ideal for saving visual content such as receipts, charts, web page captures, and application screens as a PDF document. Instead of saving multiple image files, you can combine screenshots into a single PDF for easier sharing, archiving, or printing. The conversion workflow is fast and optimized for modern screenshot to PDF use cases, helping you move from image capture to printable document in seconds." ,
+    howToUse: [
+      "Upload one or more screenshot images in JPG, PNG, or WEBP format",
+      "Arrange the screenshots in the order you want them to appear in the PDF",
+      "Choose page orientation and image scaling settings if available",
+      "Click 'Convert to PDF' to start building the screenshot PDF document",
+      "Wait for the conversion to complete and preview the generated PDF",
+      "Download the final PDF containing all your screenshots"
+    ],
+    benefits: [
+      "Turn screenshots into a single professional PDF file",
+      "Combine multiple snapshots into one document for easy sharing",
+      "Preserve image quality while converting to PDF format",
+      "Ideal for creating visual reports, proof-of-work archives, and presentations",
+      "Fast browser-based conversion without file uploads to a server",
+      "Supports the most common screenshot formats and image resolutions",
+      "Free tool for converting screenshots to PDF instantly"
+    ],
+    faqs: [
+      { question: "What screenshot formats are supported for PDF conversion?", answer: "You can upload JPG, PNG, WEBP, and other common screenshot image formats to convert them into a single PDF document." },
+      { question: "Can I merge multiple screenshots into one PDF?", answer: "Yes, upload multiple images and the tool will stack them into the final PDF in the order you specify." },
+      { question: "Will the image quality remain good in the PDF?", answer: "Yes, the conversion preserves the original image quality. You can choose scaling settings to optimize quality or file size." },
+      { question: "When should I use screenshot to PDF conversion?", answer: "Use it for saving chat screenshots, receipts, web pages, design drafts, and any visual screenshots that need to be shared or printed as a document." },
+      { question: "Can I use screenshots from my phone?", answer: "Absolutely. Upload screenshots taken on mobile devices and convert them directly into a PDF without additional editing." },
+      { question: "Is this tool secure for private screenshots?", answer: "Yes, processing happens in your browser. Your screenshots are not sent to a server, so your private images remain secure." },
+      { question: "How fast is the conversion?", answer: "Most screenshot-to-PDF conversions complete in a few seconds, making it a great tool for quick workflows." }
+    ],
+    category: "PDF Tools",
+    relatedTools: ["pdf-to-image", "compress-pdf", "merge-pdf", "image-compressor"]
+  },
+  "resume-score": {
+    whatIs: "The Resume Score tool is an AI-informed resume evaluation utility that gives your resume a data-driven score and practical improvement suggestions. Designed for job seekers, career changers, and professionals preparing for competitive hiring processes, this tool analyzes resume content quality, keyword relevance, formatting signals, and job match readiness. It scores your resume based on clarity, industry alignment, and ATS friendliness so you can make targeted edits before submitting applications. Resume Score is especially useful when you want a clear assessment of your resume's strengths and weaknesses, and it helps you understand what factors are most likely to impact recruiter and applicant tracking system performance." ,
+    howToUse: [
+      "Upload your resume file or paste your resume text into the input field",
+      "Enter the job title or industry you are targeting for your application",
+      "Click 'Score Resume' to start the analysis process",
+      "Review the numerical score and detailed suggestions for improvement",
+      "Note areas such as keywords, structure, achievements, and clarity",
+      "Apply recommended edits and rerun the evaluation to track improvements"
+    ],
+    benefits: [
+      "Receive a clear resume score for job market readiness",
+      "Improve ATS compatibility with keyword and formatting feedback",
+      "Understand how recruiters will perceive your resume content",
+      "Discover opportunities to make your resume more concise and results-focused",
+      "Build a stronger resume before submitting online applications",
+      "Avoid common resume mistakes that can lower your score",
+      "Free career tool for fast resume evaluation and optimization"
+    ],
+    faqs: [
+      { question: "What does a resume score mean?", answer: "A resume score measures how well your resume aligns with resume best practices, keyword relevance, formatting clarity, and job market expectations." },
+      { question: "Can this tool help with ATS optimization?", answer: "Yes, Resume Score highlights keyword gaps, formatting issues, and content improvements that can help your resume perform better with applicant tracking systems." },
+      { question: "How do I improve my resume score?", answer: "Use the tool's feedback to add relevant accomplishments, sharpen your summary, include job-specific keywords, and ensure consistent formatting." },
+      { question: "Should I include a job title or industry?", answer: "Yes, entering the target job title or industry helps the tool tailor recommendations and score your resume more accurately for that role." },
+      { question: "Does it analyze resume layout as well as content?", answer: "Yes, it looks at both content quality and the overall presentation to identify readability and structural issues." },
+      { question: "Can I rescore my resume after editing?", answer: "Absolutely. Rerun the tool after making changes to see how your score improves and which areas still need work." },
+      { question: "Is my resume data shared or stored?", answer: "No, the analysis happens in your browser and your resume content remains private. We do not store or transmit your resume data." }
+    ],
+    category: "AI Tools",
+    relatedTools: ["ai-resume-analyzer", "ai-resume-builder", "job-search", "career-tools"]
+  },
+  "ppt-maker": {
+    whatIs: "The PPT Maker tool is a browser-based presentation creator that helps you build a complete slide deck from a short topic description in minutes. Designed for professionals, students, and teams who need fast presentation creation, this tool streamlines the entire process of generating PowerPoint-ready content, slide structure, and visual flow. Instead of drafting each slide manually, you can use the tool to create a polished outline, speaker notes, and slide titles that match your message. It is particularly useful for pitch decks, training presentations, sales reports, class lectures, and meeting summaries, enabling you to turn a simple topic into a full presentation with consistent design and slide logic." ,
+    howToUse: [
+      "Enter your presentation topic or core idea in the input field",
+      "Choose your preferred presentation style, such as professional, creative, or academic",
+      "Select the number of slides you need for your deck",
+      "Click 'Generate Presentation' to create the slide structure and content",
+      "Review the generated slides and speaker notes in the preview area",
+      "Download the generated presentation file or export the content to your editor"
+    ],
+    benefits: [
+      "Create professional presentations in minutes without design skills",
+      "Generate coherent slide flow and structure automatically",
+      "Save time on content writing, slide titles, and speaker notes",
+      "Use for business pitches, education lectures, and team meetings",
+      "Avoid the blank slide problem by starting with a ready-made deck",
+      "Improve presentation quality with consistent wording and layout guidance",
+      "Free browser-based slide creation without software installation"
+    ],
+    faqs: [
+      { question: "What does the PPT Maker generate?", answer: "It generates slide titles, section structure, content text, and speaker notes for a complete presentation deck based on your topic." },
+      { question: "Can I choose a presentation style?", answer: "Yes, you can choose from styles like professional, creative, academic, startup pitch, or minimal to match your audience and tone." },
+      { question: "How do I download the presentation?", answer: "After generation, use the download or export option to save the slide content for editing in your preferred presentation software." },
+      { question: "Is the content suitable for business or academic use?", answer: "Yes, the tool creates content that works well for business meetings, classroom lectures, sales demos, and project updates." },
+      { question: "Can I edit the generated slides?", answer: "Absolutely. The generated presentation content is meant to be a starting point and can be edited to suit your exact wording and branding." },
+      { question: "Does it help with slide organization?", answer: "Yes, the tool provides logical section breaks and a clear narrative flow so your presentation feels structured and cohesive." },
+      { question: "Is this tool free to use?", answer: "Yes, the PPT Maker is free to use in your browser and does not require any installation or signup." }
+    ],
+    category: "Productivity Tools",
+    relatedTools: ["word-counter", "doc-to-pdf", "screenshot-to-pdf", "notes-organizer"]
+  },
+  "typing-speed": {
+    whatIs: "The Typing Speed tool is an online typing test that measures your words per minute, accuracy, and keystroke pace in real time. This typing test is ideal for writers, students, data entry professionals, and anyone who wants to improve their keyboard performance. It assesses your typing speed under a timed challenge and provides detailed feedback on errors, accuracy, and consistency. The tool is designed to help you practice touch typing, benchmark your skills, and track improvement over time with repeatable tests and score comparison." ,
+    howToUse: [
+      "Choose a typing test length or duration from the available options",
+      "Click 'Start Test' to begin the typing speed challenge",
+      "Type the displayed text as accurately and quickly as possible",
+      "Watch your words per minute and accuracy update in real time",
+      "Finish the test and review your final typing speed and error rate",
+      "Repeat the test to improve your typing speed and accuracy"
+    ],
+    benefits: [
+      "Measure your typing speed in words per minute (WPM)",
+      "Track your accuracy and error rate during each test",
+      "Improve keyboard confidence with repeated practice",
+      "Build faster typing skills for work and study tasks",
+      "Receive immediate feedback to target weak spots",
+      "Use the tool in any browser with no installation needed",
+      "Perfect for preparation for typing exams and productivity improvements"
+    ],
+    faqs: [
+      { question: "What does the typing speed score measure?", answer: "The score measures how many words you type per minute along with your accuracy percentage and number of errors." },
+      { question: "How can I improve my typing speed?", answer: "Practice regularly, focus on accuracy first, use proper finger placement, and repeat the test to build muscle memory." },
+      { question: "Does this test work on mobile devices?", answer: "Yes, the typing speed tool works in modern mobile browsers, although it is best experienced on a physical keyboard for accurate WPM measurement." },
+      { question: "Can I reset the test and try again?", answer: "Yes, you can retake the typing test as many times as you like to track progress and improve your score." },
+      { question: "What is a good typing speed?", answer: "A good typing speed is typically around 40-60 WPM for everyday users, while professionals often aim for 70 WPM or higher." },
+      { question: "Does the tool count punctuation and spacing?", answer: "Yes, the typing test counts your punctuation and spacing as part of the text accuracy evaluation to give a realistic speed score." },
+      { question: "Is my typing data stored?", answer: "No, results are shown in your browser and no personal typing data is stored or transmitted." }
+    ],
+    category: "Productivity Tools",
+    relatedTools: ["stopwatch", "todo-list", "pomodoro-timer", "world-clock"]
+  },
   "age-calculator": {
     whatIs: "The Age Calculator is a precise online tool that calculates your exact age in years, months, and days based on your date of birth. This tool goes beyond simple year calculation by providing detailed breakdowns including your age in total days, months, and even upcoming birthday information. Understanding your exact age is important for various reasons - from filling out official documents and applications to planning milestone celebrations, from tracking developmental milestones to calculating retirement eligibility. This calculator accounts for leap years and provides accurate calculations by considering the exact number of days between dates. Whether you're curious about your exact age, planning a birthday celebration, or need to calculate age for official documents, this calculator provides instant and accurate results. It also calculates your next birthday and tells you exactly how many days away it is, helping you plan ahead for special occasions.",
     howToUse: [

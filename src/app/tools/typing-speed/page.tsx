@@ -6,13 +6,16 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 const sampleText = "The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet and is commonly used for typing practice. Regular practice improves your typing speed and accuracy significantly. Focus on accuracy first, then gradually increase your speed over time."
 
 export default function TypingSpeedTest() {
   useRecentTools("/tools/typing-speed", "Typing Speed Test", "Keyboard")
+  const toolContent = getToolContent("typing-speed")
   
   const [userInput, setUserInput] = useState("")
   const [isStarted, setIsStarted] = useState(false)
@@ -24,7 +27,7 @@ export default function TypingSpeedTest() {
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    return () => {
+  return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
   }, [])
@@ -236,6 +239,8 @@ export default function TypingSpeedTest() {
 
         {/* Social Share */}
         <SocialShare title="Typing Speed Test - Measure your typing speed" />
+        <ToolContent content={toolContent} toolName="Typing Speed" toolPath="/tools/typing-speed" />
+        <RelatedTools currentToolPath="/tools/typing-speed" currentCategory={toolContent.category} />
 
         <Link
           href="/"

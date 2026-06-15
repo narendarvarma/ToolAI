@@ -7,11 +7,15 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function Stopwatch() {
   const [time, setTime] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [laps, setLaps] = useState<number[]>([])
+  const toolContent = getToolContent("stopwatch")
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null
@@ -22,7 +26,7 @@ export default function Stopwatch() {
       }, 10)
     }
 
-    return () => {
+  return () => {
       if (interval) clearInterval(interval)
     }
   }, [isRunning])
@@ -107,7 +111,7 @@ export default function Stopwatch() {
           {/* Laps */}
           {laps.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold text-white mb-4">Laps</h3>
+              <h2 className="text-lg font-semibold text-white mb-4">Laps</h2>
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {laps.map((lapTime, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/8">
@@ -126,6 +130,8 @@ export default function Stopwatch() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Stopwatch Online Free" toolPath="/tools/stopwatch" />
+        <RelatedTools currentToolPath="/tools/stopwatch" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -137,7 +143,6 @@ export default function Stopwatch() {
     </div>
   )
 }
-
 
 
 

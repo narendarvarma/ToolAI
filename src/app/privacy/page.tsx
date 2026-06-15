@@ -1,4 +1,27 @@
-"use client"
+import type { Metadata } from "next"
+import { BASE_URL } from "@/lib/config"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy — ToolHub AI",
+  description: "ToolHub AI Privacy Policy. Learn how we handle data, cookies, Google Analytics, AdSense, and user privacy on our free tools platform.",
+  keywords: "privacy policy, data handling, google analytics, adsense, toolhub ai",
+  robots: "index, follow",
+  alternates: {
+    canonical: `${BASE_URL}/privacy`,
+  },
+  openGraph: {
+    title: "Privacy Policy — ToolHub AI",
+    description: "ToolHub AI Privacy Policy. Learn how we handle data, cookies, Google Analytics, AdSense, and user privacy on our free tools platform.",
+    type: "website",
+    url: `${BASE_URL}/privacy`,
+    siteName: "ToolHub AI",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy — ToolHub AI",
+    description: "ToolHub AI Privacy Policy. Learn how we handle data, cookies, Google Analytics, AdSense, and user privacy on our free tools platform.",
+  }
+}
 
 export default function Privacy() {
   return (

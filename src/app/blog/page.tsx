@@ -1,7 +1,29 @@
-"use client"
-
 import Link from "next/link"
 import { ArrowRight, Calendar, Clock } from "lucide-react"
+import { BASE_URL } from "@/lib/config"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Blog — ToolHub AI",
+  description: "Read the latest tutorials, productivity tips, and tool guides from ToolHub AI. Stay updated on free online tools for students, creators, and professionals.",
+  keywords: "ToolHub AI blog, online tools tips, productivity guides, AI tools, student tools",
+  robots: "index, follow",
+  alternates: {
+    canonical: `${BASE_URL}/blog`,
+  },
+  openGraph: {
+    title: "Blog — ToolHub AI",
+    description: "Read the latest tutorials, productivity tips, and tool guides from ToolHub AI.",
+    type: "website",
+    url: `${BASE_URL}/blog`,
+    siteName: "ToolHub AI",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog — ToolHub AI",
+    description: "Read the latest tutorials, productivity tips, and tool guides from ToolHub AI.",
+  }
+}
 
 const articles = [
   {
@@ -123,6 +145,29 @@ export default function Blog() {
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-16 rounded-2xl border border-white/10 bg-[#111827] p-8">
+          <h2 className="text-2xl font-semibold mb-4 text-white">Explore Related Tools</h2>
+          <p className="text-gray-400 mb-6">Try the tools that complement our blog content for productivity, student work, formatting, and file management.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link href="/tools/ai-resume-builder" className="block rounded-2xl border border-white/10 bg-[#0B0F1A] p-4 text-white hover:border-[#00E5FF]/50 transition-all">
+              <h3 className="font-semibold mb-2">AI Resume Builder</h3>
+              <p className="text-sm text-gray-400">Create polished resumes with AI-driven suggestions.</p>
+            </Link>
+            <Link href="/tools/convert-format" className="block rounded-2xl border border-white/10 bg-[#0B0F1A] p-4 text-white hover:border-[#00E5FF]/50 transition-all">
+              <h3 className="font-semibold mb-2">Convert Format</h3>
+              <p className="text-sm text-gray-400">Quickly change file formats for documents and images.</p>
+            </Link>
+            <Link href="/tools/ai-blog-generator" className="block rounded-2xl border border-white/10 bg-[#0B0F1A] p-4 text-white hover:border-[#00E5FF]/50 transition-all">
+              <h3 className="font-semibold mb-2">AI Blog Generator</h3>
+              <p className="text-sm text-gray-400">Generate blog ideas and drafts with a single click.</p>
+            </Link>
+            <Link href="/tools/emi-calculator" className="block rounded-2xl border border-white/10 bg-[#0B0F1A] p-4 text-white hover:border-[#00E5FF]/50 transition-all">
+              <h3 className="font-semibold mb-2">EMI Calculator</h3>
+              <p className="text-sm text-gray-400">Estimate loan payments instantly for smarter financial planning.</p>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

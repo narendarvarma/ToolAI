@@ -97,7 +97,7 @@ export default function MergePDF() {
           {/* PDF List */}
           {pdfFiles.length > 0 && (
             <div className="mb-6">
-              <h3 className="font-medium mb-4 text-white">Selected PDFs ({pdfFiles.length})</h3>
+              <h2 className="font-medium mb-4 text-white">Selected PDFs ({pdfFiles.length})</h2>
               <div className="space-y-3">
                 {pdfFiles.map((file, index) => (
                   <div key={index} className="p-4 rounded-xl bg-white/5 border border-white/8 flex items-center justify-between">

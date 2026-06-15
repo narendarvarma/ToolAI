@@ -135,7 +135,7 @@ export default function AiGrammarFixer() {
         {correctedText && (
           <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8 mb-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-white">Original vs Corrected</h3>
+              <h2 className="text-lg font-semibold text-white">Original vs Corrected</h2>
               <button
                 type="button"
                 onClick={copyCorrected}

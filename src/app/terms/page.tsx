@@ -1,4 +1,27 @@
-"use client"
+import type { Metadata } from "next"
+import { BASE_URL } from "@/lib/config"
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions — ToolHub AI",
+  description: "ToolHub AI Terms & Conditions. Learn the rules for using our free online tools, including AdSense, privacy, and acceptable use policies.",
+  keywords: "terms and conditions, service agreement, toolhub ai, adsense policy, privacy",
+  robots: "index, follow",
+  alternates: {
+    canonical: `${BASE_URL}/terms`,
+  },
+  openGraph: {
+    title: "Terms & Conditions — ToolHub AI",
+    description: "ToolHub AI Terms & Conditions. Learn the rules for using our free online tools, including AdSense, privacy, and acceptable use policies.",
+    type: "website",
+    url: `${BASE_URL}/terms`,
+    siteName: "ToolHub AI",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms & Conditions — ToolHub AI",
+    description: "ToolHub AI Terms & Conditions. Learn the rules for using our free online tools, including AdSense, privacy, and acceptable use policies.",
+  }
+}
 
 export default function Terms() {
   return (

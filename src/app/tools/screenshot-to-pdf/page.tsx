@@ -7,8 +7,10 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function ScreenshotToPdf() {
   useRecentTools("/tools/screenshot-to-pdf", "Screenshot to PDF", "ImageIcon")
@@ -98,6 +100,8 @@ export default function ScreenshotToPdf() {
 
     setIsProcessing(false)
   }
+
+  const toolContent = getToolContent("screenshot-to-pdf")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -228,6 +232,8 @@ export default function ScreenshotToPdf() {
 
         {/* Social Share */}
         <SocialShare title="Screenshot to PDF - Convert images to PDF" />
+        <ToolContent content={toolContent} toolName="Screenshot To Pdf" toolPath="/tools/screenshot-to-pdf" />
+        <RelatedTools currentToolPath="/tools/screenshot-to-pdf" currentCategory={toolContent.category} />
 
         <Link
           href="/"

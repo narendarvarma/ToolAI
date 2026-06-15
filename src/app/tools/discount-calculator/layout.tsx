@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Discount Calculator - Calculate Discount Amount and Final Price",
+  title: "Discount Calculator - Calculate Discount & Final Price",
   description: "Free discount calculator. Calculate discount amount, final price after discount, and reverse discount calculation. Perfect for shopping, sales, and offers.",
   keywords: "discount calculator, discount amount, sale calculator, price after discount, reverse discount",
   robots: "index, follow",

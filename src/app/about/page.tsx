@@ -3,11 +3,15 @@ import Script from "next/script"
 
 export const metadata = {
   title: "About ToolHub AI - Our Mission & Story",
-  description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our founder's story, values, and commitment to privacy and accessibility.",
+  description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our story, values, and commitment to privacy and accessibility.",
   keywords: "ToolHub AI about, free online tools, mission, founder story, privacy first, productivity tools",
+  robots: "index, follow",
+  alternates: {
+    canonical: `${BASE_URL}/about`,
+  },
   openGraph: {
     title: "About ToolHub AI - Our Mission & Story",
-    description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our founder's story, values, and commitment to privacy and accessibility.",
+    description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our story, values, and commitment to privacy and accessibility.",
     url: `${BASE_URL}/about`,
     siteName: "ToolHub AI",
     images: [
@@ -24,7 +28,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "About ToolHub AI - Our Mission & Story",
-    description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our founder's story, values, and commitment to privacy and accessibility.",
+    description: "Learn about ToolHub AI's mission to provide free, professional online tools. Discover our story, values, and commitment to privacy and accessibility.",
     images: [`${BASE_URL}/og-image.png`]
   }
 }

@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function PasswordStrength() {
   const [password, setPassword] = useState("")
@@ -102,6 +105,8 @@ export default function PasswordStrength() {
     return `${(strength / 5) * 100}%`
   }
 
+  const toolContent = getToolContent("password-strength")
+
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
@@ -145,7 +150,7 @@ export default function PasswordStrength() {
           {/* Feedback */}
           {feedback.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-white mb-4">Suggestions to improve:</h3>
+              <h2 className="text-lg font-semibold text-white mb-4">Suggestions to improve:</h2>
               <div className="space-y-2">
                 {feedback.map((item, index) => (
                   <div key={index} className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/8">
@@ -169,10 +174,10 @@ export default function PasswordStrength() {
 
           {/* Tips */}
           <div className="mt-6 p-4 bg-white/5 rounded-xl border border-white/8">
-            <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
               <Shield className="h-5 w-5 text-[#00E5FF]" />
               Password Tips
-            </h3>
+            </h2>
             <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Use at least 12 characters</li>
               <li>• Mix uppercase and lowercase letters</li>
@@ -189,6 +194,8 @@ export default function PasswordStrength() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Password Strength Checker Online Free" toolPath="/tools/password-strength" />
+        <RelatedTools currentToolPath="/tools/password-strength" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -200,7 +207,6 @@ export default function PasswordStrength() {
     </div>
   )
 }
-
 
 
 

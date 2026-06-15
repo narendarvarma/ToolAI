@@ -79,7 +79,7 @@ export default function AIBlogGenerator() {
           <div className="flex items-start gap-3">
             <Wand2 className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h3 className="text-blue-500 font-semibold mb-1">Content Disclaimer</h3>
+              <h2 className="text-blue-500 font-semibold mb-1">Content Disclaimer</h2>
               <p className="text-gray-300 text-sm">This tool generates blog content as a starting point for your writing. Always review, edit, and add your own insights to ensure the content is accurate, original, and aligned with your voice. Do not publish AI-generated content without proper review and modification.</p>
             </div>
           </div>

@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "GPA to Percentage Converter - Anna University, VTU, Mumbai Formula",
-  description: "Convert CGPA to percentage using Anna University, VTU, Mumbai University formulas. Instant CGPA to percentage conversion for Indian engineering students.",
+  title: "GPA to Percentage Converter - VTU & Mumbai Formula",
+  description: "Convert CGPA to percentage using Anna University, VTU, Mumbai University formulas. Instant CGPA conversion for Indian engineering students.",
   keywords: "CGPA to percentage, GPA converter, Anna University CGPA, VTU CGPA, Mumbai University CGPA, engineering students",
   robots: "index, follow",
   icons: {

@@ -8,6 +8,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function RemovePages() {
   const [pdfFile, setPdfFile] = useState<File | null>(null)
@@ -83,6 +86,8 @@ export default function RemovePages() {
     setIsProcessing(false)
   }
 
+  const toolContent = getToolContent("remove-pages")
+
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
@@ -157,6 +162,8 @@ export default function RemovePages() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Remove Pages from PDF Online Free" toolPath="/tools/remove-pages" />
+        <RelatedTools currentToolPath="/tools/remove-pages" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -168,7 +175,6 @@ export default function RemovePages() {
     </div>
   )
 }
-
 
 
 

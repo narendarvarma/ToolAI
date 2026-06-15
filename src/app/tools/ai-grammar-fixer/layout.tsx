@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "AI Grammar Fixer - Fix Grammar and Spelling Online Free",
-  description: "Free AI grammar fixer tool. Paste English text, AI corrects grammar, spelling, and sentence structure. Shows original vs corrected side by side. Copy corrected text. High demand for non-native English speakers.",
+  title: "AI Grammar Fixer - Fix Grammar and Spelling Online",
+  description: "Free AI grammar fixer tool. Paste English text and AI corrects grammar, spelling, and sentence structure. See original vs corrected text instantly.",
   keywords: "grammar fixer, spelling checker, grammar corrector, AI grammar, English grammar fix",
   robots: "index, follow",
   icons: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "AI Grammar Fixer - Fix Grammar and Spelling Online Free",
-    description: "Free AI grammar fixer tool. Paste English text, AI corrects grammar, spelling, and sentence structure. Shows original vs corrected side by side. Copy corrected text. High demand for non-native English speakers.",
+    description: "Free AI grammar fixer tool. Paste English text and AI corrects grammar, spelling, and structure. Shows original vs corrected text instantly.",
     type: "website",
     url: `${BASE_URL}/tools/ai-grammar-fixer`,
     siteName: "ToolHub AI",
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Grammar Fixer - Fix Grammar and Spelling Online Free",
-    description: "Free AI grammar fixer tool. Paste English text, AI corrects grammar, spelling, and sentence structure. Shows original vs corrected side by side. Copy corrected text. High demand for non-native English speakers.",
+    title: "AI Grammar Fixer - Fix Grammar and Spelling Online",
+    description: "Free AI grammar fixer tool. Paste English text and AI corrects grammar, spelling, and structure. Shows original vs corrected text instantly.",
     images: [`${BASE_URL}/og-image.png`],
   },
 }

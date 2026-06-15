@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "AI Assignment Helper - Get Help with Assignments Online Free",
-  description: "Free AI assignment helper for students. Enter subject and question, get structured answer with introduction, main points, and conclusion. Word count selector. Most needed tool for Indian students.",
+  title: "AI Assignment Helper - Get Help with Assignments Online",
+  description: "Free AI assignment helper for students. Enter subject and question, get a structured answer with introduction, main points, and conclusion.",
   keywords: "AI assignment helper, assignment help, homework helper, student AI, study assistant",
   robots: "index, follow",
   icons: {

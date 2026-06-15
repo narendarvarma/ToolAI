@@ -68,7 +68,7 @@ export default function AINotesSummarizer() {
           <div className="flex items-start gap-3">
             <FileText className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h3 className="text-blue-500 font-semibold mb-1">Study Aid Disclaimer</h3>
+              <h2 className="text-blue-500 font-semibold mb-1">Study Aid Disclaimer</h2>
               <p className="text-gray-300 text-sm">This tool summarizes your notes to help you review and understand key concepts. Always review the summary for accuracy and add your own insights. Use as a study aid, not a replacement for your own understanding and analysis.</p>
             </div>
           </div>

@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Screenshot to PDF - Convert Images to PDF Online Free",
-  description: "Free screenshot to PDF converter tool. Upload multiple images (PNG/JPG), arrange order, convert to PDF with each image as a page. Download final PDF. Perfect for students submitting assignments.",
+  title: "Screenshot to PDF - Convert Images to PDF",
+  description: "Free screenshot to PDF converter. Upload multiple images, arrange the order, and convert them into a downloadable PDF for assignments or sharing.",
   keywords: "screenshot to PDF, images to PDF, JPG to PDF, PNG to PDF, photo to PDF",
   robots: "index, follow",
   icons: {

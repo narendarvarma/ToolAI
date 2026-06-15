@@ -1,5 +1,5 @@
 interface StructuredDataProps {
-  type: "SoftwareApplication" | "FAQPage" | "Organization" | "BreadcrumbList" | "WebApplication"
+  type: "SoftwareApplication" | "FAQPage" | "Organization" | "BreadcrumbList" | "WebApplication" | "WebSite"
   data: any
 }
 
@@ -73,6 +73,25 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
       name: item.name,
       item: item.url
     }))
+  }
+}
+
+export function generateWebSiteSchema(url: string) {
+  return {
+    name: "ToolHub AI",
+    url,
+    description: "ToolHub AI provides 75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities.",
+    publisher: {
+      "@type": "Organization",
+      name: "ToolHub AI",
+      url,
+      logo: `${url}/logo.png`
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${url}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
   }
 }
 

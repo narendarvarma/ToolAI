@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function QRGenerator() {
   const [text, setText] = useState("")
@@ -26,6 +29,8 @@ export default function QRGenerator() {
       link.click()
     }
   }
+
+  const toolContent = getToolContent("qr-generator")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -144,6 +149,8 @@ export default function QRGenerator() {
 
         {/* Social Share */}
         <SocialShare title="QR Generator - Create QR codes instantly" />
+        <ToolContent content={toolContent} toolName="QR Code Generator Online Free" toolPath="/tools/qr-generator" />
+        <RelatedTools currentToolPath="/tools/qr-generator" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -155,7 +162,6 @@ export default function QRGenerator() {
     </div>
   )
 }
-
 
 
 

@@ -31,7 +31,7 @@ export default function ToolFAQ({ faqs, toolName }: ToolFAQProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="mt-8 p-6 bg-[#111827] rounded-2xl border border-white/8">
-        <h3 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h3>
+        <h2 className="text-2xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-3">
           {faqs.map((faq, index) => (
             <details key={index} className="group">

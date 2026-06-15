@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 const timeZones = [
   { name: "UTC", offset: 0 },
@@ -67,6 +70,8 @@ export default function TimeZoneConverter() {
     navigator.clipboard.writeText(`${convertedTime} ${toZone}`)
     alert("Converted time copied to clipboard!")
   }
+
+  const toolContent = getToolContent("timezone-converter")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -157,6 +162,8 @@ export default function TimeZoneConverter() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Time Zone Converter Online Free" toolPath="/tools/timezone-converter" />
+        <RelatedTools currentToolPath="/tools/timezone-converter" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -168,7 +175,6 @@ export default function TimeZoneConverter() {
     </div>
   )
 }
-
 
 
 

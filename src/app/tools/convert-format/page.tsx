@@ -122,7 +122,7 @@ export default function ConvertFormat() {
           {/* Preview */}
           {preview && (
             <div className="mb-6">
-              <h3 className="font-medium mb-4 text-white">Preview</h3>
+              <h2 className="font-medium mb-4 text-white">Preview</h2>
               <img src={preview} alt="Preview" className="w-full max-w-md mx-auto rounded-xl" />
             </div>
           )}

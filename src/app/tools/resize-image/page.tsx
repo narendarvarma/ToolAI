@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function ResizeImage() {
   const [imageFile, setImageFile] = useState<File | null>(null)
@@ -97,6 +100,8 @@ export default function ResizeImage() {
       setWidth(newWidth.toString())
     }
   }
+
+  const toolContent = getToolContent("resize-image")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -190,6 +195,8 @@ export default function ResizeImage() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Resize Images Online Free" toolPath="/tools/resize-image" />
+        <RelatedTools currentToolPath="/tools/resize-image" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -201,7 +208,6 @@ export default function ResizeImage() {
     </div>
   )
 }
-
 
 
 

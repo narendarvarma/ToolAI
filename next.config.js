@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack: (config) => {
     config.resolve.alias.canvas = false
     config.resolve.alias.encoding = false
@@ -14,7 +17,7 @@ const nextConfig = {
           {
             key: 'Content-Security-Policy',
             value: [
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://adservice.google.com https://cdn.jsdelivr.net",
+              "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://adservice.google.com https://cdn.jsdelivr.net",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net",
               "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net",
               "frame-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",

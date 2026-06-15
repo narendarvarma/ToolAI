@@ -6,8 +6,10 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function ResumeScoreChecker() {
   useRecentTools("/tools/resume-score", "Resume Score Checker", "FileText")
@@ -48,6 +50,8 @@ export default function ResumeScoreChecker() {
     if (score >= 40) return "Needs Improvement"
     return "Poor"
   }
+
+  const toolContent = getToolContent("resume-score")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -92,7 +96,7 @@ export default function ResumeScoreChecker() {
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-white mb-4">Section Analysis</h3>
+              <h2 className="text-lg font-semibold text-white mb-4">Section Analysis</h2>
               
               <div className={`flex items-center justify-between p-3 rounded-lg ${analysis.contactInfo ? 'bg-green-500/10 border border-green-500/30' : 'bg-red-500/10 border border-red-500/30'}`}>
                 <span className="text-white">Contact Information</span>
@@ -187,6 +191,8 @@ export default function ResumeScoreChecker() {
 
         {/* Social Share */}
         <SocialShare title="Resume Score Checker - Analyze your resume instantly" />
+        <ToolContent content={toolContent} toolName="Resume Score" toolPath="/tools/resume-score" />
+        <RelatedTools currentToolPath="/tools/resume-score" currentCategory={toolContent.category} />
 
         <Link
           href="/"

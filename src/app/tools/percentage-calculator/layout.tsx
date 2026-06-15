@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Percentage Calculator - Calculate Marks, Increase, Decrease Instantly",
-  description: "Free online percentage calculator for students. Calculate exam marks percentage, reverse percentage, percentage increase/decrease. Instant results for Indian students.",
+  title: "Percentage Calculator - Calculate Percentages Instantly",
+  description: "Free online percentage calculator for students. Calculate exam marks percentage, reverse percentage, and percentage increase or decrease instantly.",
   keywords: "percentage calculator, marks calculator, exam percentage, percentage increase, percentage decrease, student tools",
   robots: "index, follow",
   icons: {

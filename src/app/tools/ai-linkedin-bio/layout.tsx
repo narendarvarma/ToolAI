@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "AI LinkedIn Bio Generator - Generate Professional LinkedIn Bio",
-  description: "Free AI LinkedIn bio generator. Enter your name, role, skills, and experience. AI generates a professional LinkedIn About section. Perfect for freshers and job seekers in India.",
+  title: "AI LinkedIn Bio Generator - Professional LinkedIn Bio",
+  description: "Free AI LinkedIn bio generator. Enter your name, role, skills, and experience. AI writes professional LinkedIn bios for freshers and job seekers.",
   keywords: "LinkedIn bio generator, LinkedIn about section, professional bio, job seeker bio, resume bio",
   robots: "index, follow",
   icons: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "AI LinkedIn Bio Generator - Generate Professional LinkedIn Bio",
-    description: "Free AI LinkedIn bio generator. Enter your name, role, skills, and experience. AI generates a professional LinkedIn About section. Perfect for freshers and job seekers in India.",
+    description: "Free AI LinkedIn bio generator. Enter your name, role, skills, and experience. AI generates a professional LinkedIn About section.",
     type: "website",
     url: `${BASE_URL}/tools/ai-linkedin-bio`,
     siteName: "ToolHub AI",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AI LinkedIn Bio Generator - Generate Professional LinkedIn Bio",
-    description: "Free AI LinkedIn bio generator. Enter your name, role, skills, and experience. AI generates a professional LinkedIn About section. Perfect for freshers and job seekers in India.",
+    description: "Free AI LinkedIn bio generator. Enter your name, role, skills, and experience. AI generates a professional LinkedIn About section.",
     images: [`${BASE_URL}/og-image.png`],
   },
 }

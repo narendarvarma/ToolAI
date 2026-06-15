@@ -44,7 +44,7 @@ export default function Error({
         </div>
 
         <div className="p-6 bg-[#111827] rounded-2xl border border-white/8">
-          <h3 className="text-lg font-semibold text-white mb-3">Need help?</h3>
+          <h2 className="text-lg font-semibold text-white mb-3">Need help?</h2>
           <p className="text-gray-400 text-sm mb-4">
             If this error continues to occur, please reach out to our support team.
           </p>

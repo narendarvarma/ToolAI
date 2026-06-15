@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function TipCalculator() {
   const [billAmount, setBillAmount] = useState("")
@@ -22,6 +25,8 @@ export default function TipCalculator() {
     navigator.clipboard.writeText(text)
     alert("Copied to clipboard!")
   }
+
+  const toolContent = getToolContent("tip-calculator")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -106,6 +111,8 @@ export default function TipCalculator() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Tip Calculator Online Free" toolPath="/tools/tip-calculator" />
+        <RelatedTools currentToolPath="/tools/tip-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -117,7 +124,6 @@ export default function TipCalculator() {
     </div>
   )
 }
-
 
 
 

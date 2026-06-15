@@ -7,6 +7,9 @@ import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function SpeechToText() {
   const [isListening, setIsListening] = useState(false)
@@ -54,6 +57,8 @@ export default function SpeechToText() {
   const clearTranscript = () => {
     setTranscript("")
   }
+
+  const toolContent = getToolContent("speech-to-text")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -113,6 +118,8 @@ export default function SpeechToText() {
           Advertisement
         </div>
         </div>
+        <ToolContent content={toolContent} toolName="Speech to Text Online Free" toolPath="/tools/speech-to-text" />
+        <RelatedTools currentToolPath="/tools/speech-to-text" currentCategory={toolContent.category} />
 
         <Link
           href="/"
@@ -124,7 +131,6 @@ export default function SpeechToText() {
     </div>
   )
 }
-
 
 
 

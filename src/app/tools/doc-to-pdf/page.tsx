@@ -5,6 +5,9 @@ import { Upload, Download, FileText as FileIcon, X } from "lucide-react"
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib"
 import mammoth from "mammoth"
 import Link from "next/link"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function DocToPdf() {
   const [files, setFiles] = useState<File[]>([])
@@ -157,6 +160,8 @@ export default function DocToPdf() {
     convertedFiles.forEach(cf => URL.revokeObjectURL(cf.url))
   }
 
+  const toolContent = getToolContent("doc-to-pdf")
+
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
@@ -191,7 +196,7 @@ export default function DocToPdf() {
           {/* File List */}
           {files.length > 0 && (
             <div className="mb-6">
-              <h3 className="font-medium mb-4 text-white">Selected Files ({files.length})</h3>
+              <h2 className="font-medium mb-4 text-white">Selected Files ({files.length})</h2>
               <div className="space-y-3">
                 {files.map((file, index) => (
                   <div key={index} className="p-4 rounded-xl bg-white/5 border border-white/8 flex items-center justify-between">
@@ -231,7 +236,7 @@ export default function DocToPdf() {
           {/* Converted Files */}
           {convertedFiles.length > 0 && (
             <div className="mt-6">
-              <h3 className="font-medium mb-4 text-white">Conversion Results ({convertedFiles.length})</h3>
+              <h2 className="font-medium mb-4 text-white">Conversion Results ({convertedFiles.length})</h2>
               <div className="space-y-3">
                 {convertedFiles.map((cf, index) => (
                   <div key={index} className="p-4 rounded-xl bg-white/5 border border-white/8 flex items-center justify-between">
@@ -267,6 +272,8 @@ export default function DocToPdf() {
             Advertisement
           </div>
         </div>
+        <ToolContent content={toolContent} toolName="Doc to PDF Converter Online Free" toolPath="/tools/doc-to-pdf" />
+        <RelatedTools currentToolPath="/tools/doc-to-pdf" currentCategory={toolContent.category} />
 
         <Link
           href="/"

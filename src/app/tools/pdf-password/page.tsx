@@ -7,8 +7,10 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 
 export default function PdfPasswordProtector() {
   useRecentTools("/tools/pdf-password", "PDF Password Protector", "Lock")
@@ -73,6 +75,8 @@ export default function PdfPasswordProtector() {
 
     setIsProcessing(false)
   }
+
+  const toolContent = getToolContent("pdf-password")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
@@ -182,6 +186,8 @@ export default function PdfPasswordProtector() {
 
         {/* Social Share */}
         <SocialShare title="PDF Watermark Protector - Add watermark to PDF" />
+        <ToolContent content={toolContent} toolName="Pdf Password" toolPath="/tools/pdf-password" />
+        <RelatedTools currentToolPath="/tools/pdf-password" currentCategory={toolContent.category} />
 
         <Link
           href="/"
