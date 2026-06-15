@@ -20,7 +20,7 @@ export default function ToolContent({ content, toolName, toolPath }: ToolContent
       </section>
 
       {/* How to Use section */}
-      <HowToUse steps={content.howToUse} />
+      <HowToUse steps={content.howToUse} toolName={toolName} />
 
       {/* Benefits section */}
       <section className="bg-[#111827] rounded-2xl p-6 border border-white/8">
@@ -37,7 +37,7 @@ export default function ToolContent({ content, toolName, toolPath }: ToolContent
 
       {/* Why Choose GetToolAI section */}
       <section className="bg-[#111827] rounded-2xl p-6 border border-white/8">
-        <h2 className="text-2xl font-semibold mb-4 text-white">Why Choose GetToolAI?</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-white">Why Choose GetToolAI for {toolName}?</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="flex items-start gap-3">
             <Zap className="h-6 w-6 text-[#00E5FF] flex-shrink-0" />
@@ -75,7 +75,7 @@ export default function ToolContent({ content, toolName, toolPath }: ToolContent
 
       {/* Privacy & Security section */}
       <section className="bg-[#111827] rounded-2xl p-6 border border-white/8">
-        <h2 className="text-2xl font-semibold mb-4 text-white">Privacy & Security</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-white">Privacy & Security for {toolName}</h2>
         <div className="space-y-3 text-gray-300">
           <p>Your privacy is our top priority. This tool operates entirely in your browser, meaning:</p>
           <ul className="space-y-2 ml-4">
@@ -102,7 +102,7 @@ export default function ToolContent({ content, toolName, toolPath }: ToolContent
       {/* Free to Use statement */}
       <section className="bg-gradient-to-r from-[#00E5FF]/10 to-[#7C4DFF]/10 rounded-2xl p-6 border border-[#00E5FF]/30">
         <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-2 text-white">100% Free to Use</h2>
+          <h2 className="text-2xl font-semibold mb-2 text-white">{toolName} is 100% Free to Use</h2>
           <p className="text-gray-300">
             This tool is completely free with no hidden charges, no subscriptions, and no limits. 
             Use it as much as you need for personal or commercial purposes.
@@ -112,7 +112,7 @@ export default function ToolContent({ content, toolName, toolPath }: ToolContent
 
       {/* Contact Support */}
       <section className="bg-[#111827] rounded-2xl p-6 border border-white/8 text-center">
-        <h2 className="text-2xl font-semibold mb-4 text-white">Need Help?</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-white">Need Help with {toolName}?</h2>
         <p className="text-gray-300 mb-4">
           If you have any questions or need assistance with this tool, our support team is here to help.
         </p>

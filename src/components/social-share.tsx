@@ -6,9 +6,10 @@ import { useState } from "react"
 interface SocialShareProps {
   title: string
   url?: string
+  toolName?: string
 }
 
-export default function SocialShare({ title, url }: SocialShareProps) {
+export default function SocialShare({ title, url, toolName }: SocialShareProps) {
   const [copied, setCopied] = useState(false)
   const shareUrl = url || (typeof window !== "undefined" ? window.location.href : "")
 
@@ -28,7 +29,7 @@ export default function SocialShare({ title, url }: SocialShareProps) {
 
   return (
     <div className="mt-8 bg-[#111827] rounded-2xl p-6 border border-white/8">
-      <h2 className="text-xl font-semibold mb-4 text-white">Share this Tool</h2>
+      <h2 className="text-xl font-semibold mb-4 text-white">Share {toolName || 'this Tool'}</h2>
       <div className="flex gap-3 flex-wrap">
         <button
           onClick={copyLink}

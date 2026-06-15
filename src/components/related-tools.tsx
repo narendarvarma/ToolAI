@@ -39,7 +39,6 @@ export default function RelatedTools({ currentToolPath, currentCategory, toolNam
   // Related tools display mode
   const tools: Tool[] = [
     // PDF Tools
-    { name: "Image to PDF", path: "/tools/image-to-pdf", icon: null, description: "Convert images to PDF documents", category: "PDF Tools" },
     { name: "PDF to Image", path: "/tools/pdf-to-image", icon: null, description: "Convert PDF pages to images", category: "PDF Tools" },
     { name: "Merge PDF", path: "/tools/merge-pdf", icon: null, description: "Combine multiple PDFs into one", category: "PDF Tools" },
     { name: "Split PDF", path: "/tools/split-pdf", icon: null, description: "Split PDF into separate files", category: "PDF Tools" },
@@ -47,15 +46,14 @@ export default function RelatedTools({ currentToolPath, currentCategory, toolNam
     { name: "Add Watermark", path: "/tools/add-watermark", icon: null, description: "Add watermark to PDF files", category: "PDF Tools" },
     { name: "Remove Pages", path: "/tools/remove-pages", icon: null, description: "Remove specific pages from PDF", category: "PDF Tools" },
     { name: "Rotate PDF", path: "/tools/rotate-pdf", icon: null, description: "Rotate PDF pages", category: "PDF Tools" },
-    
+    { name: "Screenshot to PDF", path: "/tools/screenshot-to-pdf", icon: null, description: "Convert screenshots to PDF", category: "PDF Tools" },
+
     // Image Tools
-    { name: "Background Remover", path: "/tools/background-remover", icon: null, description: "Remove image backgrounds", category: "Image Tools" },
     { name: "Image Compressor", path: "/tools/image-compressor", icon: null, description: "Compress images efficiently", category: "Image Tools" },
     { name: "Resize Image", path: "/tools/resize-image", icon: null, description: "Resize images to custom dimensions", category: "Image Tools" },
     { name: "Convert Format", path: "/tools/convert-format", icon: null, description: "Convert image formats", category: "Image Tools" },
-    { name: "AI Image Enhancer", path: "/tools/ai-image-enhancer", icon: null, description: "Enhance images with AI", category: "Image Tools" },
+    { name: "Image to Base64", path: "/tools/image-to-base64", icon: null, description: "Convert images to Base64", category: "Image Tools" },
     { name: "QR Generator", path: "/tools/qr-generator", icon: null, description: "Generate QR codes", category: "Image Tools" },
-    { name: "Meme Generator", path: "/tools/meme-generator", icon: null, description: "Create memes instantly", category: "Image Tools" },
     
     // AI Tools
     { name: "AI Resume Builder", path: "/tools/ai-resume-builder", icon: null, description: "Build professional resumes", category: "AI Tools" },
@@ -93,22 +91,16 @@ export default function RelatedTools({ currentToolPath, currentCategory, toolNam
     { name: "Currency Converter", path: "/tools/currency-converter", icon: null, description: "Convert currencies", category: "Utility Tools" },
     { name: "Age Calculator", path: "/tools/age-calculator", icon: null, description: "Calculate your age", category: "Utility Tools" },
     { name: "BMI Calculator", path: "/tools/bmi-calculator", icon: null, description: "Calculate your BMI", category: "Utility Tools" },
-    { name: "Internet Speed Test", path: "/tools/internet-speed-test", icon: null, description: "Test internet speed", category: "Utility Tools" },
-    { name: "File Sharing", path: "/tools/file-sharing", icon: null, description: "Share files easily", category: "Utility Tools" },
     { name: "Word Counter", path: "/tools/word-counter", icon: null, description: "Count words and characters", category: "Utility Tools" },
     { name: "JSON Formatter", path: "/tools/json-formatter", icon: null, description: "Format and validate JSON", category: "Utility Tools" },
     { name: "Color Picker", path: "/tools/color-picker", icon: null, description: "Pick and convert colors", category: "Utility Tools" },
     { name: "Case Converter", path: "/tools/case-converter", icon: null, description: "Convert text cases", category: "Utility Tools" },
-    { name: "Lorem Ipsum Generator", path: "/tools/lorem-ipsum", icon: null, description: "Generate placeholder text", category: "Utility Tools" },
     { name: "Base64 Encoder", path: "/tools/base64-encoder", icon: null, description: "Encode and decode Base64", category: "Utility Tools" },
     { name: "URL Encoder", path: "/tools/url-encoder", icon: null, description: "Encode and decode URLs", category: "Utility Tools" },
     { name: "Time Zone Converter", path: "/tools/timezone-converter", icon: null, description: "Convert time zones", category: "Utility Tools" },
     { name: "Date Calculator", path: "/tools/date-calculator", icon: null, description: "Calculate dates", category: "Utility Tools" },
     { name: "Tip Calculator", path: "/tools/tip-calculator", icon: null, description: "Calculate tips and split bills", category: "Utility Tools" },
-    { name: "Regex Tester", path: "/tools/regex-tester", icon: null, description: "Test regular expressions", category: "Utility Tools" },
     { name: "UUID Generator", path: "/tools/uuid-generator", icon: null, description: "Generate unique IDs", category: "Utility Tools" },
-    { name: "Unix Timestamp", path: "/tools/unix-timestamp", icon: null, description: "Convert Unix timestamps", category: "Utility Tools" },
-    { name: "HTML Entity Encoder", path: "/tools/html-entity-encoder", icon: null, description: "Encode and decode HTML entities", category: "Utility Tools" },
     { name: "Markdown to HTML", path: "/tools/markdown-to-html", icon: null, description: "Convert Markdown to HTML", category: "Utility Tools" },
     { name: "JSON to CSV", path: "/tools/json-to-csv", icon: null, description: "Convert JSON to CSV", category: "Utility Tools" },
     { name: "Password Strength", path: "/tools/password-strength", icon: null, description: "Check password strength", category: "Utility Tools" },

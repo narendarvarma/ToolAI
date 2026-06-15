@@ -41,8 +41,8 @@ export default function NotFound() {
             <Link href="/tools/pdf-to-image" className="px-3 py-1 rounded-lg bg-[#00E5FF]/20 text-[#00E5FF] text-sm hover:bg-[#00E5FF]/30 transition-colors">
               PDF to Image
             </Link>
-            <Link href="/tools/image-to-pdf" className="px-3 py-1 rounded-lg bg-[#00E5FF]/20 text-[#00E5FF] text-sm hover:bg-[#00E5FF]/30 transition-colors">
-              Image to PDF
+            <Link href="/tools/screenshot-to-pdf" className="px-3 py-1 rounded-lg bg-[#00E5FF]/20 text-[#00E5FF] text-sm hover:bg-[#00E5FF]/30 transition-colors">
+              Screenshot to PDF
             </Link>
             <Link href="/tools/cgpa-calculator" className="px-3 py-1 rounded-lg bg-[#00E5FF]/20 text-[#00E5FF] text-sm hover:bg-[#00E5FF]/30 transition-colors">
               CGPA Calculator
