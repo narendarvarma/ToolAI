@@ -12,11 +12,31 @@ interface Tool {
 }
 
 interface RelatedToolsProps {
-  currentToolPath: string
-  currentCategory: string
+  currentToolPath?: string
+  currentCategory?: string
+  toolName?: string
+  faqs?: { question: string; answer: string }[]
 }
 
-export default function RelatedTools({ currentToolPath, currentCategory }: RelatedToolsProps) {
+export default function RelatedTools({ currentToolPath, currentCategory, toolName, faqs }: RelatedToolsProps) {
+  // FAQ display mode
+  if (faqs && faqs.length > 0) {
+    return (
+      <div className="mt-8 p-6 bg-[#111827] rounded-2xl border border-white/8">
+        <h3 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h3>
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div key={index} className="border-b border-white/8 pb-4 last:border-0 last:pb-0">
+              <h4 className="font-medium text-white mb-2">{faq.question}</h4>
+              <p className="text-gray-400 text-sm">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // Related tools display mode
   const tools: Tool[] = [
     // PDF Tools
     { name: "Image to PDF", path: "/tools/image-to-pdf", icon: null, description: "Convert images to PDF documents", category: "PDF Tools" },
