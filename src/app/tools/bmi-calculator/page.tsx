@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function BMICalculator() {
+  const toolContent = getToolContent("bmi-calculator")
   const [weight, setWeight] = useState("")
   const [height, setHeight] = useState("")
   const [bmi, setBMI] = useState<number | null>(null)
@@ -135,6 +139,12 @@ export default function BMICalculator() {
 
         {/* Social Share */}
         <SocialShare title="BMI Calculator - Calculate your Body Mass Index" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="BMI Calculator" toolPath="/tools/bmi-calculator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/bmi-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

@@ -6,6 +6,9 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import { callAI } from "@/lib/ai"
@@ -13,6 +16,7 @@ import DailyUsageBar from "@/components/DailyUsageBar"
 
 
 export default function AIStudyAssistant() {
+  const toolContent = getToolContent("ai-study-assistant")
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
   const remaining = tokenManager.getRemainingRequests()
@@ -59,7 +63,18 @@ export default function AIStudyAssistant() {
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Study Assistant</h1>
-        <p className="text-gray-400 text-base text-center mb-8">Get help with your studies using AI</p>
+        <p className="text-gray-400 text-base text-center mb-4">Get help with your studies using AI</p>
+
+        {/* Academic Integrity Disclaimer */}
+        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 mb-6">
+          <div className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="text-yellow-500 font-semibold mb-1">Study Aid Disclaimer</h3>
+              <p className="text-gray-300 text-sm">This tool is designed as a study aid to help you understand concepts and learn effectively. Please use the generated content as a reference only. Do not submit AI-generated work as your own. Always review, edit, and add your own insights to ensure academic integrity and genuine learning.</p>
+            </div>
+          </div>
+        </div>
 
         <DailyUsageBar
           used={used}
@@ -149,6 +164,12 @@ export default function AIStudyAssistant() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI Study Assistant" toolPath="/tools/ai-study-assistant" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-study-assistant" currentCategory={toolContent.category} />
 
         <Link
           href="/"

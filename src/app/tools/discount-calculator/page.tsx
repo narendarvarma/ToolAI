@@ -6,11 +6,14 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function DiscountCalculator() {
   useRecentTools("/tools/discount-calculator", "Discount Calculator", "Percent")
+  const toolContent = getToolContent("discount-calculator")
   
   const [originalPrice, setOriginalPrice] = useState("")
   const [discountPercent, setDiscountPercent] = useState("")
@@ -176,31 +179,14 @@ export default function DiscountCalculator() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/discount-calculator" toolName="Discount Calculator" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="Discount Calculator"
-          faqs={[
-            {
-              question: "How do I calculate discount?",
-              answer: "Discount Amount = Original Price × (Discount Percentage / 100). Final Price = Original Price - Discount Amount. For example, if original price is ₹1000 and discount is 20%, discount amount is ₹200 and final price is ₹800."
-            },
-            {
-              question: "What is reverse discount calculation?",
-              answer: "Reverse discount finds the discount percentage from original and final prices. Formula: Discount Percentage = ((Original Price - Final Price) / Original Price) × 100. This is useful when you see a sale price and want to know the discount percentage."
-            },
-            {
-              question: "Can I calculate multiple discounts?",
-              answer: "This calculator handles single discounts. For multiple discounts (like 20% off then additional 10% off), calculate them sequentially: first apply 20% to get intermediate price, then apply 10% on that intermediate price."
-            },
-            {
-              question: "What are common discount percentages?",
-              answer: "Common discounts include 10% (small sale), 20% (moderate sale), 25% (quarter off), 50% (half price), and 70%+ (clearance sale). During festivals like Diwali, Black Friday, or end-of-season sales, discounts can go up to 70-80%."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="Discount Calculator - Calculate discount instantly" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Discount Calculator" toolPath="/tools/discount-calculator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/discount-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

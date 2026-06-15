@@ -66,7 +66,7 @@ export default function About() {
                 In 2024, I decided to build something different — a single platform that brings together all the essential tools anyone might need, completely free and accessible. What started as a personal project quickly grew into a platform used by thousands of students, professionals, and everyday users.
               </p>
               <p className="text-gray-300">
-                Today, ToolHub AI hosts 75+ tools across 6 categories, and we're constantly adding new features based on your feedback. Our mission remains the same: to make productivity tools accessible to everyone, everywhere.
+                Today, ToolHub AI hosts 75+ tools across 6 categories, and we're constantly adding new features based on your feedback. Our mission remains the same: to make productivity tools accessible to everyone, everywhere. As of 2026, we continue to expand our tool library and improve user experience based on community feedback.
               </p>
             </div>
 

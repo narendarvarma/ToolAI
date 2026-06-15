@@ -5,7 +5,7 @@ export default function Privacy() {
     <div className="min-h-screen bg-[#0B0F1A] py-14 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-white">Privacy Policy</h1>
-        <p className="text-gray-400 mb-8">Last updated: January 2025</p>
+        <p className="text-gray-400 mb-8">Last updated: June 2026</p>
         
         <div className="prose prose-invert max-w-none space-y-6">
           <div className="bg-[#111827] rounded-2xl p-8 border border-white/8">
@@ -47,7 +47,14 @@ export default function Privacy() {
             <p className="text-gray-300 mb-4">
               Google uses the DoubleClick DART cookie to serve ads based on your visit to our site and other sites on the Internet. You may opt out of the use of the DART cookie by visiting the Google ad and content network privacy policy.
             </p>
-            <h3 className="text-xl font-semibold mb-2 text-white">Third-Party Vendors</h3>
+            <h3 className="text-xl font-semibold mb-2 text-white">Google's Use of Information</h3>
+            <p className="text-gray-300 mb-4">
+              Google may use the information it collects to contextualize and personalize the ads of its own advertising network. For more information on how Google uses information from sites or apps that use its services, please visit:
+            </p>
+            <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-[#00E5FF] hover:underline">
+              https://policies.google.com/technologies/partner-sites
+            </a>
+            <h3 className="text-xl font-semibold mb-4 mt-4 text-white">Third-Party Vendors</h3>
             <p className="text-gray-300 mb-4">
               Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of the DART cookie enables it to serve ads to our users based on their visit to our site and other sites on the Internet.
             </p>
@@ -117,7 +124,10 @@ export default function Privacy() {
           <div className="bg-[#111827] rounded-2xl p-8 border border-white/8">
             <h2 className="text-2xl font-semibold mb-4 text-white">Contact Us</h2>
             <p className="text-gray-300 mb-4">
-              If you have questions about this Privacy Policy, please contact us.
+              If you have questions about this Privacy Policy, please contact us at:
+            </p>
+            <p className="text-gray-300 mb-4">
+              <strong className="text-white">Email:</strong> servicestoolai@gmail.com
             </p>
             <a href="/contact" className="inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform">
               Contact Us

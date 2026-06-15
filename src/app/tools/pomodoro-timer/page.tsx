@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function PomodoroTimer() {
+  const toolContent = getToolContent("pomodoro-timer")
   const [time, setTime] = useState(25 * 60)
   const [isRunning, setIsRunning] = useState(false)
   const [mode, setMode] = useState<"work" | "short" | "long">("work")
@@ -169,6 +173,12 @@ export default function PomodoroTimer() {
 
         {/* Social Share */}
         <SocialShare title="Pomodoro Timer - Boost your productivity with focused work sessions" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Pomodoro Timer" toolPath="/tools/pomodoro-timer" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/pomodoro-timer" currentCategory={toolContent.category} />
 
         <Link
           href="/"

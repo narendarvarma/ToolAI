@@ -6,11 +6,14 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function NamePicker() {
   useRecentTools("/tools/name-picker", "Random Name Picker", "Users")
+  const toolContent = getToolContent("name-picker")
   
   const [names, setNames] = useState("")
   const [nameList, setNameList] = useState<string[]>([])
@@ -172,31 +175,14 @@ export default function NamePicker() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/name-picker" toolName="Random Name Picker" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="Random Name Picker"
-          faqs={[
-            {
-              question: "How does the random name picker work?",
-              answer: "The picker uses JavaScript's Math.random() function to select a random name from your list. The animation effect shows names cycling through before landing on the winner, adding excitement to the selection process."
-            },
-            {
-              question: "Can I pick multiple winners?",
-              answer: "Yes! Enable the 'Remove winner after picking' option. After each winner is selected, they're removed from the list, so you can keep picking until all names are exhausted. This is perfect for selecting multiple prize winners."
-            },
-            {
-              question: "What formats can I use to enter names?",
-              answer: "You can enter names separated by newlines (each name on a new line) or separated by commas. For example: 'John, Jane, Mike' or each on a new line. Both formats work the same way."
-            },
-            {
-              question: "Is this truly random?",
-              answer: "The picker uses JavaScript's Math.random() which is a pseudo-random number generator. While not cryptographically secure, it's sufficiently random for casual use like classroom activities, giveaways, and group selections."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="Random Name Picker - Pick random winner from list" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Random Name Picker" toolPath="/tools/name-picker" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/name-picker" currentCategory={toolContent.category} />
 
         <Link
           href="/"

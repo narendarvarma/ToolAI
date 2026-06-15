@@ -7,9 +7,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function CompressPDF() {
+  const toolContent = getToolContent("compress-pdf")
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
   const [originalSize, setOriginalSize] = useState(0)
@@ -125,6 +129,12 @@ export default function CompressPDF() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Compress PDF" toolPath="/tools/compress-pdf" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/compress-pdf" currentCategory={toolContent.category} />
 
         <Link
           href="/"

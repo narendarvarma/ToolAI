@@ -6,7 +6,9 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 const numberToWordsIndian = (num: number): string => {
@@ -109,6 +111,7 @@ const numberToWordsInternational = (num: number): string => {
 
 export default function NumberToWords() {
   useRecentTools("/tools/number-to-words", "Number to Words Converter", "Hash")
+  const toolContent = getToolContent("number-to-words")
   
   const [number, setNumber] = useState("")
   const [copied, setCopied] = useState("")
@@ -203,31 +206,14 @@ export default function NumberToWords() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/number-to-words" toolName="Number to Words Converter" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="Number to Words Converter"
-          faqs={[
-            {
-              question: "What is the difference between Indian and international format?",
-              answer: "Indian format uses Lakhs (1,00,000) and Crores (1,00,00,000). International format uses Millions (1,000,000) and Billions (1,000,000,000). For example, 15,00,000 is 'Fifteen Lakhs' in Indian format and 'One Point Five Million' in international format."
-            },
-            {
-              question: "How do I write numbers on cheques?",
-              answer: "On cheques, write the number in words followed by 'Only' at the end. For example, for ₹15,00,000, write 'Fifteen Lakhs Only'. This prevents fraud by ensuring the amount is clearly stated in words."
-            },
-            {
-              question: "What is the maximum number this can convert?",
-              answer: "This converter can handle numbers up to billions. For very large numbers, it's recommended to break them down or use scientific notation. JavaScript number precision limits apply to extremely large numbers."
-            },
-            {
-              question: "Why are there two different number systems?",
-              answer: "The Indian numbering system has historical roots in South Asian culture and is commonly used in India, Pakistan, Bangladesh, Nepal, and Myanmar. The international system is used globally and is based on powers of 1000."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="Number to Words Converter - Convert numbers to words" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Number to Words Converter" toolPath="/tools/number-to-words" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/number-to-words" currentCategory={toolContent.category} />
 
         <Link
           href="/"

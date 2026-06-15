@@ -6,11 +6,14 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function PercentageCalculator() {
   useRecentTools("/tools/percentage-calculator", "Percentage Calculator", "Percent")
+  const toolContent = getToolContent("percentage-calculator")
   
   const [obtained, setObtained] = useState("")
   const [total, setTotal] = useState("")
@@ -174,31 +177,14 @@ export default function PercentageCalculator() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/percentage-calculator" toolName="Percentage Calculator" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="Percentage Calculator"
-          faqs={[
-            {
-              question: "How do I calculate percentage from marks?",
-              answer: "Divide marks obtained by total marks, then multiply by 100. For example, if you got 85 out of 100, your percentage is (85/100) × 100 = 85%."
-            },
-            {
-              question: "What is reverse percentage?",
-              answer: "Reverse percentage finds what X% of a number is. For example, 25% of 200 = (25/100) × 200 = 50. This is useful for calculating discounts, tips, or portions."
-            },
-            {
-              question: "How do I calculate percentage increase or decrease?",
-              answer: "Subtract old value from new value, divide by old value, then multiply by 100. For example, if price increased from 100 to 150, change = ((150-100)/100) × 100 = 50% increase."
-            },
-            {
-              question: "Why is this calculator useful for students?",
-              answer: "Indian students need this after every exam to calculate their percentage. It's also useful for understanding grade conversions, scholarship eligibility, and comparing performance across subjects."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="Percentage Calculator - Calculate marks, increase, decrease instantly" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Percentage Calculator" toolPath="/tools/percentage-calculator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/percentage-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

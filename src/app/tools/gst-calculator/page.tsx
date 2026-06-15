@@ -6,11 +6,14 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function GstCalculator() {
   useRecentTools("/tools/gst-calculator", "GST Calculator", "Percent")
+  const toolContent = getToolContent("gst-calculator")
   
   const [originalPrice, setOriginalPrice] = useState("")
   const [gstRate, setGstRate] = useState("18")
@@ -180,31 +183,14 @@ export default function GstCalculator() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/gst-calculator" toolName="GST Calculator" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="GST Calculator"
-          faqs={[
-            {
-              question: "What are the GST rates in India?",
-              answer: "India has four main GST slabs: 5% for essential goods, 12% for standard goods, 18% for most services, and 28% for luxury items. Some items are exempt (0%) or have special rates."
-            },
-            {
-              question: "How do I calculate GST?",
-              answer: "GST is calculated as: GST Amount = Original Price × (GST Rate / 100). Final Price = Original Price + GST Amount. For example, if original price is ₹1000 and GST is 18%, GST amount is ₹180 and final price is ₹1180."
-            },
-            {
-              question: "What is reverse GST calculation?",
-              answer: "Reverse GST calculation finds the original price before GST from the final price. Formula: Original Price = Final Price / (1 + GST Rate / 100). This is useful when you have the billed amount and need to find the base price."
-            },
-            {
-              question: "Who needs to pay GST?",
-              answer: "GST is paid by the end consumer. Businesses collect GST from customers and remit it to the government after claiming input tax credit on purchases. The final burden falls on the consumer."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="GST Calculator - Calculate GST amount instantly" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="GST Calculator" toolPath="/tools/gst-calculator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/gst-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

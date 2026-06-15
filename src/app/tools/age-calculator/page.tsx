@@ -6,11 +6,15 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function AgeCalculator() {
   const [birthDate, setBirthDate] = useState("")
   const [result, setResult] = useState<{ years: number; months: number; days: number; nextBirthday: string; daysUntilBirthday: number } | null>(null)
+  const toolContent = getToolContent("age-calculator")
 
   const calculateAge = () => {
     if (!birthDate) return
@@ -126,6 +130,12 @@ export default function AgeCalculator() {
 
         {/* Social Share */}
         <SocialShare title="Age Calculator - Calculate your age precisely" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Age Calculator" toolPath="/tools/age-calculator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/age-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function CurrencyConverter() {
+  const toolContent = getToolContent("currency-converter")
   const [amount, setAmount] = useState("")
   const [fromCurrency, setFromCurrency] = useState("USD")
   const [toCurrency, setToCurrency] = useState("EUR")
@@ -165,6 +169,12 @@ export default function CurrencyConverter() {
 
         {/* Social Share */}
         <SocialShare title="Currency Converter - Convert currencies instantly" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Currency Converter" toolPath="/tools/currency-converter" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/currency-converter" currentCategory={toolContent.category} />
 
         <Link
           href="/"

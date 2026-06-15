@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function CaseConverter() {
+  const toolContent = getToolContent("case-converter")
   const [input, setInput] = useState("")
   const [output, setOutput] = useState("")
 
@@ -234,6 +238,12 @@ export default function CaseConverter() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Case Converter" toolPath="/tools/case-converter" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/case-converter" currentCategory={toolContent.category} />
 
         <Link
           href="/"

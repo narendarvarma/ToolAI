@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function ColorPicker() {
+  const toolContent = getToolContent("color-picker")
   const [hex, setHex] = useState("#00E5FF")
   const [rgb, setRgb] = useState({ r: 0, g: 229, b: 255 })
   const [hsl, setHsl] = useState({ h: 183, s: 100, l: 50 })
@@ -261,6 +265,12 @@ export default function ColorPicker() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Color Picker" toolPath="/tools/color-picker" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/color-picker" currentCategory={toolContent.category} />
 
         <Link
           href="/"

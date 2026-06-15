@@ -6,12 +6,16 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import { callAI } from "@/lib/ai"
 import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AIResumeBuilder() {
+  const toolContent = getToolContent("ai-resume-builder")
   const [name, setName] = useState("")
   const [role, setRole] = useState("")
   const [email, setEmail] = useState("")
@@ -563,6 +567,12 @@ ${userDetails}
             Advertisement
           </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI Resume Builder" toolPath="/tools/ai-resume-builder" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-resume-builder" currentCategory={toolContent.category} />
 
         <Link
           href="/"

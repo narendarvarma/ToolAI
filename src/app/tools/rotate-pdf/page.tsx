@@ -7,9 +7,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function RotatePDF() {
+  const toolContent = getToolContent("rotate-pdf")
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [rotation, setRotation] = useState(90)
   const [isProcessing, setIsProcessing] = useState(false)
@@ -140,6 +144,12 @@ export default function RotatePDF() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Rotate PDF" toolPath="/tools/rotate-pdf" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/rotate-pdf" currentCategory={toolContent.category} />
 
         <Link
           href="/"

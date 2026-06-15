@@ -6,12 +6,14 @@ export default function AdSlot({ adSlot, className }: { adSlot: string; classNam
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).adsbygoogle) {
-      try {
-        (window as any).adsbygoogle.push({})
-      } catch (e) {
-        console.error("AdSense error:", e)
+    try {
+      const ins = document.querySelector('.adsbygoogle[data-ad-slot]')
+      if (ins && !ins.getAttribute('data-adsbygoogle-status')) {
+        (window as any).adsbygoogle = (window as any).adsbygoogle || []
+        ;(window as any).adsbygoogle.push({})
       }
+    } catch (e) {
+      console.error('AdSense error:', e)
     }
   }, [])
 

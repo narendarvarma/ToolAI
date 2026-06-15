@@ -5,7 +5,7 @@ export default function Terms() {
     <div className="min-h-screen bg-[#0B0F1A] py-14 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-white">Terms & Conditions</h1>
-        <p className="text-gray-400 mb-8">Last updated: January 2024</p>
+        <p className="text-gray-400 mb-8">Last updated: June 2026</p>
         
         <div className="prose prose-invert max-w-none space-y-6">
           <div className="bg-[#111827] rounded-2xl p-8 border border-white/8">
@@ -35,6 +35,29 @@ export default function Terms() {
             </p>
             <p className="text-gray-300">
               You must not use our services for any illegal purpose, including but not limited to copyright infringement, fraud, or harassment.
+            </p>
+          </div>
+
+          <div className="bg-[#111827] rounded-2xl p-8 border border-white/8">
+            <h2 className="text-2xl font-semibold mb-4 text-white">Privacy and Data Processing</h2>
+            <p className="text-gray-300 mb-4">
+              Most of our tools process data entirely in your browser. Your files, documents, and personal information never leave your device unless explicitly stated.
+            </p>
+            <p className="text-gray-300">
+              For more information about how we handle your data, please refer to our <a href="/privacy" className="text-[#00E5FF] hover:underline">Privacy Policy</a>.
+            </p>
+          </div>
+
+          <div className="bg-[#111827] rounded-2xl p-8 border border-white/8">
+            <h2 className="text-2xl font-semibold mb-4 text-white">Third-Party Services and AdSense</h2>
+            <p className="text-gray-300 mb-4">
+              ToolHub AI uses third-party services including Google AdSense for advertising and Google Analytics for website analytics. These services may collect information according to their own privacy policies.
+            </p>
+            <p className="text-gray-300 mb-4">
+              By using our website, you consent to the collection and use of information by these third-party services as described in their respective privacy policies.
+            </p>
+            <p className="text-gray-300">
+              We are not responsible for the privacy practices or content of these third-party sites.
             </p>
           </div>
 
@@ -71,6 +94,19 @@ export default function Terms() {
             <p className="text-gray-300">
               These terms are governed by and construed in accordance with the laws of the jurisdiction in which ToolHub AI operates.
             </p>
+          </div>
+
+          <div className="bg-[#111827] rounded-2xl p-8 border border-white/8">
+            <h2 className="text-2xl font-semibold mb-4 text-white">Contact Us</h2>
+            <p className="text-gray-300 mb-4">
+              If you have questions about these Terms & Conditions, please contact us at:
+            </p>
+            <p className="text-gray-300 mb-4">
+              <strong className="text-white">Email:</strong> servicestoolai@gmail.com
+            </p>
+            <a href="/contact" className="inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform">
+              Contact Us
+            </a>
           </div>
         </div>
       </div>

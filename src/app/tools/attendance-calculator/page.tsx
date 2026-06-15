@@ -6,10 +6,14 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function AttendanceCalculator() {
   useRecentTools("/tools/attendance-calculator", "Attendance Calculator", "Users")
+  const toolContent = getToolContent("attendance-calculator")
   const [totalClasses, setTotalClasses] = useState("")
   const [attendedClasses, setAttendedClasses] = useState("")
   const [calculated, setCalculated] = useState(false)
@@ -127,6 +131,12 @@ export default function AttendanceCalculator() {
 
         {/* Social Share */}
         <SocialShare title="Attendance Calculator - Track your attendance percentage" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Attendance Calculator" toolPath="/tools/attendance-calculator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/attendance-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

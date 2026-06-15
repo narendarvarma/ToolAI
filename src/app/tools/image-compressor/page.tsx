@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function ImageCompressor() {
+  const toolContent = getToolContent("image-compressor")
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
   const [quality, setQuality] = useState(80)
@@ -156,6 +160,12 @@ export default function ImageCompressor() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Image Compressor" toolPath="/tools/image-compressor" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/image-compressor" currentCategory={toolContent.category} />
 
         <Link
           href="/"

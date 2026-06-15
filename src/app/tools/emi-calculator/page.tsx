@@ -6,11 +6,14 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function EmiCalculator() {
   useRecentTools("/tools/emi-calculator", "EMI Calculator", "Calculator")
+  const toolContent = getToolContent("emi-calculator")
   
   const [loanAmount, setLoanAmount] = useState("")
   const [interestRate, setInterestRate] = useState("")
@@ -138,31 +141,14 @@ export default function EmiCalculator() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/emi-calculator" toolName="EMI Calculator" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="EMI Calculator"
-          faqs={[
-            {
-              question: "What is EMI?",
-              answer: "EMI stands for Equated Monthly Installment. It's a fixed payment amount made by a borrower to a lender at a specified date each calendar month. EMI is used to pay off both interest and principal each month."
-            },
-            {
-              question: "How is EMI calculated?",
-              answer: "EMI is calculated using the formula: EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P is the loan amount, r is the monthly interest rate, and n is the number of monthly installments."
-            },
-            {
-              question: "What happens if I prepay my loan?",
-              answer: "Prepaying your loan reduces the outstanding principal, which can reduce your total interest payment. However, some banks charge prepayment penalties. Check with your lender before making prepayments."
-            },
-            {
-              question: "What is a good interest rate for home loans in India?",
-              answer: "Home loan interest rates in India typically range from 8% to 10% per annum. Rates vary based on the lender, your credit score, employment type, and loan amount. Floating rates are common and can change with market conditions."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="EMI Calculator - Calculate loan EMI instantly" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="EMI Calculator" toolPath="/tools/emi-calculator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/emi-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

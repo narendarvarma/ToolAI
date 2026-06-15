@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function DateCalculator() {
+  const toolContent = getToolContent("date-calculator")
   const [startDate, setStartDate] = useState("")
   const [daysToAdd, setDaysToAdd] = useState(0)
   const [resultDate, setResultDate] = useState("")
@@ -136,6 +140,12 @@ export default function DateCalculator() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Date Calculator" toolPath="/tools/date-calculator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/date-calculator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

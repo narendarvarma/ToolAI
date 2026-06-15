@@ -6,13 +6,16 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import DailyUsageBar from "@/components/DailyUsageBar";
 
 export default function AiLinkedinBio() {
   useRecentTools("/tools/ai-linkedin-bio", "AI LinkedIn Bio Generator", "Linkedin")
+  const toolContent = getToolContent("ai-linkedin-bio")
   
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
@@ -184,31 +187,14 @@ I'm always excited to connect with professionals in the industry and explore opp
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/ai-linkedin-bio" toolName="AI LinkedIn Bio Generator" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="AI LinkedIn Bio Generator"
-          faqs={[
-            {
-              question: "How does the LinkedIn bio generator work?",
-              answer: "The AI analyzes your name, role, experience, and skills to generate a professional LinkedIn About section. The bio is structured to highlight your strengths, experience, and career goals in a way that appeals to recruiters and professional connections."
-            },
-            {
-              question: "Can I customize the generated bio?",
-              answer: "Yes, the generated bio is a starting point. You should review and customize it to better reflect your personality, specific achievements, and career goals. Add specific projects, metrics, or personal touches to make it more authentic."
-            },
-            {
-              question: "Is this suitable for freshers?",
-              answer: "Absolutely! The tool works great for freshers and students. Focus on your education, projects, internships, and skills. The AI will generate a bio that highlights your potential and eagerness to learn and grow."
-            },
-            {
-              question: "What makes a good LinkedIn bio?",
-              answer: "A good LinkedIn bio is concise, professional, and highlights your unique value proposition. It should include your current role, key skills, career achievements, and what you're looking for. Keep it under 2000 characters and use keywords relevant to your industry."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="AI LinkedIn Bio Generator - Generate professional LinkedIn bio" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI LinkedIn Bio Generator" toolPath="/tools/ai-linkedin-bio" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-linkedin-bio" currentCategory={toolContent.category} />
 
         <Link
           href="/"

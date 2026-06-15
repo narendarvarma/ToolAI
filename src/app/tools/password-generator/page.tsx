@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function PasswordGenerator() {
+  const toolContent = getToolContent("password-generator")
   const [password, setPassword] = useState("")
   const [length, setLength] = useState(16)
   const [includeUppercase, setIncludeUppercase] = useState(true)
@@ -201,6 +205,12 @@ export default function PasswordGenerator() {
 
         {/* Social Share */}
         <SocialShare title="Password Generator - Generate secure passwords instantly" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Password Generator" toolPath="/tools/password-generator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/password-generator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

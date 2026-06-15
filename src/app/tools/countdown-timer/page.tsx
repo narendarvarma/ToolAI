@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function CountdownTimer() {
+  const toolContent = getToolContent("countdown-timer")
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(5)
   const [seconds, setSeconds] = useState(0)
@@ -167,6 +171,12 @@ export default function CountdownTimer() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Countdown Timer" toolPath="/tools/countdown-timer" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/countdown-timer" currentCategory={toolContent.category} />
 
         <Link
           href="/"

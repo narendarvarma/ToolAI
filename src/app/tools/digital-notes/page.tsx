@@ -6,6 +6,9 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 interface Note {
@@ -17,6 +20,7 @@ interface Note {
 }
 
 export default function DigitalNotes() {
+  const toolContent = getToolContent("digital-notes")
   const [notes, setNotes] = useState<Note[]>([])
   const [selectedNote, setSelectedNote] = useState<Note | null>(null)
   const [isEditing, setIsEditing] = useState(false)
@@ -281,6 +285,12 @@ export default function DigitalNotes() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Digital Notes" toolPath="/tools/digital-notes" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/digital-notes" currentCategory={toolContent.category} />
 
         <Link
           href="/"

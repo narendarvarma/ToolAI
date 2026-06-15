@@ -6,13 +6,16 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import DailyUsageBar from "@/components/DailyUsageBar";
 
 export default function AiGrammarFixer() {
   useRecentTools("/tools/ai-grammar-fixer", "AI Grammar Fixer", "CheckCircle")
+  const toolContent = getToolContent("ai-grammar-fixer")
   
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
@@ -201,6 +204,12 @@ export default function AiGrammarFixer() {
 
         {/* Social Share */}
         <SocialShare title="AI Grammar Fixer - Fix grammar and spelling" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI Grammar Fixer" toolPath="/tools/ai-grammar-fixer" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-grammar-fixer" currentCategory={toolContent.category} />
 
         <Link
           href="/"

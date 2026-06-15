@@ -6,13 +6,16 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AiAssignmentHelper() {
   useRecentTools("/tools/ai-assignment-helper", "AI Assignment Helper", "BookOpen")
+  const toolContent = getToolContent("ai-assignment-helper")
   
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
@@ -60,7 +63,18 @@ export default function AiAssignmentHelper() {
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Assignment Helper</h1>
-        <p className="text-gray-400 text-base text-center mb-8">Get structured answers for your assignments with AI assistance</p>
+        <p className="text-gray-400 text-base text-center mb-4">Get structured answers for your assignments with AI assistance</p>
+
+        {/* Academic Integrity Disclaimer */}
+        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 mb-6">
+          <div className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="text-yellow-500 font-semibold mb-1">Study Aid Disclaimer</h3>
+              <p className="text-gray-300 text-sm">This tool is designed as a study aid to help you understand concepts and structure your thoughts. Please use the generated content as a reference only. Do not submit AI-generated work as your own. Always review, edit, and add your own insights to ensure academic integrity and genuine learning.</p>
+            </div>
+          </div>
+        </div>
 
         <DailyUsageBar
           used={used}
@@ -196,6 +210,12 @@ export default function AiAssignmentHelper() {
 
         {/* Social Share */}
         <SocialShare title="AI Assignment Helper - Get help with assignments" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI Assignment Helper" toolPath="/tools/ai-assignment-helper" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-assignment-helper" currentCategory={toolContent.category} />
 
         <Link
           href="/"

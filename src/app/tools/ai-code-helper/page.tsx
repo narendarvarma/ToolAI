@@ -6,12 +6,16 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import { callAI } from "@/lib/ai"
 import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AICodeHelper() {
+  const toolContent = getToolContent("ai-code-helper")
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
   const remaining = tokenManager.getRemainingRequests()
@@ -138,6 +142,12 @@ export default function AICodeHelper() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI Code Helper" toolPath="/tools/ai-code-helper" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-code-helper" currentCategory={toolContent.category} />
 
         <Link
           href="/"

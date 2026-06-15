@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function ExpenseTracker() {
+  const toolContent = getToolContent("expense-tracker")
   const [expenses, setExpenses] = useState<{ id: number; description: string; amount: number; category: string }[]>([])
   const [description, setDescription] = useState("")
   const [amount, setAmount] = useState("")
@@ -129,6 +133,12 @@ export default function ExpenseTracker() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Expense Tracker" toolPath="/tools/expense-tracker" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/expense-tracker" currentCategory={toolContent.category} />
 
         <Link
           href="/"

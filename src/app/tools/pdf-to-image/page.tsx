@@ -5,10 +5,14 @@ import { Upload, Download, FileText as FileIcon, Image } from "lucide-react"
 import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function PDFToImage() {
   useRecentTools("/tools/pdf-to-image", "PDF to Image", "PDF Tools")
+  const toolContent = getToolContent("pdf-to-image")
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
   const [images, setImages] = useState<string[]>([])
@@ -212,6 +216,12 @@ export default function PDFToImage() {
         ]} />
 
         <SocialShare title="PDF to Image Converter - Convert PDF pages to PNG images" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="PDF to Image" toolPath="/tools/pdf-to-image" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/pdf-to-image" currentCategory={toolContent.category} />
 
         <Link href="/" className="mt-6 text-[#00E5FF] hover:underline inline-block">
           ← Back to Home

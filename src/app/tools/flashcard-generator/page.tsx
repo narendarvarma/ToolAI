@@ -6,6 +6,9 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 interface Flashcard {
@@ -15,6 +18,7 @@ interface Flashcard {
 }
 
 export default function FlashcardGenerator() {
+  const toolContent = getToolContent("flashcard-generator")
   const [flashcards, setFlashcards] = useState<Flashcard[]>([])
   const [currentCard, setCurrentCard] = useState(0)
   const [isFlipped, setIsFlipped] = useState(false)
@@ -257,6 +261,12 @@ export default function FlashcardGenerator() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Flashcard Generator" toolPath="/tools/flashcard-generator" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/flashcard-generator" currentCategory={toolContent.category} />
 
         <Link
           href="/"

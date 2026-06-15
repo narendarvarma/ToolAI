@@ -108,7 +108,7 @@ export default function Footer() {
         <div className="border-t border-white/8 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2025 ToolHub AI. All rights reserved.
+              © 2026 ToolHub AI. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               <a href="https://twitter.com/toolhubai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">

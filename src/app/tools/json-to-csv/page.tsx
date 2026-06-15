@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function JSONToCSV() {
+  const toolContent = getToolContent("json-to-csv")
   const [input, setInput] = useState("")
   const [output, setOutput] = useState("")
   const [mode, setMode] = useState("jsonToCsv")
@@ -210,6 +214,12 @@ export default function JSONToCSV() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="JSON to CSV Converter" toolPath="/tools/json-to-csv" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/json-to-csv" currentCategory={toolContent.category} />
 
         <Link
           href="/"

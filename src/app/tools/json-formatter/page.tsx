@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function JSONFormatter() {
+  const toolContent = getToolContent("json-formatter")
   const [input, setInput] = useState("")
   const [output, setOutput] = useState("")
   const [isValid, setIsValid] = useState<boolean | null>(null)
@@ -183,6 +187,12 @@ export default function JSONFormatter() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="JSON Formatter" toolPath="/tools/json-formatter" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/json-formatter" currentCategory={toolContent.category} />
 
         <Link
           href="/"

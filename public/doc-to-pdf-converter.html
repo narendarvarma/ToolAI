@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doc to PDF Converter</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #0B0F1A; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .card { background: #111827; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); padding: 2rem; width: 100%; max-width: 640px; }
+  h1 { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .sub { font-size: 13px; color: #94a3b8; margin-bottom: 1.5rem; }
+  .zone { border: 2px dashed rgba(255,255,255,0.2); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: background .15s, border-color .15s; }
+  .zone:hover, .zone.drag { background: rgba(0,229,255,0.05); border-color: #00E5FF; }
+  .zone i { font-size: 40px; color: #64748b; display: block; margin-bottom: 12px; }
+  .zone p { font-size: 14px; color: #cbd5e1; margin-bottom: 6px; }
+  .zone small { font-size: 12px; color: #64748b; }
+  #hidden-input { display: none; }
+  .file-list { margin-top: 1rem; display: flex; flex-direction: column; gap: 8px; }
+  .file-row { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 10px 14px; }
+  .file-icon { font-size: 22px; color: #00E5FF; flex-shrink: 0; }
+  .file-name { flex: 1; font-size: 13px; font-weight: 500; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .file-size { font-size: 12px; color: #64748b; white-space: nowrap; flex-shrink: 0; }
+  .file-status { font-size: 12px; font-weight: 500; min-width: 80px; text-align: right; flex-shrink: 0; }
+  .s-wait { color: #64748b; } .s-conv { color: #f59e0b; } .s-done { color: #22c55e; } .s-err { color: #ef4444; }
+  .save-link { font-size: 13px; color: #00E5FF; text-decoration: none; white-space: nowrap; flex-shrink: 0; display: flex; align-items: center; gap: 4px; }
+  .save-link:hover { text-decoration: underline; }
+  .rm-btn { background: none; border: none; cursor: pointer; font-size: 16px; color: #64748b; padding: 2px 4px; border-radius: 4px; flex-shrink: 0; }
+  .rm-btn:hover { color: #ef4444; }
+  .actions { display: flex; gap: 10px; margin-top: 1rem; align-items: center; }
+  .btn-primary { background: linear-gradient(to right, #00E5FF, #7C4DFF); color: #fff; border: none; border-radius: 8px; padding: 9px 20px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-primary:disabled { opacity: .4; cursor: not-allowed; }
+  .btn-clear { background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 9px 16px; font-size: 13px; cursor: pointer; color: #94a3b8; }
+  .btn-clear:hover { background: rgba(255,255,255,0.05); }
+  .count { font-size: 12px; color: #64748b; margin-left: auto; }
+  .info-bar { margin-top: 1rem; font-size: 12px; color: #94a3b8; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 14px; line-height: 1.6; }
+  .progress-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 8px; }
+  .progress-fill { height: 3px; background: #00E5FF; border-radius: 2px; transition: width .3s; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Doc to PDF Converter</h1>
+  <p class="sub">Convert images and text files to PDF instantly in your browser</p>
+
+  <div class="zone" id="dropzone"
+    onclick="document.getElementById('hidden-input').click()"
+    ondragover="dz(event,'over')" ondragleave="dz(event,'leave')" ondrop="dz(event,'drop')">
+    <i class="ti ti-file-upload"></i>
+    <p>Drop files here or click to browse</p>
+    <small>Supports: .jpg &nbsp;•&nbsp; .png &nbsp;•&nbsp; .txt &nbsp;•&nbsp; .html &nbsp;•&nbsp; .rtf &nbsp;•&nbsp; .docx &nbsp;•&nbsp; .pptx &nbsp;•&nbsp; .xlsx</small>
+  </div>
+  <input type="file" id="hidden-input" multiple
+    accept=".jpg,.jpeg,.png,.txt,.html,.htm,.rtf,.docx,.doc,.pptx,.xlsx,.odt"
+    onchange="addFiles(this.files)">
+
+  <div class="file-list" id="file-list"></div>
+
+  <div class="actions" id="actions" style="display:none">
+    <button class="btn-primary" id="conv-btn" onclick="startConvert()">
+      <i class="ti ti-refresh"></i> Convert to PDF
+    </button>
+    <button class="btn-clear" onclick="clearAll()">Clear all</button>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="info-bar" id="info-bar" style="display:none">
+    <span id="info-text"></span>
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script>
+// Check if pdf-lib loaded
+if (typeof PDFLib === 'undefined') {
+  console.error('pdf-lib failed to load');
+  alert('Error: PDF library failed to load. Please refresh the page.');
+}
+
+const files = [];
+let busy = false;
+
+const iconMap = {
+  docx:'ti-file-word', doc:'ti-file-word',
+  pptx:'ti-presentation', ppt:'ti-presentation',
+  xlsx:'ti-table', xls:'ti-table',
+  txt:'ti-file-text', html:'ti-file-code', htm:'ti-file-code', rtf:'ti-file',
+  jpg:'ti-photo', jpeg:'ti-photo', png:'ti-photo', odt:'ti-file'
+};
+
+const ext = n => n.split('.').pop().toLowerCase();
+const icon = n => iconMap[ext(n)] || 'ti-file';
+const fmtSz = b => b < 1024 ? b+'B' : b < 1048576 ? (b/1024).toFixed(1)+'KB' : (b/1048576).toFixed(1)+'MB';
+const slabel = s => ({wait:'Waiting', converting:'Converting…', done:'✓ Ready', error:'✗ Failed'}[s]);
+const sclass = s => ({wait:'s-wait', converting:'s-conv', done:'s-done', error:'s-err'}[s]);
+
+function dz(e, t) {
+  e.preventDefault(); e.stopPropagation();
+  const z = document.getElementById('dropzone');
+  if (t === 'over') z.classList.add('drag');
+  else if (t === 'leave') z.classList.remove('drag');
+  else { z.classList.remove('drag'); addFiles(e.dataTransfer.files); }
+}
+
+function addFiles(fl) {
+  const ok = ['docx','doc','pptx','xlsx','odt','txt','html','htm','jpg','jpeg','png','rtf'];
+  Array.from(fl).forEach(f => {
+    if (!ok.includes(ext(f.name))) { alert('Unsupported: ' + f.name); return; }
+    if (files.find(x => x.file.name === f.name && x.file.size === f.size)) return;
+    files.push({ file: f, status: 'wait', url: null });
+  });
+  render();
+}
+
+function render() {
+  const list = document.getElementById('file-list');
+  list.innerHTML = files.map((item, i) => `
+    <div class="file-row" id="row-${i}">
+      <i class="ti ${icon(item.file.name)} file-icon"></i>
+      <span class="file-name" title="${item.file.name}">${item.file.name}</span>
+      <span class="file-size">${fmtSz(item.file.size)}</span>
+      <span class="file-status ${sclass(item.status)}" id="st-${i}">${slabel(item.status)}</span>
+      ${item.url ? `<a class="save-link" href="${item.url}" download="${item.file.name.replace(/\.[^.]+$/, '')}.pdf"><i class="ti ti-download"></i> Save</a>` : ''}
+      ${item.status === 'wait' ? `<button class="rm-btn" onclick="remove(${i})" title="Remove"><i class="ti ti-x"></i></button>` : ''}
+    </div>
+  `).join('');
+  const act = document.getElementById('actions');
+  act.style.display = files.length ? 'flex' : 'none';
+  document.getElementById('count').textContent = files.length + ' file' + (files.length !== 1 ? 's' : '');
+}
+
+function remove(i) { files.splice(i, 1); render(); }
+function clearAll() { files.length = 0; render(); document.getElementById('info-bar').style.display = 'none'; }
+
+async function imgToPdf(file) {
+  const { PDFDocument } = PDFLib;
+  const buf = await file.arrayBuffer();
+  const doc = await PDFDocument.create();
+  const isJpg = ['jpg','jpeg'].includes(ext(file.name));
+  const img = isJpg ? await doc.embedJpg(buf) : await doc.embedPng(buf);
+  const page = doc.addPage([img.width, img.height]);
+  page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+  return new Blob([await doc.save()], { type: 'application/pdf' });
+}
+
+async function textToPdf(file) {
+  const { PDFDocument, rgb, StandardFonts } = PDFLib;
+  const text = await file.text();
+  const doc = await PDFDocument.create();
+  const font = await doc.embedFont(StandardFonts.Helvetica);
+  const W = 595.28, H = 841.89, M = 50, FS = 11, LH = 15;
+  let page = doc.addPage([W, H]), y = H - M;
+  for (const raw of text.split('\n')) {
+    for (const ln of wrapLine(raw, font, FS, W - M * 2)) {
+      if (y < M) { page = doc.addPage([W, H]); y = H - M; }
+      page.drawText(ln, { x: M, y, size: FS, font, color: rgb(0, 0, 0) });
+      y -= LH;
+    }
+  }
+  return new Blob([await doc.save()], { type: 'application/pdf' });
+}
+
+function wrapLine(text, font, size, maxW) {
+  if (!text.trim()) return [''];
+  const words = text.split(' ');
+  const lines = []; let cur = '';
+  for (const w of words) {
+    const test = cur ? cur + ' ' + w : w;
+    if (font.widthOfTextAtSize(test, size) > maxW) { if (cur) lines.push(cur); cur = w; }
+    else cur = test;
+  }
+  if (cur) lines.push(cur);
+  return lines.length ? lines : [''];
+}
+
+async function convertFile(item) {
+  const e = ext(item.file.name);
+  if (['jpg','jpeg','png'].includes(e)) return imgToPdf(item.file);
+  if (['txt','html','htm','rtf'].includes(e)) return textToPdf(item.file);
+  throw new Error('Needs server-side conversion (docx/pptx/xlsx require LibreOffice or an API)');
+}
+
+async function startConvert() {
+  if (busy) return;
+  busy = true;
+  document.getElementById('conv-btn').disabled = true;
+  const infoBar = document.getElementById('info-bar');
+  const infoText = document.getElementById('info-text');
+  const prog = document.getElementById('prog');
+  infoBar.style.display = 'block';
+  const toConvert = files.filter(f => f.status === 'wait');
+  let done = 0;
+  for (let i = 0; i < files.length; i++) {
+    const item = files[i];
+    if (item.status !== 'wait') continue;
+    item.status = 'converting';
+    updateRow(i, item);
+    infoText.textContent = 'Converting ' + item.file.name + '…';
+    try {
+      const blob = await convertFile(item);
+      item.url = URL.createObjectURL(blob);
+      item.status = 'done';
+    } catch (err) {
+      item.status = 'error';
+    }
+    done++;
+    prog.style.width = Math.round(done / toConvert.length * 100) + '%';
+    updateRow(i, item);
+  }
+  const doneN = files.filter(f => f.status === 'done').length;
+  const errN = files.filter(f => f.status === 'error').length;
+  infoText.textContent = doneN + ' file' + (doneN !== 1 ? 's' : '') + ' converted'
+    + (errN ? ', ' + errN + ' need server-side conversion (docx/pptx/xlsx)' : '')
+    + ' — click Save to download.';
+  document.getElementById('conv-btn').disabled = false;
+  busy = false;
+}
+
+function updateRow(i, item) {
+  const st = document.getElementById('st-' + i);
+  if (st) { st.className = 'file-status ' + sclass(item.status); st.textContent = slabel(item.status); }
+  const row = document.getElementById('row-' + i);
+  if (row && item.url && !row.querySelector('a')) {
+    const a = document.createElement('a');
+    a.className = 'save-link';
+    a.href = item.url;
+    a.download = item.file.name.replace(/\.[^.]+$/, '') + '.pdf';
+    a.innerHTML = '<i class="ti ti-download"></i> Save';
+    const rm = row.querySelector('.rm-btn');
+    rm ? row.insertBefore(a, rm) : row.appendChild(a);
+  }
+}
+</script>
+</body>
+</html>

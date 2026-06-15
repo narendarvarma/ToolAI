@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function ConvertFormat() {
+  const toolContent = getToolContent("convert-format")
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
   const [targetFormat, setTargetFormat] = useState("png")
@@ -139,6 +143,12 @@ export default function ConvertFormat() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Convert Image Format" toolPath="/tools/convert-format" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/convert-format" currentCategory={toolContent.category} />
 
         <Link
           href="/"

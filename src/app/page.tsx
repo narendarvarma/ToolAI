@@ -33,7 +33,7 @@ const jsonLd = {
 
 const tools = [
   // PDF Tools
-  { name: "Image to PDF", path: "/tools/image-to-pdf", icon: FileText, category: "PDF Tools", description: "Convert JPG, PNG and WebP images into a single PDF file free", isNew: false },
+  { name: "Doc to PDF", path: "/tools/doc-to-pdf", icon: FileText, category: "PDF Tools", description: "Convert JPG, PNG, TXT, HTML and RTF files to PDF instantly in your browser", isNew: false },
   { name: "PDF to Image", path: "/tools/pdf-to-image", icon: ImageIcon, category: "PDF Tools", description: "Extract and convert any PDF page to high quality JPG or PNG image", isNew: false },
   { name: "Merge PDF", path: "/tools/merge-pdf", icon: FileText, category: "PDF Tools", description: "Combine multiple PDF files into one document quickly and easily", isNew: false },
   { name: "Split PDF", path: "/tools/split-pdf", icon: Scissors, category: "PDF Tools", description: "Split PDF into separate files by pages or ranges instantly", isNew: false },
@@ -714,26 +714,26 @@ export default function Home() {
             <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
               <div className="flex items-center gap-2 mb-3">
                 <span className="px-2 py-1 rounded-md bg-[#00E5FF]/20 text-[#00E5FF] text-xs font-medium">New</span>
-                <span className="text-gray-400 text-sm">May 2025</span>
+                <span className="text-gray-400 text-sm">June 2026</span>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">AI Resume Builder</h3>
-              <p className="text-gray-400 text-sm">Create professional, ATS-friendly resumes with AI assistance in minutes.</p>
+              <h3 className="text-lg font-semibold text-white mb-2">Internship Finder</h3>
+              <p className="text-gray-400 text-sm">AI-powered internship matching with real application links for students and job seekers.</p>
             </div>
             <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-2 py-1 rounded-md bg-[#7C4DFF]/20 text-[#7C4DFF] text-xs font-medium">Updated</span>
-                <span className="text-gray-400 text-sm">May 2025</span>
+                <span className="px-2 py-1 rounded-md bg-[#7C4DFF]/20 text-[#7C4DFF] text-xs font-medium">Enhanced</span>
+                <span className="text-gray-400 text-sm">June 2026</span>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">PDF Tools Enhanced</h3>
-              <p className="text-gray-400 text-sm">Faster processing and improved quality for all PDF manipulation tools.</p>
+              <h3 className="text-lg font-semibold text-white mb-2">Tool Content Expanded</h3>
+              <p className="text-gray-400 text-sm">Added comprehensive guides, examples, and FAQs to 20+ popular tools for better user experience.</p>
             </div>
             <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
               <div className="flex items-center gap-2 mb-3">
                 <span className="px-2 py-1 rounded-md bg-[#00E5FF]/20 text-[#00E5FF] text-xs font-medium">New</span>
-                <span className="text-gray-400 text-sm">April 2025</span>
+                <span className="text-gray-400 text-sm">May 2026</span>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">CGPA Calculator</h3>
-              <p className="text-gray-400 text-sm">Calculate semester CGPA and cumulative GPA for Indian university students.</p>
+              <h3 className="text-lg font-semibold text-white mb-2">AI Grammar Fixer</h3>
+              <p className="text-gray-400 text-sm">Automatically detect and fix grammar, spelling, and punctuation errors using advanced AI.</p>
             </div>
           </div>
         </div>

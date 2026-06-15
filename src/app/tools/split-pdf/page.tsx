@@ -7,9 +7,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function SplitPDF() {
+  const toolContent = getToolContent("split-pdf")
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [splitMethod, setSplitMethod] = useState<"all" | "range">("all")
   const [pageRange, setPageRange] = useState("")
@@ -192,6 +196,12 @@ export default function SplitPDF() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Split PDF" toolPath="/tools/split-pdf" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/split-pdf" currentCategory={toolContent.category} />
 
         <Link
           href="/"

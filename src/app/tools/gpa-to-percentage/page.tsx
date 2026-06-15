@@ -6,11 +6,14 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function GpaToPercentage() {
   useRecentTools("/tools/gpa-to-percentage", "GPA to Percentage Converter", "GraduationCap")
+  const toolContent = getToolContent("gpa-to-percentage")
   
   const [cgpa, setCgpa] = useState("")
   const [university, setUniversity] = useState("anna")
@@ -114,31 +117,14 @@ export default function GpaToPercentage() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/gpa-to-percentage" toolName="GPA to Percentage Converter" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="GPA to Percentage Converter"
-          faqs={[
-            {
-              question: "What is the Anna University CGPA to percentage formula?",
-              answer: "Anna University uses the formula: Percentage = (CGPA - 0.75) × 10. For example, if your CGPA is 8.5, percentage = (8.5 - 0.75) × 10 = 77.5%."
-            },
-            {
-              question: "What is the VTU CGPA to percentage formula?",
-              answer: "VTU (Visvesvaraya Technological University) uses a simple formula: Percentage = CGPA × 10. For example, CGPA 8.5 = 85%."
-            },
-            {
-              question: "What is the Mumbai University CGPA to percentage formula?",
-              answer: "Mumbai University uses: Percentage = (CGPA - 0.5) × 10. For example, CGPA 8.5 = (8.5 - 0.5) × 10 = 80%."
-            },
-            {
-              question: "What is the general CGPA to percentage formula?",
-              answer: "The general formula used by many universities is: Percentage = CGPA × 9.5. This is commonly used by CBSE and many state boards."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="GPA to Percentage Converter - Convert CGPA using university formulas" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="GPA to Percentage Converter" toolPath="/tools/gpa-to-percentage" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/gpa-to-percentage" currentCategory={toolContent.category} />
 
         <Link
           href="/"

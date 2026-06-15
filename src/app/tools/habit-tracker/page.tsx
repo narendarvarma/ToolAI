@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function HabitTracker() {
+  const toolContent = getToolContent("habit-tracker")
   const [habits, setHabits] = useState<{ id: number; name: string; streak: number }[]>([])
   const [input, setInput] = useState("")
 
@@ -104,6 +108,12 @@ export default function HabitTracker() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Habit Tracker" toolPath="/tools/habit-tracker" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/habit-tracker" currentCategory={toolContent.category} />
 
         <Link
           href="/"

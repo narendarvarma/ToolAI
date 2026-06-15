@@ -6,12 +6,16 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import { callAI } from "@/lib/ai"
 import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AITextRewriter() {
+  const toolContent = getToolContent("ai-text-rewriter")
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
   const remaining = tokenManager.getRemainingRequests()
@@ -57,7 +61,18 @@ export default function AITextRewriter() {
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Text Rewriter</h1>
-        <p className="text-gray-400 text-base text-center mb-8">Rewrite and improve your text with AI</p>
+        <p className="text-gray-400 text-base text-center mb-4">Rewrite and improve your text with AI</p>
+
+        {/* Content Integrity Disclaimer */}
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 mb-6">
+          <div className="flex items-start gap-3">
+            <Wand2 className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="text-blue-500 font-semibold mb-1">Content Disclaimer</h3>
+              <p className="text-gray-300 text-sm">This tool rewrites text to improve clarity and flow. Always review the rewritten content to ensure it accurately represents your original meaning. Do not use for academic submissions without proper attribution and review.</p>
+            </div>
+          </div>
+        </div>
 
         <DailyUsageBar
           used={used}
@@ -137,6 +152,12 @@ export default function AITextRewriter() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI Text Rewriter" toolPath="/tools/ai-text-rewriter" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-text-rewriter" currentCategory={toolContent.category} />
 
         <Link
           href="/"

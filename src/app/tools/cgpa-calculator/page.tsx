@@ -11,10 +11,13 @@ import ToolRating from "@/components/tool-rating"
 import RelatedTools from "@/components/related-tools"
 import ToolFAQ from "@/components/tool-faq"
 import SharePrompt from "@/components/share-prompt"
+import ToolContent from "@/components/tool-content"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function CgpaCalculator() {
   useRecentTools("/tools/cgpa-calculator", "CGPA Calculator", "Calculator")
+  const toolContent = getToolContent("cgpa-calculator")
   const [courses, setCourses] = useState<{ id: number; name: string; credits: number; grade: number }[]>([])
   const [name, setName] = useState("")
   const [credits, setCredits] = useState("")
@@ -263,6 +266,9 @@ export default function CgpaCalculator() {
 
         {/* Social Share */}
         <SocialShare title="CGPA Calculator - Calculate your CGPA instantly" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="CGPA Calculator" toolPath="/tools/cgpa-calculator" />
 
         <Link
           href="/"

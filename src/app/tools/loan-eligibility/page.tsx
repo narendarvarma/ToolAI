@@ -6,11 +6,14 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function LoanEligibility() {
   useRecentTools("/tools/loan-eligibility", "Loan Eligibility Calculator", "Calculator")
+  const toolContent = getToolContent("loan-eligibility")
   
   const [monthlySalary, setMonthlySalary] = useState("")
   const [existingEmi, setExistingEmi] = useState("")
@@ -161,31 +164,14 @@ export default function LoanEligibility() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/loan-eligibility" toolName="Loan Eligibility Calculator" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="Loan Eligibility Calculator"
-          faqs={[
-            {
-              question: "How is loan eligibility calculated?",
-              answer: "Banks typically allow EMI up to 50-60% of your monthly income. We calculate your maximum EMI (50% of salary), subtract existing EMIs, and use the remaining amount to calculate the maximum loan you can afford based on interest rate and tenure."
-            },
-            {
-              question: "What factors affect loan eligibility?",
-              answer: "Key factors include monthly income, existing loan obligations (EMIs), credit score, employment stability, age, and the loan tenure. Higher income and lower existing debts increase eligibility. Good credit score helps get better rates."
-            },
-            {
-              question: "What is the typical EMI to income ratio?",
-              answer: "Most Indian banks follow the 50% rule - your total EMIs (including the new loan) should not exceed 50% of your monthly income. Some banks may allow up to 60% for borrowers with excellent credit scores."
-            },
-            {
-              question: "Can I increase my loan eligibility?",
-              answer: "Yes, you can increase eligibility by increasing tenure (up to bank limits), adding a co-applicant with income, improving credit score, reducing existing debts, or choosing a lender with more flexible criteria."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="Loan Eligibility Calculator - Check your loan eligibility" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Loan Eligibility Calculator" toolPath="/tools/loan-eligibility" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/loan-eligibility" currentCategory={toolContent.category} />
 
         <Link
           href="/"

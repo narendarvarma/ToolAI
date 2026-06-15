@@ -6,12 +6,16 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import { callAI } from "@/lib/ai"
 import DailyUsageBar from "@/components/DailyUsageBar"
 
 export default function AINotesSummarizer() {
+  const toolContent = getToolContent("ai-notes-summarizer")
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
   const remaining = tokenManager.getRemainingRequests()
@@ -57,7 +61,18 @@ export default function AINotesSummarizer() {
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Notes Summarizer</h1>
-        <p className="text-gray-400 text-base text-center mb-8">Summarize your notes with AI</p>
+        <p className="text-gray-400 text-base text-center mb-4">Summarize your notes with AI</p>
+
+        {/* Content Integrity Disclaimer */}
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 mb-6">
+          <div className="flex items-start gap-3">
+            <FileText className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="text-blue-500 font-semibold mb-1">Study Aid Disclaimer</h3>
+              <p className="text-gray-300 text-sm">This tool summarizes your notes to help you review and understand key concepts. Always review the summary for accuracy and add your own insights. Use as a study aid, not a replacement for your own understanding and analysis.</p>
+            </div>
+          </div>
+        </div>
 
         <DailyUsageBar
           used={used}
@@ -134,6 +149,12 @@ export default function AINotesSummarizer() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI Notes Summarizer" toolPath="/tools/ai-notes-summarizer" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-notes-summarizer" currentCategory={toolContent.category} />
 
         <Link
           href="/"

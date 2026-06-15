@@ -5,8 +5,12 @@ import { FileText, Wand2, Copy, CheckCircle, XCircle, AlertCircle, Upload, BarCh
 import Link from "next/link"
 import GeneratingAnimation from "@/components/generating-animation"
 import DailyUsageBar from "@/components/DailyUsageBar"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { tokenManager } from "@/lib/token-manager";
 export default function ResumeAnalyzerPage() {
+  const toolContent = getToolContent("ai-resume-analyzer")
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
   const remaining = tokenManager.getRemainingRequests()
@@ -406,6 +410,12 @@ export default function ResumeAnalyzerPage() {
             </button>
           </div>
         )}
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="AI Resume Analyzer" toolPath="/tools/ai-resume-analyzer" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/ai-resume-analyzer" currentCategory={toolContent.category} />
 
         <Link href="/" className="mt-8 text-[#00E5FF] hover:underline inline-block text-sm">
           ← Back to Home

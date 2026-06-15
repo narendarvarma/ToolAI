@@ -6,11 +6,14 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function ImageToBase64() {
   useRecentTools("/tools/image-to-base64", "Image to Base64 Converter", "ImageIcon")
+  const toolContent = getToolContent("image-to-base64")
   
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [base64String, setBase64String] = useState("")
@@ -145,31 +148,14 @@ export default function ImageToBase64() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/image-to-base64" toolName="Image to Base64 Converter" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="Image to Base64 Converter"
-          faqs={[
-            {
-              question: "What is base64 encoding?",
-              answer: "Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format. It's commonly used to embed images directly in HTML, CSS, or JSON without needing separate files."
-            },
-            {
-              question: "Why use base64 for images?",
-              answer: "Base64 allows you to embed images directly in code, reducing HTTP requests. It's useful for small icons, logos, or when you need to include images in CSS, HTML, or data URLs without external files."
-            },
-            {
-              question: "Does base64 increase file size?",
-              answer: "Yes, base64 encoding increases file size by approximately 33%. The tool shows both original and base64 sizes so you can compare. For large images, consider using the original file instead."
-            },
-            {
-              question: "What image formats are supported?",
-              answer: "The tool supports all common image formats including PNG, JPG/JPEG, GIF, WebP, BMP, and more. Any image that can be displayed in a browser can be converted to base64."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="Image to Base64 Converter - Convert images to base64 strings" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Image to Base64 Converter" toolPath="/tools/image-to-base64" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/image-to-base64" currentCategory={toolContent.category} />
 
         <Link
           href="/"

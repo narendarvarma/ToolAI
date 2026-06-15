@@ -7,9 +7,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function AddWatermark() {
+  const toolContent = getToolContent("add-watermark")
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [watermarkText, setWatermarkText] = useState("")
   const [isProcessing, setIsProcessing] = useState(false)
@@ -133,6 +137,12 @@ export default function AddWatermark() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Add Watermark" toolPath="/tools/add-watermark" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/add-watermark" currentCategory={toolContent.category} />
 
         <Link
           href="/"

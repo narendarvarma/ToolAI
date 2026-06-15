@@ -6,6 +6,9 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
 import { callAI } from "@/lib/ai"
@@ -28,6 +31,7 @@ interface AIResponse {
 }
 
 export default function InternshipFinder() {
+  const toolContent = getToolContent("internship-finder")
   const used = tokenManager.getRequestsUsed()
   const limit = tokenManager.getDailyLimit()
   const remaining = tokenManager.getRemainingRequests()
@@ -387,6 +391,12 @@ Respond ONLY with valid JSON. No markdown code fences, no extra text, no explana
             Advertisement
           </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Internship Finder" toolPath="/tools/internship-finder" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/internship-finder" currentCategory={toolContent.category} />
 
         <Link
           href="/"

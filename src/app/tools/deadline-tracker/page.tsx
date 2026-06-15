@@ -6,7 +6,9 @@ import Link from "next/link"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
-import RelatedTools from "@/components/tool-faq"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 interface Assignment {
@@ -19,6 +21,7 @@ interface Assignment {
 
 export default function DeadlineTracker() {
   useRecentTools("/tools/deadline-tracker", "Assignment Deadline Tracker", "Calendar")
+  const toolContent = getToolContent("deadline-tracker")
   
   const [assignments, setAssignments] = useState<Assignment[]>([])
   const [subject, setSubject] = useState("")
@@ -220,31 +223,14 @@ export default function DeadlineTracker() {
         {/* Tool Rating */}
         <ToolRating toolPath="/tools/deadline-tracker" toolName="Assignment Deadline Tracker" />
 
-        {/* FAQ Section */}
-        <RelatedTools
-          toolName="Assignment Deadline Tracker"
-          faqs={[
-            {
-              question: "How does the deadline tracker save my data?",
-              answer: "Your assignments are saved to localStorage in your browser, so they persist even after you close the tab. Data is stored locally and never sent to any server."
-            },
-            {
-              question: "What do the color codes mean?",
-              answer: "Red (under 2 days remaining) means urgent, Orange (under 5 days) means approaching soon, Green means you have enough time. Overdue assignments show in dark red."
-            },
-            {
-              question: "Can I mark assignments as completed?",
-              answer: "Yes, click the checkbox next to any assignment to mark it as completed. Completed assignments are moved to the bottom and shown with strikethrough text."
-            },
-            {
-              question: "How are assignments sorted?",
-              answer: "Assignments are automatically sorted by deadline date, with the nearest deadline shown first. Completed assignments are moved to the bottom of the list."
-            }
-          ]}
-        />
-
         {/* Social Share */}
         <SocialShare title="Assignment Deadline Tracker - Track deadlines with priority" />
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Assignment Deadline Tracker" toolPath="/tools/deadline-tracker" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/deadline-tracker" currentCategory={toolContent.category} />
 
         <Link
           href="/"

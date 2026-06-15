@@ -6,9 +6,13 @@ import Link from "next/link"
 import AdSlot from "@/components/ad-slot"
 import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
+import ToolContent from "@/components/tool-content"
+import RelatedTools from "@/components/related-tools"
+import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 
 export default function Base64Encoder() {
+  const toolContent = getToolContent("base64-encoder")
   const [input, setInput] = useState("")
   const [output, setOutput] = useState("")
   const [mode, setMode] = useState("encode")
@@ -154,6 +158,12 @@ export default function Base64Encoder() {
           Advertisement
         </div>
         </div>
+
+        {/* Tool Content Section */}
+        <ToolContent content={toolContent} toolName="Base64 Encoder/Decoder" toolPath="/tools/base64-encoder" />
+
+        {/* Related Tools */}
+        <RelatedTools currentToolPath="/tools/base64-encoder" currentCategory={toolContent.category} />
 
         <Link
           href="/"
