@@ -18,7 +18,9 @@ export const metadata: Metadata = {
   description: "75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities. Fast, secure, and no signup required.",
   keywords: "online tools, PDF tools, image tools, AI tools, student tools, productivity tools, free tools",
   robots: "index, follow",
-  // Note: do not hardcode a single canonical here — use `metadataBase` below
+  alternates: {
+    canonical: BASE_URL,
+  },
   openGraph: {
     title: "ToolHub AI - Free Online Tools",
     description: "75+ free online tools for PDF, images, AI, students, productivity, and utilities.",

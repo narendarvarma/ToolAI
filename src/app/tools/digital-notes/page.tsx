@@ -161,7 +161,7 @@ export default function DigitalNotes() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Notes List */}
             <div className="lg:col-span-1">
-              <h3 className="text-lg font-semibold text-white mb-4">Notes ({notes.length})</h3>
+              <h2 className="text-lg font-semibold text-white mb-4">Notes ({notes.length})</h2>
               <div className="space-y-2 max-h-[500px] overflow-y-auto">
                 {notes.length === 0 ? (
                   <div className="p-8 text-center text-gray-400">
@@ -206,7 +206,7 @@ export default function DigitalNotes() {
               {selectedNote ? (
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-white">Note Editor</h3>
+                    <h2 className="text-lg font-semibold text-white">Note Editor</h2>
                     <div className="flex gap-2">
                       {isEditing ? (
                         <button

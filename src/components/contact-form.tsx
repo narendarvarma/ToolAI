@@ -10,6 +10,9 @@ export default function ContactForm() {
     <div className="min-h-screen bg-[#0B0F1A] py-14 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-white">Contact Us</h1>
+        <h2 className="text-2xl font-semibold mb-6 text-white">
+  Contact Information
+</h2>
         <p className="text-gray-400 mb-8">Have questions or feedback? We'd love to hear from you.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -131,6 +134,31 @@ export default function ContactForm() {
             )}
           </div>
         </div>
+                    <div className="mt-12 bg-[#111827] rounded-2xl p-6 border border-white/8">
+            <h2 className="text-2xl font-semibold mb-4 text-white">
+              Contact ToolHub AI
+            </h2>
+
+            <p className="text-gray-400 mb-4">
+              ToolHub AI provides free online tools for PDF editing, AI productivity,
+              student utilities, resume building, image processing, and everyday tasks.
+              We are committed to making useful digital tools accessible to everyone
+              without requiring registration or subscriptions.
+            </p>
+
+            <p className="text-gray-400 mb-4">
+              If you discover a bug, have a feature request, need technical support,
+              want to suggest a new tool, or would like to discuss collaboration
+              opportunities, feel free to contact us using the form above. User
+              feedback helps us improve our platform and prioritize future updates.
+            </p>
+
+            <p className="text-gray-400">
+              We review all messages and aim to respond as quickly as possible.
+              Whether you are a student, professional, creator, or business user,
+              we appreciate your feedback and support.
+            </p>
+          </div>
 
         {/* FAQ Section */}
         <div className="mt-12">

@@ -319,7 +319,7 @@ export default function Home() {
                 {toolOfTheDay && <toolOfTheDay.icon className="h-8 w-8 text-[#00E5FF]" />}
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white mb-1">{toolOfTheDay?.name}</h3>
+                <h2 className="text-2xl font-bold text-white mb-1">{toolOfTheDay?.name}</h2>
                 <p className="text-gray-400">{toolOfTheDay?.description}</p>
               </div>
               <Link
