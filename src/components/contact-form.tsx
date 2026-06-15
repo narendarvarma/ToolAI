@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Send, MapPin, Phone, CheckCircle} from "lucide-react"
+import { Mail, Send, MapPin, Phone, CheckCircle } from "lucide-react"
+import Link from "next/link"
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -62,73 +63,93 @@ export default function ContactForm() {
                 <p className="text-gray-400 text-center">We'll reply within 24 hours.</p>
               </div>
             ) : (
-              <form 
-                action="https://formspree.io/f/maqkkyvy" 
-                method="POST"
-                className="space-y-6"
-              >
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-white">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-white">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
-                    placeholder="your@email.com"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-white">Subject</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
-                    placeholder="What's this about?"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-white">Message</label>
-                  <textarea
-                    name="message"
-                    className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all h-32 resize-none"
-                    placeholder="Your message..."
-                    required
-                  />
-                </div>
-
-                {/* Honeypot field to prevent spam */}
-                <input
-                  type="text"
-                  name="_gotcha"
-                  style={{ display: 'none' }}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20"
+              <>
+              <form
+                  action="https://formspree.io/f/maqkkyvy"
+                  method="POST"
+                  className="space-y-6"
                 >
-                  <div className="flex items-center justify-center gap-2">
-                    <Send className="h-5 w-5" />
-                    Send Message
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-white">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
+                      placeholder="Your name"
+                      required />
                   </div>
-                </button>
-              </form>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-white">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
+                      placeholder="your@email.com"
+                      required />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-white">Subject</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
+                      placeholder="What's this about?"
+                      required />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-white">Message</label>
+                    <textarea
+                      name="message"
+                      className="w-full px-4 py-3 rounded-xl border border-white/8 bg-[#0B0F1A] text-white focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all h-32 resize-none"
+                      placeholder="Your message..."
+                      required />
+                  </div>
+
+                  {/* Honeypot field to prevent spam */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off" />
+
+                  <button
+                    type="submit"
+                    className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20"
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <Send className="h-5 w-5" />
+                      Send Message
+                    </div>
+                  </button>
+                </form>
+                <div className="mt-8">
+                    <h2 className="text-xl font-semibold text-white mb-3">
+                      Useful Links
+                    </h2>
+
+                    <div className="flex flex-wrap gap-4">
+                      <Link href="/" className="text-[#00E5FF] hover:underline">
+                        Home
+                      </Link>
+
+                      <Link href="/about" className="text-[#00E5FF] hover:underline">
+                        About Us
+                      </Link>
+
+                      <Link href="/privacy" className="text-[#00E5FF] hover:underline">
+                        Privacy Policy
+                      </Link>
+
+                      <Link href="/tools" className="text-[#00E5FF] hover:underline">
+                        Browse Tools
+                      </Link>
+                    </div>
+                  </div></>
+
             )}
           </div>
         </div>
