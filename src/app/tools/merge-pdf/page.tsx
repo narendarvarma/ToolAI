@@ -133,7 +133,27 @@ export default function MergePDF() {
           Advertisement
         </div>
         </div>
+          <section className="mt-10 bg-[#111827] rounded-2xl p-6 border border-white/8">
+          <h2 className="text-2xl font-semibold text-white mb-4">
+            About Merge PDF Tool
+          </h2>
 
+          <p className="text-gray-300 mb-4">
+            The Merge PDF tool allows you to combine multiple PDF files into a single document quickly and securely. Whether you need to merge reports, invoices, study materials, contracts, or business documents, this tool makes the process simple and efficient.
+          </p>
+
+          <p className="text-gray-300 mb-4">
+            Unlike desktop software, our Merge PDF tool works directly in your browser without requiring installation or registration. Simply upload your PDF files, arrange them in the desired order, and generate a merged PDF within seconds. This saves time and helps keep your documents organized.
+          </p>
+
+          <p className="text-gray-300 mb-4">
+            Students can use this tool to combine notes, assignments, and research documents. Professionals can merge contracts, presentations, invoices, and reports into a single file for easier sharing and storage. Businesses can streamline document management and reduce the need for multiple attachments.
+          </p>
+
+          <p className="text-gray-300">
+            Privacy is important to us. Your files are processed securely, and no unnecessary data is stored. The Merge PDF tool is completely free to use and works on desktop, tablet, and mobile devices, making it a convenient solution for anyone who needs to combine PDF documents online.
+          </p>
+        </section>
         <Link
           href="/"
           className="mt-6 text-[#00E5FF] hover:underline inline-block"

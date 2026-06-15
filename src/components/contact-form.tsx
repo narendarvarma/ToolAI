@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Send, MapPin, Phone, CheckCircle, Twitter, Linkedin, Github, Facebook } from "lucide-react"
+import { Mail, Send, MapPin, Phone, CheckCircle} from "lucide-react"
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -10,9 +10,7 @@ export default function ContactForm() {
     <div className="min-h-screen bg-[#0B0F1A] py-14 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-white">Contact Us</h1>
-        <h2 className="text-2xl font-semibold mb-6 text-white">
-  Contact Information
-</h2>
+        
         <p className="text-gray-400 mb-8">Have questions or feedback? We'd love to hear from you.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -176,25 +174,6 @@ export default function ContactForm() {
               <h3 className="font-semibold text-white mb-2">Are all tools really free?</h3>
               <p className="text-gray-400 text-sm">Yes, every tool on ToolHub AI is 100% free with no hidden charges.</p>
             </div>
-          </div>
-        </div>
-
-        {/* Social Media Links */}
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold mb-6 text-white">Follow Us</h2>
-          <div className="flex gap-4">
-            <a href="#" aria-label="Follow ToolHub AI on Twitter" className="w-12 h-12 rounded-xl bg-[#111827] border border-white/8 flex items-center justify-center text-gray-400 hover:text-[#00E5FF] hover:border-[#00E5FF]/50 transition-all">
-              <Twitter className="h-5 w-5" />
-            </a>
-            <a href="#" aria-label="Follow ToolHub AI on LinkedIn" className="w-12 h-12 rounded-xl bg-[#111827] border border-white/8 flex items-center justify-center text-gray-400 hover:text-[#00E5FF] hover:border-[#00E5FF]/50 transition-all">
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a href="#" aria-label="View ToolHub AI on GitHub" className="w-12 h-12 rounded-xl bg-[#111827] border border-white/8 flex items-center justify-center text-gray-400 hover:text-[#00E5FF] hover:border-[#00E5FF]/50 transition-all">
-              <Github className="h-5 w-5" />
-            </a>
-            <a href="#" aria-label="Follow ToolHub AI on Facebook" className="w-12 h-12 rounded-xl bg-[#111827] border border-white/8 flex items-center justify-center text-gray-400 hover:text-[#00E5FF] hover:border-[#00E5FF]/50 transition-all">
-              <Facebook className="h-5 w-5" />
-            </a>
           </div>
         </div>
       </div>
