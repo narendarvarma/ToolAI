@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { BASE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — ToolHub AI",
+  title: "Privacy Policy - ToolHub AI Data Protection & User Privacy",
   description: "ToolHub AI Privacy Policy. Learn how we handle data, cookies, Google Analytics, AdSense, and user privacy on our free tools platform.",
   keywords: "privacy policy, data handling, google analytics, adsense, toolhub ai",
   robots: "index, follow",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/privacy`,
   },
   openGraph: {
-    title: "Privacy Policy — ToolHub AI",
+    title: "Privacy Policy - ToolHub AI",
     description: "ToolHub AI Privacy Policy. Learn how we handle data, cookies, Google Analytics, AdSense, and user privacy on our free tools platform.",
     type: "website",
     url: `${BASE_URL}/privacy`,
