@@ -30,10 +30,17 @@ export default function ImageToBase64() {
       const reader = new FileReader()
       reader.onload = (e) => {
         const result = e.target?.result as string
-        setBase64String(result)
-        setPreviewUrl(result)
+        if (result) {
+          setBase64String(result)
+          setPreviewUrl(result)
+        }
+      }
+      reader.onerror = () => {
+        alert('Error reading file. Please try again.')
       }
       reader.readAsDataURL(file)
+    } else {
+      alert('Please upload a valid image file.')
     }
   }
 

@@ -22,7 +22,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net",
               "frame-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
               "connect-src 'self' https://openrouter.ai https://pagead2.googlesyndication.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://ep1.adtrafficquality.google https://adservice.google.com https://www.googletagmanager.com https://cdnjs.cloudflare.com",
-              "img-src 'self' data: https:",
+              "img-src 'self' data: blob: https:",
               "worker-src 'self' blob:",
             ].join('; '),
           },

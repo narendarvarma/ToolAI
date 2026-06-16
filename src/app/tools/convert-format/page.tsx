@@ -10,6 +10,7 @@ import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
 import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import GeneratingAnimation from "@/components/generating-animation"
 
 export default function ConvertFormat() {
   const toolContent = getToolContent("convert-format")
@@ -27,46 +28,50 @@ export default function ConvertFormat() {
   }
 
   const convertFormat = async () => {
-    if (!imageFile || !preview) return
+    if (!imageFile) return
 
     setIsProcessing(true)
 
     try {
-      const img = new Image()
-      img.src = preview
-      
-      await new Promise((resolve) => {
-        img.onload = resolve
-      })
+      // Use createImageBitmap() directly from the File — no blob URL, no CSP issues
+      const bitmap = await createImageBitmap(imageFile)
 
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
-      
+
       if (!ctx) {
         throw new Error('Could not get canvas context')
       }
 
-      canvas.width = img.width
-      canvas.height = img.height
-      ctx.drawImage(img, 0, 0)
+      canvas.width = bitmap.width
+      canvas.height = bitmap.height
+
+      // Handle transparency for JPEG — fill white background first
+      if (targetFormat === 'jpg' || targetFormat === 'jpeg') {
+        ctx.fillStyle = '#FFFFFF'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+      }
+
+      ctx.drawImage(bitmap, 0, 0)
+      bitmap.close()
 
       const mimeType = targetFormat === 'jpg' ? 'image/jpeg' : `image/${targetFormat}`
       const dataUrl = canvas.toDataURL(mimeType, 0.92)
-      
+
       const response = await fetch(dataUrl)
       const blob = await response.blob()
       const url = URL.createObjectURL(blob)
-      
+
       const link = document.createElement('a')
       link.href = url
       const extension = targetFormat === 'jpg' ? 'jpg' : targetFormat
-      link.download = `converted-${imageFile.name.split('.')[0]}.${extension}`
+      link.download = `converted-${imageFile.name.replace(/\.[^/.]+$/, "")}.${extension}`
       link.click()
-      
+
       URL.revokeObjectURL(url)
     } catch (error) {
       console.error('Error converting format:', error)
-      alert('Error converting image format. Please try again.')
+      alert('Error converting image format. Please try again with a different image.')
     }
 
     setIsProcessing(false)
@@ -128,20 +133,26 @@ export default function ConvertFormat() {
           )}
 
           {/* Convert Button */}
-          <button
-            onClick={convertFormat}
-            disabled={!imageFile || isProcessing}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
-          >
-            {isProcessing ? "Converting..." : "Convert Format"}
-          </button>
+          {isProcessing ? (
+            <div className="py-12">
+              <GeneratingAnimation type="image_convert" />
+            </div>
+          ) : (
+            <button
+              onClick={convertFormat}
+              disabled={!imageFile}
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
+            >
+              Convert Format
+            </button>
+          )}
         </div>
 
         {/* Single bottom ad */}
         <div className="flex justify-center mt-8">
           <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
-          Advertisement
-        </div>
+            Advertisement
+          </div>
         </div>
 
         {/* Tool Content Section */}
@@ -160,7 +171,3 @@ export default function ConvertFormat() {
     </div>
   )
 }
-
-
-
-

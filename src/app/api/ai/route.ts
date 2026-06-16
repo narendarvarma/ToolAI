@@ -40,7 +40,7 @@ function checkRateLimit(ip: string): boolean {
 async function fetchWithTimeout(
   url: string,
   options: RequestInit,
-  timeoutMs = 15_000
+  timeoutMs = 30_000
 ): Promise<Response> {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), timeoutMs)
@@ -59,7 +59,7 @@ function openAIBody(model: string, messages: Message[], system?: string): string
     messages: system
       ? [{ role: "system", content: system }, ...messages]
       : messages,
-    max_tokens: 2000,
+    max_tokens: 4000,   // ← increased from 2000 to fix truncated JSON
     temperature: 0.7,
   })
 }
@@ -76,7 +76,7 @@ function geminiBody(messages: Message[], system?: string): string {
       systemInstruction: { parts: [{ text: system }] },
     }),
     contents,
-    generationConfig: { maxOutputTokens: 2000, temperature: 0.7 },
+    generationConfig: { maxOutputTokens: 4000, temperature: 0.7 },
   })
 }
 
@@ -85,7 +85,7 @@ function geminiBody(messages: Message[], system?: string): string {
 const PROVIDERS: Provider[] = [
   {
     name: "OpenRouter",
-    apiKey: process.env.OPENROUTER_API_KEY, // ⚠️ never use NEXT_PUBLIC_ for secret keys
+    apiKey: process.env.OPENROUTER_API_KEY,
     models: [
       "google/gemma-4-26b-a4b-it:free",
       "meta-llama/llama-3.3-70b:free",
@@ -194,7 +194,7 @@ export async function POST(req: NextRequest) {
         const res = await fetchWithTimeout(
           endpoint,
           { method: "POST", headers, body: provider.formatBody(model, messages, system) },
-          15_000
+          30_000  // ← increased timeout from 15s to 30s for larger responses
         )
 
         if (!res.ok) {

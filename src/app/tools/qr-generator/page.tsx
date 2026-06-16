@@ -23,10 +23,21 @@ export default function QRGenerator() {
 
   const downloadQR = () => {
     if (qrUrl) {
-      const link = document.createElement("a")
-      link.download = "qrcode.png"
-      link.href = qrUrl
-      link.click()
+      // Fetch the image first to avoid CORS issues
+      fetch(qrUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob)
+          const link = document.createElement("a")
+          link.download = "qrcode.png"
+          link.href = url
+          link.click()
+          URL.revokeObjectURL(url)
+        })
+        .catch(err => {
+          console.error('Error downloading QR code:', err)
+          alert('Error downloading QR code. Please try again.')
+        })
     }
   }
 

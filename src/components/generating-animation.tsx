@@ -80,8 +80,38 @@ const GENERAL_STEPS = [
   { icon: "✅", text: "Finalizing result..." },
 ]
 
+const IMAGE_COMPRESSOR_STEPS = [
+  { icon: "📷", text: "Loading your image..." },
+  { icon: "🔍", text: "Analyzing image quality..." },
+  { icon: "⚙️", text: "Applying compression..." },
+  { icon: "📊", text: "Calculating savings..." },
+  { icon: "✅", text: "Finalizing compressed image..." },
+]
+
+const IMAGE_RESIZE_STEPS = [
+  { icon: "📷", text: "Loading your image..." },
+  { icon: "📐", text: "Calculating new dimensions..." },
+  { icon: "🔄", text: "Resizing image..." },
+  { icon: "✨", text: "Optimizing quality..." },
+  { icon: "✅", text: "Finalizing resized image..." },
+]
+
+const IMAGE_CONVERT_STEPS = [
+  { icon: "📷", text: "Loading your image..." },
+  { icon: "🔄", text: "Converting format..." },
+  { icon: "🎨", text: "Optimizing colors..." },
+  { icon: "✅", text: "Finalizing converted image..." },
+]
+
+const PDF_GENERATE_STEPS = [
+  { icon: "📷", text: "Loading images..." },
+  { icon: "📄", text: "Creating PDF pages..." },
+  { icon: "📐", text: "Scaling and positioning..." },
+  { icon: "✅", text: "Finalizing PDF document..." },
+]
+
 interface GeneratingAnimationProps {
-  type?: "resume" | "ppt" | "analyzer" | "resume_analyzer" | "blog" | "email" | "code" | "general"
+  type?: "resume" | "ppt" | "analyzer" | "resume_analyzer" | "blog" | "email" | "code" | "general" | "image_compressor" | "image_resize" | "image_convert" | "pdf_generate"
   title?: string
   accentColor?: string
 }

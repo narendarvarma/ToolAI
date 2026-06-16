@@ -11,10 +11,11 @@ import { useRecentTools } from "@/hooks/use-recent-tools"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
 import { getToolContent } from "@/lib/tool-content"
+import GeneratingAnimation from "@/components/generating-animation"
 
 export default function ScreenshotToPdf() {
   useRecentTools("/tools/screenshot-to-pdf", "Screenshot to PDF", "ImageIcon")
-  
+
   const [images, setImages] = useState<{ id: number; file: File; url: string }[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
 
@@ -26,12 +27,12 @@ export default function ScreenshotToPdf() {
         file,
         url: URL.createObjectURL(file)
       }))
-      setImages([...images, ...newImages])
+      setImages(prev => [...prev, ...newImages])
     }
   }
 
   const removeImage = (id: number) => {
-    setImages(images.filter(img => img.id !== id))
+    setImages(prev => prev.filter(img => img.id !== id))
   }
 
   const moveImage = (index: number, direction: "up" | "down") => {
@@ -53,49 +54,81 @@ export default function ScreenshotToPdf() {
       const pdfDoc = await PDFDocument.create()
 
       for (const image of images) {
+        // Read file bytes directly — avoids crossOrigin issues with blob URLs
         const imageBytes = await image.file.arrayBuffer()
         let pdfImage
 
-        if (image.file.type === "image/png") {
-          pdfImage = await pdfDoc.embedPng(imageBytes)
-        } else if (image.file.type === "image/jpeg" || image.file.type === "image/jpg") {
-          pdfImage = await pdfDoc.embedJpg(imageBytes)
-        } else {
-          // For other formats, try as PNG
-          pdfImage = await pdfDoc.embedPng(imageBytes)
+        try {
+          if (image.file.type === "image/png") {
+            pdfImage = await pdfDoc.embedPng(imageBytes)
+          } else if (image.file.type === "image/jpeg" || image.file.type === "image/jpg") {
+            pdfImage = await pdfDoc.embedJpg(imageBytes)
+          } else {
+            // Convert other formats (webp, gif, etc.) to PNG via canvas
+            const blob = new Blob([imageBytes], { type: image.file.type })
+            const objectUrl = URL.createObjectURL(blob)
+
+            const img = new Image()
+            await new Promise<void>((resolve, reject) => {
+              img.onload = () => resolve()
+              img.onerror = () => reject(new Error('Failed to load image'))
+              img.src = objectUrl  // no crossOrigin needed for blob URLs
+            })
+
+            const canvas = document.createElement('canvas')
+            const ctx = canvas.getContext('2d')
+            if (!ctx) throw new Error('Could not get canvas context')
+
+            canvas.width = img.width
+            canvas.height = img.height
+            ctx.drawImage(img, 0, 0)
+            URL.revokeObjectURL(objectUrl)
+
+            const pngBytes = await new Promise<ArrayBuffer>((resolve, reject) => {
+              canvas.toBlob((blob) => {
+                if (!blob) { reject(new Error('Canvas toBlob failed')); return }
+                blob.arrayBuffer().then(resolve).catch(reject)
+              }, 'image/png')
+            })
+
+            pdfImage = await pdfDoc.embedPng(pngBytes)
+          }
+
+          const page = pdfDoc.addPage()
+          const { width, height } = pdfImage.scale(1)
+          const pageWidth = page.getWidth()
+          const pageHeight = page.getHeight()
+
+          const scale = Math.min(pageWidth / width, pageHeight / height) * 0.9
+          const scaledWidth = width * scale
+          const scaledHeight = height * scale
+
+          page.drawImage(pdfImage, {
+            x: (pageWidth - scaledWidth) / 2,
+            y: (pageHeight - scaledHeight) / 2,
+            width: scaledWidth,
+            height: scaledHeight,
+          })
+        } catch (err) {
+          console.error('Error processing image:', image.file.name, err)
+          throw new Error(`Failed to process image: ${image.file.name}`)
         }
-
-        const page = pdfDoc.addPage()
-        const { width, height } = pdfImage.scale(1)
-        const pageWidth = page.getWidth()
-        const pageHeight = page.getHeight()
-
-        // Scale image to fit page while maintaining aspect ratio
-        const scale = Math.min(pageWidth / width, pageHeight / height) * 0.9
-        const scaledWidth = width * scale
-        const scaledHeight = height * scale
-
-        page.drawImage(pdfImage, {
-          x: (pageWidth - scaledWidth) / 2,
-          y: (pageHeight - scaledHeight) / 2,
-          width: scaledWidth,
-          height: scaledHeight,
-        })
       }
 
       const pdfBytes = await pdfDoc.save()
       const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" })
       const url = URL.createObjectURL(blob)
-      
+
       const link = document.createElement("a")
       link.href = url
       link.download = "screenshots.pdf"
+      document.body.appendChild(link)
       link.click()
-      
+      document.body.removeChild(link)
       URL.revokeObjectURL(url)
     } catch (err) {
       console.error(err)
-      alert("Failed to convert images to PDF. Please try again.")
+      alert("Failed to convert images to PDF. Please try again with PNG or JPG images.")
     }
 
     setIsProcessing(false)
@@ -113,13 +146,20 @@ export default function ScreenshotToPdf() {
         <div className="ad-slot mb-8">
           <div id="ad-top"></div>
         </div>
-        
+
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8 mb-6">
           {/* Upload Area */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-2 text-white">Upload Images (PNG, JPG)</label>
             <div className="border-2 border-dashed border-white/20 rounded-xl p-8 text-center hover:border-[#00E5FF] hover:bg-[#00E5FF]/5 transition-all cursor-pointer">
-              <input type="file" accept="image/png,image/jpeg,image/jpg" multiple onChange={handleImageUpload} className="hidden" id="image-upload" />
+              <input
+                type="file"
+                accept="image/png,image/jpeg,image/jpg"
+                multiple
+                onChange={handleImageUpload}
+                className="hidden"
+                id="image-upload"
+              />
               <label htmlFor="image-upload" className="cursor-pointer">
                 <Upload className="h-12 w-12 mx-auto mb-4 text-gray-400" />
                 <p className="text-gray-300 font-medium">Click to upload images</p>
@@ -180,14 +220,20 @@ export default function ScreenshotToPdf() {
           )}
 
           {/* Convert Button */}
-          <button
-            type="button"
-            onClick={convertToPdf}
-            disabled={images.length === 0 || isProcessing}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg disabled:opacity-50 disabled:hover:scale-100"
-          >
-            {isProcessing ? "Converting..." : "Convert to PDF"}
-          </button>
+          {isProcessing ? (
+            <div className="py-12">
+              <GeneratingAnimation type="pdf_generate" />
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={convertToPdf}
+              disabled={images.length === 0}
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg disabled:opacity-50 disabled:hover:scale-100"
+            >
+              Convert to PDF
+            </button>
+          )}
         </div>
 
         {/* Single bottom ad */}
@@ -195,7 +241,6 @@ export default function ScreenshotToPdf() {
           <div id="ad-bottom"></div>
         </div>
 
-        {/* How to Use Section */}
         <HowToUse steps={[
           "Click 'Upload Images' and select multiple PNG or JPG files",
           "Arrange the order using up/down arrows on each image",
@@ -204,10 +249,8 @@ export default function ScreenshotToPdf() {
           "Download the PDF with each image as a separate page"
         ]} />
 
-        {/* Tool Rating */}
         <ToolRating toolPath="/tools/screenshot-to-pdf" toolName="Screenshot to PDF" />
 
-        {/* FAQ Section */}
         <RelatedTools
           toolName="Screenshot to PDF"
           faqs={[
@@ -230,15 +273,11 @@ export default function ScreenshotToPdf() {
           ]}
         />
 
-        {/* Social Share */}
         <SocialShare title="Screenshot to PDF - Convert images to PDF" />
         <ToolContent content={toolContent} toolName="Screenshot To Pdf" toolPath="/tools/screenshot-to-pdf" />
         <RelatedTools currentToolPath="/tools/screenshot-to-pdf" currentCategory={toolContent.category} />
 
-        <Link
-          href="/"
-          className="mt-6 text-[#00E5FF] hover:underline inline-block"
-        >
+        <Link href="/" className="mt-6 text-[#00E5FF] hover:underline inline-block">
           ← Back to Home
         </Link>
       </div>

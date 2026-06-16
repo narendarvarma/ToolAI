@@ -10,6 +10,7 @@ import { useRecentTools } from "@/hooks/use-recent-tools"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
 import { getToolContent } from "@/lib/tool-content"
+import GeneratingAnimation from "@/components/generating-animation"
 
 export default function ResizeImage() {
   const [imageFile, setImageFile] = useState<File | null>(null)
@@ -21,83 +22,89 @@ export default function ResizeImage() {
   const [maintainAspect, setMaintainAspect] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file && file.type.startsWith('image/')) {
       setImageFile(file)
-      const url = URL.createObjectURL(file)
-      setPreview(url)
-      
-      const img = new Image()
-      img.src = url
-      img.onload = () => {
-        setOriginalWidth(img.width)
-        setOriginalHeight(img.height)
-        setWidth(img.width.toString())
-        setHeight(img.height.toString())
+      setPreview(URL.createObjectURL(file))
+
+      // Use createImageBitmap to get dimensions — no CSP issues
+      try {
+        const bitmap = await createImageBitmap(file)
+        setOriginalWidth(bitmap.width)
+        setOriginalHeight(bitmap.height)
+        setWidth(bitmap.width.toString())
+        setHeight(bitmap.height.toString())
+        bitmap.close()
+      } catch {
+        // fallback: dimensions will just be empty
       }
     }
   }
 
   const resizeImage = async () => {
-    if (!imageFile || !preview || !width || !height) return
+    if (!imageFile || !width || !height) return
 
     setIsProcessing(true)
 
     try {
-      const img = new Image()
-      img.src = preview
-      
-      await new Promise((resolve) => {
-        img.onload = resolve
-      })
+      // createImageBitmap reads directly from File — no blob URL, no CSP issues
+      const bitmap = await createImageBitmap(imageFile)
 
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
-      
-      if (!ctx) {
-        throw new Error('Could not get canvas context')
-      }
 
-      canvas.width = parseInt(width)
-      canvas.height = parseInt(height)
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+      if (!ctx) throw new Error('Could not get canvas context')
 
-      const dataUrl = canvas.toDataURL('image/png')
-      
-      const response = await fetch(dataUrl)
-      const blob = await response.blob()
-      const url = URL.createObjectURL(blob)
-      
-      const link = document.createElement('a')
-      link.href = url
-      link.download = `resized-${imageFile.name}`
-      link.click()
-      
-      URL.revokeObjectURL(url)
+      const newWidth = parseInt(width)
+      const newHeight = parseInt(height)
+
+      canvas.width = newWidth
+      canvas.height = newHeight
+
+      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = 'high'
+      ctx.drawImage(bitmap, 0, 0, newWidth, newHeight)
+      bitmap.close()
+
+      canvas.toBlob((resizedBlob) => {
+        if (!resizedBlob) {
+          alert('Error resizing image. Please try again.')
+          setIsProcessing(false)
+          return
+        }
+
+        const url = URL.createObjectURL(resizedBlob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = `resized-${imageFile.name.replace(/\.[^/.]+$/, "")}.png`
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+
+        setIsProcessing(false)
+      }, 'image/png')
     } catch (error) {
       console.error('Error resizing image:', error)
-      alert('Error resizing image. Please try again.')
+      alert('Error resizing image. Please try again with a different image.')
+      setIsProcessing(false)
     }
-
-    setIsProcessing(false)
   }
 
   const handleWidthChange = (value: string) => {
     setWidth(value)
-    if (maintainAspect && originalWidth && originalHeight) {
-      const aspectRatio = originalHeight / originalWidth
-      const newHeight = Math.round(parseInt(value) * aspectRatio)
-      setHeight(newHeight.toString())
+    if (maintainAspect && originalWidth && originalHeight && value) {
+      const newHeight = Math.round(parseInt(value) * (originalHeight / originalWidth))
+      setHeight(isNaN(newHeight) ? "" : newHeight.toString())
     }
   }
 
   const handleHeightChange = (value: string) => {
     setHeight(value)
-    if (maintainAspect && originalWidth && originalHeight) {
-      const aspectRatio = originalWidth / originalHeight
-      const newWidth = Math.round(parseInt(value) * aspectRatio)
-      setWidth(newWidth.toString())
+    if (maintainAspect && originalWidth && originalHeight && value) {
+      const newWidth = Math.round(parseInt(value) * (originalWidth / originalHeight))
+      setWidth(isNaN(newWidth) ? "" : newWidth.toString())
     }
   }
 
@@ -113,7 +120,7 @@ export default function ResizeImage() {
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
           Advertisement
         </div>
-        
+
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Upload Area */}
           <div className="mb-6">
@@ -180,34 +187,35 @@ export default function ResizeImage() {
           )}
 
           {/* Resize Button */}
-          <button
-            onClick={resizeImage}
-            disabled={!imageFile || isProcessing}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
-          >
-            {isProcessing ? "Resizing..." : "Resize Image"}
-          </button>
+          {isProcessing ? (
+            <div className="py-12">
+              <GeneratingAnimation type="image_resize" />
+            </div>
+          ) : (
+            <button
+              onClick={resizeImage}
+              disabled={!imageFile}
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
+            >
+              Resize Image
+            </button>
+          )}
         </div>
 
         {/* Single bottom ad */}
         <div className="flex justify-center mt-8">
           <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
-          Advertisement
+            Advertisement
+          </div>
         </div>
-        </div>
+
         <ToolContent content={toolContent} toolName="Resize Images Online Free" toolPath="/tools/resize-image" />
         <RelatedTools currentToolPath="/tools/resize-image" currentCategory={toolContent.category} />
 
-        <Link
-          href="/"
-          className="mt-6 text-[#00E5FF] hover:underline inline-block"
-        >
+        <Link href="/" className="mt-6 text-[#00E5FF] hover:underline inline-block">
           ← Back to Home
         </Link>
       </div>
     </div>
   )
 }
-
-
-

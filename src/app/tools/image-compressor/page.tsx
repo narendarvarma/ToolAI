@@ -10,6 +10,7 @@ import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
 import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
+import GeneratingAnimation from "@/components/generating-animation"
 
 export default function ImageCompressor() {
   const toolContent = getToolContent("image-compressor")
@@ -26,52 +27,62 @@ export default function ImageCompressor() {
       setImageFile(file)
       setPreview(URL.createObjectURL(file))
       setOriginalSize(file.size)
+      setCompressedSize(0)
     }
   }
 
   const compressImage = async () => {
-    if (!imageFile || !preview) return
+    if (!imageFile) return
 
     setIsProcessing(true)
 
     try {
-      const img = new Image()
-      img.src = preview
-      
-      await new Promise((resolve) => {
-        img.onload = resolve
-      })
+      // createImageBitmap reads directly from File — no blob URL, no CSP issues
+      const bitmap = await createImageBitmap(imageFile)
 
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
-      
-      if (!ctx) {
-        throw new Error('Could not get canvas context')
-      }
 
-      canvas.width = img.width
-      canvas.height = img.height
-      ctx.drawImage(img, 0, 0)
+      if (!ctx) throw new Error('Could not get canvas context')
 
-      const dataUrl = canvas.toDataURL('image/jpeg', quality / 100)
-      
-      const response = await fetch(dataUrl)
-      const blob = await response.blob()
-      setCompressedSize(blob.size)
+      canvas.width = bitmap.width
+      canvas.height = bitmap.height
 
-      const url = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = `compressed-${imageFile.name}`
-      link.click()
-      
-      URL.revokeObjectURL(url)
+      // White background for JPEG transparency handling
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.drawImage(bitmap, 0, 0)
+      bitmap.close()
+
+      canvas.toBlob(
+        (compressedBlob) => {
+          if (!compressedBlob) {
+            alert('Error compressing image. Please try again.')
+            setIsProcessing(false)
+            return
+          }
+
+          setCompressedSize(compressedBlob.size)
+
+          const url = URL.createObjectURL(compressedBlob)
+          const link = document.createElement('a')
+          link.href = url
+          link.download = `compressed-${imageFile.name.replace(/\.[^/.]+$/, "")}.jpg`
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          URL.revokeObjectURL(url)
+
+          setIsProcessing(false)
+        },
+        'image/jpeg',
+        quality / 100
+      )
     } catch (error) {
       console.error('Error compressing image:', error)
-      alert('Error compressing image. Please try again.')
+      alert('Error compressing image. Please try again with a different image.')
+      setIsProcessing(false)
     }
-
-    setIsProcessing(false)
   }
 
   return (
@@ -84,7 +95,7 @@ export default function ImageCompressor() {
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
           Advertisement
         </div>
-        
+
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Upload Area */}
           <div className="mb-6">
@@ -145,39 +156,35 @@ export default function ImageCompressor() {
           )}
 
           {/* Compress Button */}
-          <button
-            onClick={compressImage}
-            disabled={!imageFile || isProcessing}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
-          >
-            {isProcessing ? "Compressing..." : "Compress Image"}
-          </button>
+          {isProcessing ? (
+            <div className="py-12">
+              <GeneratingAnimation type="image_compressor" />
+            </div>
+          ) : (
+            <button
+              onClick={compressImage}
+              disabled={!imageFile}
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg shadow-[#00E5FF]/20 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
+            >
+              Compress Image
+            </button>
+          )}
         </div>
 
         {/* Single bottom ad */}
         <div className="flex justify-center mt-8">
           <div className="ad-slot mt-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
-          Advertisement
-        </div>
+            Advertisement
+          </div>
         </div>
 
-        {/* Tool Content Section */}
         <ToolContent content={toolContent} toolName="Image Compressor" toolPath="/tools/image-compressor" />
-
-        {/* Related Tools */}
         <RelatedTools currentToolPath="/tools/image-compressor" currentCategory={toolContent.category} />
 
-        <Link
-          href="/"
-          className="mt-6 text-[#00E5FF] hover:underline inline-block"
-        >
+        <Link href="/" className="mt-6 text-[#00E5FF] hover:underline inline-block">
           ← Back to Home
         </Link>
       </div>
     </div>
   )
 }
-
-
-
-
