@@ -48,7 +48,7 @@ export default function DailyLimitPopup() {
           </span>
         </div>
         <p className="text-xs text-[#6b7080] mb-4">
-          Come back tomorrow to continue using ToolHub AI tools for free!
+          Come back tomorrow to continue using GetTool AI tools for free!
         </p>
         <button
           onClick={handleClose}

@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free GST calculator for Indian users. Calculate GST amount, final price with GST, and reverse GST calculation. Support for 5%, 12%, 18%, 28% GST rates.",
     type: "website",
     url: `${BASE_URL}/tools/gst-calculator`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "GST Calculator - ToolHub AI",
+        alt: "GST Calculator - GetTool AI",
       },
     ],
   },

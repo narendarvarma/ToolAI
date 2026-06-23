@@ -187,7 +187,7 @@ export default function PDFToImage() {
 
               {/* Share after result */}
               <div className="mt-4 p-4 bg-white/5 rounded-xl border border-white/10 text-center">
-                <p className="text-gray-300 text-sm mb-3">🎉 Found this useful? Share ToolHub AI!</p>
+                <p className="text-gray-300 text-sm mb-3">🎉 Found this useful? Share GetTool AI!</p>
                 <div className="flex gap-2 justify-center">
                   <a href={`https://wa.me/?text=Convert PDF to Image free at https://gettoolai.in/tools/pdf-to-image`} target="_blank" rel="noreferrer"
                     className="px-3 py-1.5 bg-green-600/20 text-green-400 rounded-lg text-sm hover:bg-green-600/30">

@@ -3,24 +3,24 @@ import { BASE_URL } from "@/lib/config"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Cookie Policy — ToolHub AI",
-  description: "Cookie Policy for ToolHub AI. Learn about the cookies we use, how we use them, and how to control your cookie preferences.",
-  keywords: "cookie policy, cookies, privacy, toolhub ai",
+  title: "Cookie Policy - GetTool AI | How We Use Cookies & Your Privacy",
+  description: "GetTool AI Cookie Policy - Learn about essential, analytics, and advertising cookies. Understand how we use Google Analytics and AdSense cookies. Opt-out options available.",
+  keywords: "cookie policy, cookies usage, Google Analytics cookies, AdSense cookies, cookie consent, privacy cookies, GetTool AI cookie policy",
   robots: "index, follow",
   alternates: {
     canonical: `${BASE_URL}/cookie-policy`,
   },
   openGraph: {
-    title: "Cookie Policy — ToolHub AI",
-    description: "Cookie Policy for ToolHub AI. Learn about the cookies we use and how to control them.",
+    title: "Cookie Policy — GetTool AI | Cookie Usage & Privacy",
+    description: "GetTool AI Cookie Policy. Learn about essential, analytics, and advertising cookies. Opt-out options available.",
     type: "website",
     url: `${BASE_URL}/cookie-policy`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cookie Policy — ToolHub AI",
-    description: "Cookie Policy for ToolHub AI. Learn about the cookies we use and how to control them.",
+    title: "Cookie Policy — GetTool AI | Cookie Usage",
+    description: "GetTool AI Cookie Policy. Learn about cookies we use and how to control your preferences.",
   },
 }
 
@@ -120,8 +120,15 @@ export default function CookiePolicy() {
           </section>
 
           <section className="pt-6 border-t border-white/10">
-            <p className="text-gray-400 text-sm">
-              Last Updated: May 29, 2025
+            <h2 className="text-2xl font-semibold text-white mb-4">Contact Information</h2>
+            <div className="space-y-2 text-gray-300">
+              <p><strong className="text-white">Email:</strong> servicestoolai@gmail.com</p>
+              <p><strong className="text-white">Website:</strong> https://gettoolai.in</p>
+              <p><strong className="text-white">Twitter:</strong> @Gettoolai</p>
+              <p><strong className="text-white">LinkedIn:</strong> https://linkedin.com/company/gettoolai</p>
+            </div>
+            <p className="text-gray-400 text-sm mt-4">
+              Last Updated: June 23, 2026
             </p>
           </section>
         </div>

@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free image to base64 converter tool. Upload any image, instantly convert to base64 string. Copy base64, see image preview, check file size. Perfect for developers and students.",
     type: "website",
     url: `${BASE_URL}/tools/image-to-base64`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Image to Base64 Converter - ToolHub AI",
+        alt: "Image to Base64 Converter - GetTool AI",
       },
     ],
   },

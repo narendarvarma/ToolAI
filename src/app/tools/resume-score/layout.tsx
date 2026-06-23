@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free resume score checker for students and freshers. Analyze your resume for key sections, get score out of 100, see what's missing, and get improvement tips.",
     type: "website",
     url: `${BASE_URL}/tools/resume-score`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Resume Score Checker - ToolHub AI",
+        alt: "Resume Score Checker - GetTool AI",
       },
     ],
   },

@@ -3,22 +3,22 @@ import { BASE_URL } from "@/lib/config"
 import ContactForm from "@/components/contact-form"
 
 export const metadata: Metadata = {
-  title: "Contact ToolHub AI - Support, Feedback & Tool Suggestions",
-  description: "Get in touch with ToolHub AI for feedback, support, or tool suggestions. We're here to help.",
-  keywords: "contact, support, feedback, tool suggestions, ToolHub AI",
+  title: "Contact GetTool AI - Support, Feedback & Tool Requests | Get Help",
+  description: "Contact GetTool AI for support, feedback, bug reports, or new tool requests. Get help with PDF tools, AI tools, calculators, and more. Response within 24 hours.",
+  keywords: "contact GetTool AI, support, feedback, tool requests, bug report, help, customer service, online tools support",
   robots: "index, follow",
   alternates: { canonical: `${BASE_URL}/contact` },
   openGraph: {
-    title: "Contact — ToolHub AI",
-    description: "Get in touch with ToolHub AI for feedback, support, or tool suggestions. We're here to help.",
+    title: "Contact GetTool AI - Get Support & Share Feedback",
+    description: "Need help? Contact GetTool AI for support, feedback, or tool suggestions. We respond within 24 hours.",
     type: "website",
     url: `${BASE_URL}/contact`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact — ToolHub AI",
-    description: "Get in touch with ToolHub AI for feedback, support, or tool suggestions. We're here to help.",
+    title: "Contact GetTool AI - Support & Feedback",
+    description: "Get help with our free online tools. Contact us for support, feedback, or tool requests.",
   },
 }
 

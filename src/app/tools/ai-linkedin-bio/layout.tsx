@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free AI LinkedIn bio generator. Enter your name, role, skills, and experience. AI generates a professional LinkedIn About section.",
     type: "website",
     url: `${BASE_URL}/tools/ai-linkedin-bio`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "AI LinkedIn Bio Generator - ToolHub AI",
+        alt: "AI LinkedIn Bio Generator - GetTool AI",
       },
     ],
   },

@@ -5,6 +5,7 @@ import { Download, Wand2 } from "lucide-react"
 import Link from "next/link"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
+import AIToolDisclaimer from "@/components/ai-tool-disclaimer"
 import { getToolContent } from "@/lib/tool-content"
 import { tokenManager } from "@/lib/token-manager"
 import { callAI } from "@/lib/ai"
@@ -160,6 +161,8 @@ Return this exact JSON structure:
         <h1 className="text-3xl font-bold mb-3 text-center text-white">AI Resume Builder</h1>
         <p className="text-gray-400 text-base text-center mb-8">Build professional resumes with AI</p>
         <DailyUsageBar used={used} limit={limit} remaining={remaining} loaded={true} />
+        
+        <AIToolDisclaimer />
 
         {/* Ad below tool title */}
         <div

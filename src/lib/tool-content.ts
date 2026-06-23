@@ -34,7 +34,11 @@ export const toolContent: Record<string, ToolContent> = {
       { question: "How do I calculate percentage increase or decrease?", answer: "Enter the old value and new value. The calculator will show the percentage change. For example, if a price increased from 100 to 150, you'll see a 50% increase." },
       { question: "Can I use this for calculating discounts?", answer: "Yes! Use the reverse percentage calculator. If an item costs $100 and has a 20% discount, enter 20% and 100 to find the discount amount is $20." },
       { question: "Is this calculator accurate for financial calculations?", answer: "Yes, our calculator provides results with two decimal places for precision. However, for complex financial decisions, always verify with a professional." },
-      { question: "Does this work on mobile devices?", answer: "Absolutely! The percentage calculator is fully responsive and works perfectly on smartphones, tablets, and desktop computers." }
+      { question: "Does this work on mobile devices?", answer: "Absolutely! The percentage calculator is fully responsive and works perfectly on smartphones, tablets, and desktop computers." },
+      { question: "Is this tool free to use?", answer: "Yes, the Percentage Calculator is completely free to use with no registration required. You can use it as many times as you need." },
+      { question: "Do I need to create an account?", answer: "No account creation is required. Simply visit the page and start calculating percentages instantly." },
+      { question: "What file formats are supported?", answer: "This is a calculation tool, so no file uploads are needed. All calculations are performed in your browser." },
+      { question: "Is my data secure?", answer: "Yes, all calculations happen in your browser. We don't store or transmit any data you enter." }
     ],
     category: "Student Tools",
     relatedTools: ["gpa-to-percentage", "cgpa-calculator", "age-calculator", "bmi-calculator"]
@@ -65,7 +69,10 @@ export const toolContent: Record<string, ToolContent> = {
       { question: "Which GST rates are supported?", answer: "We support common rates: 5%, 12%, 18%, 28% (used in India), and a custom rate option for other countries or special tax situations." },
       { question: "When should I use this calculator?", answer: "Use this when creating invoices for clients, verifying GST on bills from suppliers, pricing products with tax included, or understanding the tax component of your purchases." },
       { question: "Can I use this for international transactions?", answer: "Yes, you can use the custom rate option to calculate VAT or other sales taxes used in different countries by entering the applicable tax rate." },
-      { question: "Is this calculator accurate for official purposes?", answer: "This calculator provides accurate mathematical calculations. However, always verify with official tax authorities or a tax professional for compliance with local regulations." }
+      { question: "Is this calculator accurate for official purposes?", answer: "This calculator provides accurate mathematical calculations. However, always verify with official tax authorities or a tax professional for compliance with local regulations." },
+      { question: "Is this tool free to use?", answer: "Yes, the GST Calculator is completely free to use with no registration required. Calculate GST amounts anytime without any charges." },
+      { question: "Do I need to create an account?", answer: "No account creation is required. Simply visit the page and start calculating GST instantly." },
+      { question: "Is my data secure?", answer: "Yes, all calculations happen in your browser. We don't store or transmit any financial data you enter." }
     ],
     category: "Student Tools",
     relatedTools: ["vat-calculator", "sales-tax-calculator", "invoice-generator", "price-calculator"]
@@ -96,7 +103,10 @@ export const toolContent: Record<string, ToolContent> = {
       { question: "Does tenure affect EMI?", answer: "Yes, longer tenure means lower EMI but higher total interest. Shorter tenure means higher EMI but lower total interest paid over the loan period." },
       { question: "When should I use this calculator?", answer: "Use this before applying for any loan to understand affordability, when comparing loan offers from different banks, when planning to refinance an existing loan, or when considering prepayment options." },
       { question: "Is this calculator accurate?", answer: "Yes, this calculator uses the standard EMI formula used by banks. However, actual EMI may vary slightly due to processing fees, insurance, or other charges added by lenders." },
-      { question: "Can I use this for all types of loans?", answer: "Yes, this works for home loans, car loans, personal loans, education loans, and any other fixed-rate installment loans with monthly payments." }
+      { question: "Can I use this for all types of loans?", answer: "Yes, this works for home loans, car loans, personal loans, education loans, and any other fixed-rate installment loans with monthly payments." },
+      { question: "Is this tool free to use?", answer: "Yes, the EMI Calculator is completely free to use with no registration required. Calculate your loan payments anytime without any charges." },
+      { question: "Do I need to create an account?", answer: "No account creation is required. Simply visit the page and start calculating EMI instantly." },
+      { question: "Is my data secure?", answer: "Yes, all calculations happen in your browser. We don't store or transmit any financial data you enter." }
     ],
     category: "Student Tools",
     relatedTools: ["loan-eligibility", "interest-calculator", "sip-calculator", "investment-calculator"]

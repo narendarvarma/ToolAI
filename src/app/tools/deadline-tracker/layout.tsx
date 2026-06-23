@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free assignment deadline tracker for students. Add assignments with deadlines, priority levels, color-coded alerts. Save to localStorage. Sort by nearest deadline.",
     type: "website",
     url: `${BASE_URL}/tools/deadline-tracker`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Assignment Deadline Tracker - ToolHub AI",
+        alt: "Assignment Deadline Tracker - GetTool AI",
       },
     ],
   },

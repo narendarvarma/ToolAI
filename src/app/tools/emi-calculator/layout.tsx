@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free EMI calculator for Indian users. Calculate monthly EMI, total interest, and total payment for home loan, car loan, personal loan. Show amortization breakdown.",
     type: "website",
     url: `${BASE_URL}/tools/emi-calculator`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "EMI Calculator - ToolHub AI",
+        alt: "EMI Calculator - GetTool AI",
       },
     ],
   },

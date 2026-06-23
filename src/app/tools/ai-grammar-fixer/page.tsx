@@ -8,6 +8,7 @@ import SocialShare from "@/components/social-share"
 import ToolRating from "@/components/tool-rating"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
+import AIToolDisclaimer from "@/components/ai-tool-disclaimer"
 import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
@@ -94,6 +95,8 @@ export default function AiGrammarFixer() {
           remaining={remaining}
           loaded={true}
         />
+
+        <AIToolDisclaimer />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8">

@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free number to words converter. Convert numbers to words in Indian and international formats. Supports cheque writing.",
     type: "website",
     url: `${BASE_URL}/tools/number-to-words`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Number to Words Converter - ToolHub AI",
+        alt: "Number to Words Converter - GetTool AI",
       },
     ],
   },

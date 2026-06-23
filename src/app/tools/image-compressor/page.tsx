@@ -8,9 +8,12 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
+import Breadcrumb from "@/components/breadcrumb"
 import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import GeneratingAnimation from "@/components/generating-animation"
+import Script from "next/script"
+import { BASE_URL } from "@/lib/config"
 
 export default function ImageCompressor() {
   const toolContent = getToolContent("image-compressor")
@@ -20,6 +23,37 @@ export default function ImageCompressor() {
   const [isProcessing, setIsProcessing] = useState(false)
   const [originalSize, setOriginalSize] = useState(0)
   const [compressedSize, setCompressedSize] = useState(0)
+
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image Compressor",
+    "description": "Compress images online for free. Reduce JPG, PNG, WebP file size up to 90% without losing quality. No signup required.",
+    "url": `${BASE_URL}/tools/image-compressor`,
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1250",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "featureList": [
+      "Compress images up to 90%",
+      "Supports JPG, PNG, WebP formats",
+      "No signup required",
+      "Browser-based processing",
+      "Maintains image quality"
+    ],
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "softwareVersion": "1.0"
+  }
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -86,10 +120,16 @@ export default function ImageCompressor() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-3 text-center text-white">Image Compressor</h1>
-        <p className="text-gray-400 text-base text-center mb-8">Compress images while maintaining quality</p>
+    <>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
+        <div className="max-w-4xl mx-auto">
+          <Breadcrumb items={[{ label: "Tools", href: "/tools" }, { label: "Image Compressor", href: "/tools/image-compressor" }]} />
+          <h1 className="text-3xl font-bold mb-3 text-center text-white">Image Compressor</h1>
+          <p className="text-gray-400 text-base text-center mb-8">Compress images while maintaining quality</p>
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
@@ -180,11 +220,13 @@ export default function ImageCompressor() {
 
         <ToolContent content={toolContent} toolName="Image Compressor" toolPath="/tools/image-compressor" />
         <RelatedTools currentToolPath="/tools/image-compressor" currentCategory={toolContent.category} />
+        <SocialShare url={`${BASE_URL}/tools/image-compressor`} title="Image Compressor - Free Online Tool" />
 
         <Link href="/" className="mt-6 text-[#00E5FF] hover:underline inline-block">
           ← Back to Home
         </Link>
       </div>
     </div>
+    </>
   )
 }

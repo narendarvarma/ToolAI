@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free PDF to text extractor tool. Upload PDF, extract all text content instantly. Copy text or download as TXT file. Perfect for students copying notes from PDF.",
     type: "website",
     url: `${BASE_URL}/tools/pdf-to-text`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "PDF to Text - ToolHub AI",
+        alt: "PDF to Text - GetTool AI",
       },
     ],
   },

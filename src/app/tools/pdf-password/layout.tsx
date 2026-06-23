@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free PDF watermark protector tool. Upload PDF, add a visual 'PROTECTED DOCUMENT' watermark using pdf-lib. Download watermarked PDF instantly.",
     type: "website",
     url: `${BASE_URL}/tools/pdf-password`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "PDF Watermark Protector - ToolHub AI",
+        alt: "PDF Watermark Protector - GetTool AI",
       },
     ],
   },

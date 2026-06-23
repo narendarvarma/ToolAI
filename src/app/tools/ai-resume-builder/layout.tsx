@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description: getToolMetadata("ai-resume-builder").description,
     type: "website",
     url: "https://gettoolai.in/tools/ai-resume-builder",
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: "https://gettoolai.in/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ToolHub AI - AI Resume Builder",
+        alt: "GetTool AI - AI Resume Builder",
       },
     ],
   },

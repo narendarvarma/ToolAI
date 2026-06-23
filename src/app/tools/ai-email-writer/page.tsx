@@ -8,6 +8,7 @@ import HowToUse from "@/components/how-to-use"
 import SocialShare from "@/components/social-share"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
+import AIToolDisclaimer from "@/components/ai-tool-disclaimer"
 import { getToolContent } from "@/lib/tool-content"
 import { useRecentTools } from "@/hooks/use-recent-tools"
 import { tokenManager } from "@/lib/token-manager"
@@ -71,6 +72,8 @@ export default function AIEmailWriter() {
           remaining={remaining}
           loaded={true}
         />
+
+        <AIToolDisclaimer />
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>

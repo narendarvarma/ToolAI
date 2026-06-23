@@ -3,24 +3,24 @@ import { BASE_URL } from "@/lib/config"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Disclaimer — ToolHub AI",
-  description: "Disclaimer for ToolHub AI. Tools are provided as is without warranty. Read our disclaimer for details about calculator accuracy, data processing, and professional advice.",
-  keywords: "disclaimer, legal, terms, toolhub ai",
+  title: "Disclaimer - GetTool AI | Tool Accuracy, Data Processing & Legal Disclaimer",
+  description: "GetTool AI Disclaimer - Tools provided as is without warranty. Learn about calculator accuracy, data processing, professional advice disclaimer, and AdSense advertising disclaimer.",
+  keywords: "disclaimer, legal disclaimer, calculator accuracy, data processing disclaimer, professional advice disclaimer, AdSense disclaimer, GetTool AI disclaimer",
   robots: "index, follow",
   alternates: {
     canonical: `${BASE_URL}/disclaimer`,
   },
   openGraph: {
-    title: "Disclaimer — ToolHub AI",
-    description: "Disclaimer for ToolHub AI. Tools provided as is without warranty.",
+    title: "Disclaimer — GetTool AI | Legal & Accuracy Disclaimer",
+    description: "GetTool AI Disclaimer. Tools provided as is without warranty. Calculator accuracy and data processing disclaimers.",
     type: "website",
     url: `${BASE_URL}/disclaimer`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Disclaimer — ToolHub AI",
-    description: "Disclaimer for ToolHub AI. Tools provided as is without warranty.",
+    title: "Disclaimer — GetTool AI | Legal Disclaimer",
+    description: "GetTool AI Disclaimer. Tools provided as is without warranty. Calculator accuracy and AdSense disclaimers.",
   },
 }
 
@@ -34,7 +34,7 @@ export default function Disclaimer() {
           <section>
             <h2 className="text-2xl font-semibold text-white mb-4">General Disclaimer</h2>
             <p className="text-gray-300 leading-relaxed">
-              All tools provided on ToolHub AI are offered "as is" without any warranties, express or implied. We make no representations or warranties of any kind regarding the accuracy, reliability, or completeness of any tool or information provided on this website.
+              All tools provided on GetTool AI are offered "as is" without any warranties, express or implied. We make no representations or warranties of any kind regarding the accuracy, reliability, or completeness of any tool or information provided on this website.
             </p>
           </section>
 
@@ -62,14 +62,7 @@ export default function Disclaimer() {
           <section>
             <h2 className="text-2xl font-semibold text-white mb-4">Professional Advice Disclaimer</h2>
             <p className="text-gray-300 leading-relaxed">
-              The calculators and tools provided on ToolHub AI are not substitutes for professional financial, medical, legal, or other professional advice. Our calculators (including EMI, loan eligibility, BMI, calorie, and similar tools) are for informational purposes only and should not be used as the sole basis for making important decisions. Always consult with qualified professionals for financial, medical, legal, or other professional advice.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">Limitation of Liability</h2>
-            <p className="text-gray-300 leading-relaxed">
-              In no event shall ToolHub AI or its owners, employees, or affiliates be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of our tools or website. This includes, but is not limited to, damages for loss of profits, data, goodwill, or other intangible losses.
+              The calculators and tools provided on GetTool AI are not substitutes for professional financial, medical, legal, or other professional advice. Our calculators (including EMI, loan eligibility, BMI, calorie, and similar tools) are for informational purposes only and should not be used as the sole basis for making important decisions. Always consult with qualified professionals for financial, medical, legal, or other professional advice.
             </p>
           </section>
 
@@ -81,6 +74,23 @@ export default function Disclaimer() {
           </section>
 
           <section>
+            <h2 className="text-2xl font-semibold text-white mb-4">Advertising Disclaimer</h2>
+            <p className="text-gray-300 leading-relaxed">
+              GetTool AI uses Google AdSense to display advertisements on our website. We do not endorse the products, services, or websites advertised through Google AdSense. The content of advertisements is not under our control, and we are not responsible for any claims made in third-party advertisements. Users interact with advertisements at their own risk.
+            </p>
+            <p className="text-gray-300 leading-relaxed mt-2">
+              Google AdSense uses cookies to serve ads based on your prior visits to this website or other websites. You may opt out of personalized advertising by visiting Google's Ads Settings.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white mb-4">Limitation of Liability</h2>
+            <p className="text-gray-300 leading-relaxed">
+              In no event shall GetTool AI or its owners, employees, or affiliates be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of our tools or website. This includes, but is not limited to, damages for loss of profits, data, goodwill, or other intangible losses.
+            </p>
+          </section>
+
+          <section>
             <h2 className="text-2xl font-semibold text-white mb-4">Changes to This Disclaimer</h2>
             <p className="text-gray-300 leading-relaxed">
               We reserve the right to modify this disclaimer at any time. Changes will be posted on this page with an updated revision date. Your continued use of our tools after any changes constitutes acceptance of the updated disclaimer.
@@ -88,8 +98,15 @@ export default function Disclaimer() {
           </section>
 
           <section className="pt-6 border-t border-white/10">
-            <p className="text-gray-400 text-sm">
-              Last Updated: May 29, 2025
+            <h2 className="text-2xl font-semibold text-white mb-4">Contact Information</h2>
+            <div className="space-y-2 text-gray-300">
+              <p><strong className="text-white">Email:</strong> servicestoolai@gmail.com</p>
+              <p><strong className="text-white">Website:</strong> https://gettoolai.in</p>
+              <p><strong className="text-white">Twitter:</strong> @Gettoolai</p>
+              <p><strong className="text-white">LinkedIn:</strong> https://linkedin.com/company/gettoolai</p>
+            </div>
+            <p className="text-gray-400 text-sm mt-4">
+              Last Updated: June 23, 2026
             </p>
           </section>
         </div>

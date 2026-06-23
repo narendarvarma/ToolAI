@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free loan eligibility calculator. Calculate maximum loan amount using salary, EMIs, interest rate, and tenure for home, personal, or education loans.",
     type: "website",
     url: `${BASE_URL}/tools/loan-eligibility`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Loan Eligibility Calculator - ToolHub AI",
+        alt: "Loan Eligibility Calculator - GetTool AI",
       },
     ],
   },

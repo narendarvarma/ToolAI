@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     description: toolMeta.description,
     type: "website",
     url: toolMeta.ogUrl,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: "https://gettoolai.in/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ToolHub AI - CGPA Calculator",
+        alt: "GetTool AI - CGPA Calculator",
       },
     ],
   },

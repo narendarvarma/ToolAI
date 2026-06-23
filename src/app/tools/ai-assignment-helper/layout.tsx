@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free AI assignment helper for students. Enter subject and question, get structured answer with introduction, main points, and conclusion. Word count selector. Most needed tool for Indian students.",
     type: "website",
     url: `${BASE_URL}/tools/ai-assignment-helper`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "AI Assignment Helper - ToolHub AI",
+        alt: "AI Assignment Helper - GetTool AI",
       },
     ],
   },

@@ -51,7 +51,7 @@ export async function callWithFallback(
       console.log("Trying model:", model);
       console.log(
         "Key exists:",
-        !!process.env.NEXT_PUBLIC_OPENROUTER_API_KEY
+        !!process.env.OPENROUTER_API_KEY
       );
       console.log("=================================");
 
@@ -61,9 +61,9 @@ export async function callWithFallback(
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
+            Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
             "HTTP-Referer": "https://gettoolai.in",
-            "X-Title": "ToolHub AI",
+            "X-Title": "GetTool AI",
           },
           body: JSON.stringify({
             model,

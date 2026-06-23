@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     description: getToolMetadata("doc-to-pdf").description,
     type: "website",
     url: `${BASE_URL}/tools/doc-to-pdf`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Doc to PDF - ToolHub AI",
+        alt: "Doc to PDF - GetTool AI",
       },
     ],
   },

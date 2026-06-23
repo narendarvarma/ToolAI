@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free discount calculator. Calculate discount amount, final price after discount, and reverse discount calculation. Perfect for shopping, sales, and offers.",
     type: "website",
     url: `${BASE_URL}/tools/discount-calculator`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Discount Calculator - ToolHub AI",
+        alt: "Discount Calculator - GetTool AI",
       },
     ],
   },

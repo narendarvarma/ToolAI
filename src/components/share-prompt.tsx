@@ -28,13 +28,13 @@ export default function SharePrompt({ show, onClose, toolName }: SharePromptProp
   }
 
   const handleWhatsAppShare = () => {
-    const text = `🎉 Found this useful? Share ToolHub AI with your friends! ${window.location.href}`
+    const text = `🎉 Found this useful? Share GetTool AI with your friends! ${window.location.href}`
     const url = `https://wa.me/?text=${encodeURIComponent(text)}`
     window.open(url, '_blank')
   }
 
   const handleTwitterShare = () => {
-    const text = `🎉 Found this useful? Check out ${toolName} on ToolHub AI! ${window.location.href}`
+    const text = `🎉 Found this useful? Check out ${toolName} on GetTool AI! ${window.location.href}`
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`
     window.open(url, '_blank')
   }
@@ -45,7 +45,7 @@ export default function SharePrompt({ show, onClose, toolName }: SharePromptProp
     <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] shadow-lg z-50 p-4">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-white text-sm text-center md:text-left">
-          🎉 Found this useful? Share ToolHub AI with your friends!
+          🎉 Found this useful? Share GetTool AI with your friends!
         </p>
         <div className="flex gap-2">
           <button

@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Convert CGPA to percentage using Anna University, VTU, Mumbai University formulas. Instant CGPA to percentage conversion for Indian engineering students.",
     type: "website",
     url: `${BASE_URL}/tools/gpa-to-percentage`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "GPA to Percentage Converter - ToolHub AI",
+        alt: "GPA to Percentage Converter - GetTool AI",
       },
     ],
   },

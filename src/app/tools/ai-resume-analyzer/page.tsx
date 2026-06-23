@@ -7,6 +7,7 @@ import GeneratingAnimation from "@/components/generating-animation"
 import DailyUsageBar from "@/components/DailyUsageBar"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
+import AIToolDisclaimer from "@/components/ai-tool-disclaimer"
 import { getToolContent } from "@/lib/tool-content"
 import { tokenManager } from "@/lib/token-manager";
 export default function ResumeAnalyzerPage() {
@@ -193,6 +194,8 @@ export default function ResumeAnalyzerPage() {
 
         {/* Daily usage bar */}
         <DailyUsageBar used={used} limit={limit} remaining={remaining} loaded={true} />
+
+        <AIToolDisclaimer />
 
         {/* Upload area */}
         <div

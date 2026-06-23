@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free random name picker tool. Enter names separated by commas or newlines, click to pick random winner. Animation effect. Remove winner option for multiple picks. Great for teachers and group projects.",
     type: "website",
     url: `${BASE_URL}/tools/name-picker`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Random Name Picker - ToolHub AI",
+        alt: "Random Name Picker - GetTool AI",
       },
     ],
   },

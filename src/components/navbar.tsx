@@ -23,8 +23,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <img src="/logo.svg" alt="ToolHub AI Logo" className="w-8 h-8" />
-            <span className="text-white font-semibold text-xl">ToolHub AI</span>
+            <img src="/logo.svg" alt="GetTool AI Logo" className="w-8 h-8" />
+            <span className="text-white font-semibold text-xl">GetTool AI</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -57,9 +57,26 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/contact"
-                className="text-gray-300 hover:text-white transition-colors text-sm"
+                className="text-gray-300 hover:text-white transition-colors text-sm relative group"
               >
                 Contact
+                <Link
+                  href="/admin/feedback"
+                  className="absolute -right-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#00E5FF] opacity-30 hover:opacity-100 transition-opacity cursor-pointer"
+                  title="Admin"
+                />
+              </Link>
+              <Link
+                href="/faq"
+                className="text-gray-300 hover:text-white transition-colors text-sm"
+              >
+                FAQ
+              </Link>
+              <Link
+                href="/feedback"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold text-sm hover:scale-[1.02] transition-transform"
+              >
+                Feedback
               </Link>
             </div>
           </div>
@@ -104,9 +121,26 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/contact"
-                className="block text-gray-300 hover:text-white transition-colors py-2"
+                className="block text-gray-300 hover:text-white transition-colors py-2 relative group"
               >
                 Contact
+                <Link
+                  href="/admin/feedback"
+                  className="absolute -right-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#00E5FF] opacity-30 hover:opacity-100 transition-opacity cursor-pointer"
+                  title="Admin"
+                />
+              </Link>
+              <Link
+                href="/faq"
+                className="block text-gray-300 hover:text-white transition-colors py-2"
+              >
+                FAQ
+              </Link>
+              <Link
+                href="/feedback"
+                className="block px-4 py-2 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] text-white font-semibold text-sm text-center hover:scale-[1.02] transition-transform"
+              >
+                Feedback
               </Link>
             </div>
           </div>

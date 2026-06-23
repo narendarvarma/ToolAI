@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free typing speed test tool. Type the given paragraph and measure your WPM (words per minute), accuracy percentage, and errors. Perfect for improving typing skills.",
     type: "website",
     url: `${BASE_URL}/tools/typing-speed`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Typing Speed Test - ToolHub AI",
+        alt: "Typing Speed Test - GetTool AI",
       },
     ],
   },

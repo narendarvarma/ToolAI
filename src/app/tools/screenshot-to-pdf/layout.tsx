@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free screenshot to PDF converter tool. Upload multiple images (PNG/JPG), arrange order, convert to PDF with each image as a page. Download final PDF. Perfect for students submitting assignments.",
     type: "website",
     url: `${BASE_URL}/tools/screenshot-to-pdf`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Screenshot to PDF - ToolHub AI",
+        alt: "Screenshot to PDF - GetTool AI",
       },
     ],
   },

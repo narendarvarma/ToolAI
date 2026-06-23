@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { Search, ArrowRight, Sparkles, Clock, Heart, Star, MessageCircle } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
+import AdSenseDisclosure from "@/components/adsense-disclosure"
 import { motion } from "framer-motion"
 import {
   Calculator, Calendar, FileText, Image as ImageIcon, Mic, Lock, Share2,
@@ -21,9 +22,9 @@ import { useToolRatings } from "@/hooks/use-tool-ratings"
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "ToolHub AI",
+  "name": "GetTool AI",
   "url": BASE_URL,
-  "description": "120+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities. Fast, secure, and no signup required.",
+  "description": "75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities. Fast, secure, and no signup required.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": `${BASE_URL}/?q={search_term_string}`,
@@ -217,7 +218,9 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="py-14 px-4"
       >
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto">
+          <AdSenseDisclosure />
+          <div className="text-center">
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -267,6 +270,7 @@ export default function Home() {
             ))}
           </motion.div>
         </div>
+      </div>
       </motion.section>
 
       {/* Search Bar between hero and ad slot */}
@@ -618,7 +622,7 @@ export default function Home() {
       <section className="py-14 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-4">Why Millions Choose ToolHub AI</h2>
+            <h2 className="text-3xl font-semibold text-white mb-4">Why Users Choose GetTool AI</h2>
             <p className="text-gray-400">Built for speed, privacy, and simplicity</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -746,7 +750,7 @@ export default function Home() {
           <div className="space-y-4">
             <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
               <h3 className="text-lg font-semibold text-white mb-2">Are all tools completely free?</h3>
-              <p className="text-gray-400">Yes, every tool on ToolHub AI is 100% free with no hidden charges, no signup, and no usage limits.</p>
+              <p className="text-gray-400">Yes, every tool on GetTool AI is 100% free with no hidden charges, no signup, and no usage limits.</p>
             </div>
             <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
               <h3 className="text-lg font-semibold text-white mb-2">Is my data safe when I use PDF or image tools?</h3>
@@ -761,7 +765,7 @@ export default function Home() {
               <p className="text-gray-400">No account needed. All 75+ tools work instantly — just open and use.</p>
             </div>
             <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
-              <h3 className="text-lg font-semibold text-white mb-2">Can I use ToolHub AI on my phone?</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Can I use GetTool AI on my phone?</h3>
               <p className="text-gray-400">Yes, all tools are fully mobile-responsive and work on any device.</p>
             </div>
           </div>

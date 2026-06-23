@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description: getToolMetadata("password-generator").description,
     type: "website",
     url: "https://gettoolai.in/tools/password-generator",
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: "https://gettoolai.in/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ToolHub AI - Password Generator",
+        alt: "GetTool AI - Password Generator",
       },
     ],
   },

@@ -98,7 +98,7 @@ const PROVIDERS: Provider[] = [
     endpoint: "https://openrouter.ai/api/v1/chat/completions",
     extraHeaders: {
       "HTTP-Referer": process.env.SITE_URL || "https://gettoolai.in",
-      "X-Title": "ToolHub AI",
+      "X-Title": "GetTool AI",
     },
     formatBody: (model, messages, system) => openAIBody(model, messages, system),
     formatResponse: (data) => data.choices?.[0]?.message?.content || "",

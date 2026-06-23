@@ -2,30 +2,42 @@ import Link from "next/link"
 import { ArrowRight, Calendar, Clock } from "lucide-react"
 import { BASE_URL } from "@/lib/config"
 import type { Metadata } from "next"
+import { getAllBlogPosts } from "@/lib/blog-generator"
+import { toolMetadata } from "@/lib/tool-metadata"
+import AdSenseDisclosure from "@/components/adsense-disclosure"
 
 export const metadata: Metadata = {
-  title: "Blog — ToolHub AI",
-  description: "Read the latest tutorials, productivity tips, and tool guides from ToolHub AI. Stay updated on free online tools for students, creators, and professionals.",
-  keywords: "ToolHub AI blog, online tools tips, productivity guides, AI tools, student tools",
+  title: "GetTool AI Blog - Guides, Tips & Tutorials for Online Tools",
+  description: "Read the GetTool AI blog for guides, tips, and tutorials on PDF tools, image editing, AI tools, student calculators, and productivity. Learn how to use our free online tools effectively.",
+  keywords: "GetTool AI blog, online tools guides, PDF tutorials, image editing tips, AI tools guide, student tools tips, productivity tutorials",
   robots: "index, follow",
   alternates: {
     canonical: `${BASE_URL}/blog`,
   },
   openGraph: {
-    title: "Blog — ToolHub AI",
-    description: "Read the latest tutorials, productivity tips, and tool guides from ToolHub AI.",
+    title: "GetTool AI Blog - Guides & Tutorials for Free Online Tools",
+    description: "Learn how to use PDF tools, image editors, AI tools, and more with our comprehensive guides and tutorials.",
     type: "website",
     url: `${BASE_URL}/blog`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
+    images: [
+      {
+        url: `${BASE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "GetTool AI Blog"
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog — ToolHub AI",
-    description: "Read the latest tutorials, productivity tips, and tool guides from ToolHub AI.",
+    title: "GetTool AI Blog - Guides & Tutorials",
+    description: "Learn how to use free online tools with our guides and tutorials.",
+    images: [`${BASE_URL}/og-image.png`],
   }
 }
 
-const articles = [
+const staticArticles = [
   {
     id: "top-10-free-pdf-tools-2025",
     title: "Top 10 Free PDF Tools You Need in 2025",
@@ -100,15 +112,62 @@ const articles = [
   }
 ]
 
+// Get tool-specific blog posts and select some popular ones
+const allToolBlogs = getAllBlogPosts()
+const selectedToolSlugs = [
+  "image-compressor",
+  "resize-image",
+  "ai-resume-builder",
+  "password-generator",
+  "qr-generator",
+  "cgpa-calculator",
+  "merge-pdf",
+  "split-pdf",
+  "ai-email-writer",
+  "unit-converter",
+  "background-remover",
+  "pomodoro-timer",
+  "todo-list",
+  "expense-tracker",
+  "text-to-speech",
+  "json-formatter",
+  "color-picker",
+  "case-converter",
+  "base64-encoder",
+  "uuid-generator"
+]
+
+const toolArticles = selectedToolSlugs
+  .map(slug => {
+    const tool = toolMetadata[slug]
+    const blog = allToolBlogs.find(b => b.toolSlug === slug)
+    if (!tool || !blog) return null
+    
+    return {
+      id: blog.slug,
+      title: blog.title,
+      description: tool.description,
+      date: blog.date,
+      readTime: blog.readTime,
+      category: blog.category,
+      slug: blog.slug
+    }
+  })
+  .filter((article): article is NonNullable<typeof article> => article !== null)
+
+// Combine static and tool articles
+const allArticles = [...staticArticles, ...toolArticles].slice(0, 20)
+
 export default function Blog() {
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-14 px-4">
       <div className="max-w-7xl mx-auto">
+        <AdSenseDisclosure />
         <h1 className="text-4xl font-bold mb-4 text-white">Blog</h1>
         <p className="text-gray-400 mb-12">Tips, guides, and insights about online tools and productivity</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article) => (
+          {allArticles.map((article) => (
             <Link
               key={article.id}
               href={`/blog/${article.slug}`}

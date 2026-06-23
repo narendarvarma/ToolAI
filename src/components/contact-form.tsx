@@ -36,7 +36,7 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">Location</h3>
-                  <p className="text-gray-400 text-sm">San Francisco, CA</p>
+                  <p className="text-gray-400 text-sm">India</p>
                 </div>
               </div>
             </div>
@@ -47,8 +47,8 @@ export default function ContactForm() {
                   <Phone className="h-6 w-6 text-[#00E5FF]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">Response Time</h3>
-                  <p className="text-gray-400 text-sm">Within 24 hours</p>
+                  <h3 className="font-semibold text-white">Business Type</h3>
+                  <p className="text-gray-400 text-sm">Online Services</p>
                 </div>
               </div>
             </div>
@@ -155,11 +155,11 @@ export default function ContactForm() {
         </div>
                     <div className="mt-12 bg-[#111827] rounded-2xl p-6 border border-white/8">
             <h2 className="text-2xl font-semibold mb-4 text-white">
-              Contact ToolHub AI
+              Contact GetTool AI
             </h2>
 
             <p className="text-gray-400 mb-4">
-              ToolHub AI provides free online tools for PDF editing, AI productivity,
+              GetTool AI provides free online tools for PDF editing, AI productivity,
               student utilities, resume building, image processing, and everyday tasks.
               We are committed to making useful digital tools accessible to everyone
               without requiring registration or subscriptions.
@@ -184,8 +184,10 @@ export default function ContactForm() {
           <h2 className="text-2xl font-semibold mb-6 text-white">Frequently Asked Questions</h2>
           <div className="space-y-4">
             <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
-              <h3 className="font-semibold text-white mb-2">How quickly will you respond to my message?</h3>
-              <p className="text-gray-400 text-sm">We typically respond within 24 hours on business days.</p>
+              <h3 className="font-semibold text-white mb-2">Additional Contact Info</h3>
+              <p className="text-gray-400 text-sm mb-2"><strong>Twitter:</strong> @Gettoolai</p>
+              <p className="text-gray-400 text-sm mb-2"><strong>LinkedIn:</strong> linkedin.com/company/gettoolai</p>
+              <p className="text-gray-400 text-sm"><strong>Website:</strong> https://gettoolai.in</p>
             </div>
             <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
               <h3 className="font-semibold text-white mb-2">Can I request a new tool?</h3>
@@ -193,7 +195,7 @@ export default function ContactForm() {
             </div>
             <div className="bg-[#111827] rounded-2xl p-6 border border-white/8">
               <h3 className="font-semibold text-white mb-2">Are all tools really free?</h3>
-              <p className="text-gray-400 text-sm">Yes, every tool on ToolHub AI is 100% free with no hidden charges.</p>
+              <p className="text-gray-400 text-sm">Yes, every tool on GetTool AI is 100% free with no hidden charges.</p>
             </div>
           </div>
         </div>

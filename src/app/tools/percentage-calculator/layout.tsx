@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free online percentage calculator for students. Calculate exam marks percentage, reverse percentage, percentage increase/decrease. Instant results for Indian students.",
     type: "website",
     url: `${BASE_URL}/tools/percentage-calculator`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Percentage Calculator - ToolHub AI",
+        alt: "Percentage Calculator - GetTool AI",
       },
     ],
   },

@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description: getToolMetadata("age-calculator").description,
     type: "website",
     url: "https://gettoolai.in/tools/age-calculator",
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: "https://gettoolai.in/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ToolHub AI - Age Calculator",
+        alt: "GetTool AI - Age Calculator",
       },
     ],
   },

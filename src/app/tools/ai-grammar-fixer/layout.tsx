@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     description: "Free AI grammar fixer tool. Paste English text and AI corrects grammar, spelling, and structure. Shows original vs corrected text instantly.",
     type: "website",
     url: `${BASE_URL}/tools/ai-grammar-fixer`,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "AI Grammar Fixer - ToolHub AI",
+        alt: "AI Grammar Fixer - GetTool AI",
       },
     ],
   },

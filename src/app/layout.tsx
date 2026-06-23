@@ -14,32 +14,32 @@ const DailyLimitPopup = dynamic(() => import("@/components/daily-limit-popup"), 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
-  title: "ToolHub AI - Free Online Tools for PDF, Images, AI & More",
-  description: "75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities. Fast, secure, and no signup required.",
-  keywords: "online tools, PDF tools, image tools, AI tools, student tools, productivity tools, free tools",
+  title: "GetTool AI - 75+ Free Online Tools | PDF, Image, AI, Student & Productivity Tools",
+  description: "Access 75+ free online tools at GetTool AI. Convert PDF to image, merge PDF, compress files, AI resume builder, CGPA calculator, image editor, and more. No signup required. Fast, secure, and works on all devices.",
+  keywords: "free online tools, PDF converter, merge PDF, compress PDF, image editor, AI resume builder, CGPA calculator, student tools, productivity tools, no signup, online utilities",
   robots: "index, follow",
   alternates: {
     canonical: BASE_URL,
   },
   openGraph: {
-    title: "ToolHub AI - Free Online Tools",
-    description: "75+ free online tools for PDF, images, AI, students, productivity, and utilities.",
+    title: "GetTool AI - 75+ Free Online Tools for Everyone",
+    description: "Free online tools for PDF editing, image processing, AI assistance, student calculators, and productivity. No signup required. Fast, secure, and works on all devices.",
     type: "website",
     url: BASE_URL,
-    siteName: "ToolHub AI",
+    siteName: "GetTool AI",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "ToolHub AI",
+        alt: "GetTool AI - Free Online Tools",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ToolHub AI - Free Online Tools",
-    description: "75+ free online tools for PDF, images, AI, students, productivity, and utilities.",
+    title: "GetTool AI - 75+ Free Online Tools",
+    description: "Free online tools for PDF, images, AI, students, and productivity. No signup required. Fast and secure.",
     images: [`${BASE_URL}/og-image.png`],
   },
 }

@@ -24,7 +24,8 @@ export function generateSoftwareApplicationSchema(
   url: string,
   applicationCategory: string,
   operatingSystem: string = "Web",
-  offers?: { price: string; priceCurrency: string }
+  offers?: { price: string; priceCurrency: string },
+  featureList?: string[]
 ) {
   return {
     name,
@@ -37,18 +38,16 @@ export function generateSoftwareApplicationSchema(
       price: "0",
       priceCurrency: "USD"
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      ratingCount: "1250"
-    },
-    featureList: [
+    featureList: featureList || [
       "Free to use",
       "No installation required",
       "Works on all devices",
       "Fast and accurate results",
       "Secure and private"
-    ]
+    ],
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
+    applicationSubCategory: "UtilitiesApplication"
   }
 }
 
@@ -78,12 +77,12 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
 
 export function generateWebSiteSchema(url: string) {
   return {
-    name: "ToolHub AI",
+    name: "GetTool AI",
     url,
-    description: "ToolHub AI provides 75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities.",
+    description: "GetTool AI provides 75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities.",
     publisher: {
       "@type": "Organization",
-      name: "ToolHub AI",
+      name: "GetTool AI",
       url,
       logo: `${url}/logo.png`
     },
@@ -97,19 +96,18 @@ export function generateWebSiteSchema(url: string) {
 
 export function generateOrganizationSchema() {
   return {
-    name: "ToolHub AI",
+    name: "GetTool AI",
     url: "https://gettoolai.in",
     logo: "https://gettoolai.in/logo.png",
-    description: "ToolHub AI provides 75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities.",
+    description: "GetTool AI provides 75+ free online tools for PDF editing, image processing, AI assistance, student tools, productivity, and utilities.",
     sameAs: [
-      "https://twitter.com/toolhubai",
-      "https://facebook.com/toolhubai",
-      "https://linkedin.com/company/toolhubai"
+      "https://twitter.com/Gettoolai",
+      "https://linkedin.com/company/gettoolai"
     ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: "support@gettoolai.in",
+      email: "servicestoolai@gmail.com",
       url: "https://gettoolai.in/contact"
     }
   }
