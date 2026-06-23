@@ -103,7 +103,6 @@ ${faq.answer}`).join('\n\n')}
 At GetTool AI, we provide:
 - Professional-grade tools completely free
 - Regular updates and improvements
-- Excellent customer support
 - Privacy-focused design
 - Cross-platform compatibility
 

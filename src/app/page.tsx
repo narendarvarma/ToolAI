@@ -614,12 +614,6 @@ export default function Home() {
                             dangerouslySetInnerHTML={{ __html: highlightText(tool.name, searchQuery) }}
                           />
                           <p className="text-sm text-gray-400">{tool.description}</p>
-                          {isClient && getAverageRating(tool.path) > 0 && (
-                            <div className="mt-2 flex items-center gap-1">
-                              <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                              <span className="text-sm text-gray-400">{getAverageRating(tool.path).toFixed(1)}</span>
-                            </div>
-                          )}
                           <div className="mt-4 flex items-center text-[#00E5FF] text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                             <span>Open Tool</span>
                             <ArrowRight className="h-4 w-4 ml-1" />
@@ -669,63 +663,6 @@ export default function Home() {
               <Smartphone className="h-8 w-8 text-[#00E5FF] mb-4" />
               <h3 className="text-lg font-semibold text-white mb-2">Works on Any Device</h3>
               <p className="text-gray-400 text-sm">Fully optimized for mobile, tablet, and desktop. Use your tools anywhere.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-14 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-4">What Our Users Say</h2>
-            <p className="text-gray-400">Trusted by thousands of users worldwide</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-yellow-400">★</span>
-                ))}
-              </div>
-              <p className="text-gray-300 mb-4">"The PDF tools are incredibly fast and easy to use. I use them daily for my work. No signup required is a huge plus!"</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] flex items-center justify-center text-white font-semibold">S</div>
-                <div>
-                  <p className="text-white font-medium">Sarah M.</p>
-                  <p className="text-gray-400 text-sm">Marketing Manager</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-yellow-400">★</span>
-                ))}
-              </div>
-              <p className="text-gray-300 mb-4">"As a student, the CGPA calculator and study tools have been a lifesaver. Everything is in one place and works perfectly."</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] flex items-center justify-center text-white font-semibold">R</div>
-                <div>
-                  <p className="text-white font-medium">Rahul K.</p>
-                  <p className="text-gray-400 text-sm">Engineering Student</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[#111827] rounded-2xl border border-white/8 p-6">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-yellow-400">★</span>
-                ))}
-              </div>
-              <p className="text-gray-300 mb-4">"Finally, a tool platform that respects privacy. All processing happens in-browser. Highly recommend for anyone concerned about data security."</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#7C4DFF] flex items-center justify-center text-white font-semibold">J</div>
-                <div>
-                  <p className="text-white font-medium">James L.</p>
-                  <p className="text-gray-400 text-sm">Software Developer</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
