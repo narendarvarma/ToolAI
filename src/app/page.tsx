@@ -216,10 +216,9 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="py-14 px-4"
+        className="py-12 px-4"
       >
         <div className="max-w-7xl mx-auto">
-          <AdSenseDisclosure />
           <div className="text-center">
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -247,7 +246,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto"
+            className="text-lg text-gray-400 mb-6 max-w-2xl mx-auto"
           >
             Professional online tools for PDF, images, AI, students, productivity, and utilities. Clean, fast, and free.
           </motion.p>
@@ -278,7 +277,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="max-w-3xl mx-auto px-4 mb-8"
+        className="max-w-3xl mx-auto px-4 mb-6"
       >
         <div className="relative">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -291,6 +290,31 @@ export default function Home() {
             className="w-full pl-12 pr-4 py-4 rounded-2xl bg-[#111827] border border-white/8 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00E5FF]/50 focus:border-[#00E5FF] transition-all"
           />
         </div>
+        
+        {/* Trust Signals */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.55 }}
+          className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          <div className="flex items-center gap-2 text-gray-300 text-sm">
+            <CheckCircle className="h-4 w-4 text-[#00E5FF]" />
+            <span>No Sign Up Required</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-300 text-sm">
+            <Shield className="h-4 w-4 text-[#00E5FF]" />
+            <span>Privacy Focused</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-300 text-sm">
+            <Zap className="h-4 w-4 text-[#00E5FF]" />
+            <span>Fast Processing</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-300 text-sm">
+            <Heart className="h-4 w-4 text-[#00E5FF]" />
+            <span>Free to Use</span>
+          </div>
+        </motion.div>
         {searchQuery && (
           <motion.div 
             initial={{ opacity: 0 }}
