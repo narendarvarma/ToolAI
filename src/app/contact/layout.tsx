@@ -4,7 +4,7 @@ import { BASE_URL } from "@/lib/config"
 export const metadata: Metadata = {
   title: "Contact Us — GetTool AI",
   description: "Contact GetTool AI for feedback, support, or new tool requests. Get in touch with our team for help with online PDF, AI, and productivity tools.",
-  keywords: "contact, support, toolhub ai, feedback, tool requests",
+  keywords: "contact, support, gettool ai, feedback, tool requests",
   robots: "index, follow",
   alternates: {
     canonical: `${BASE_URL}/contact`,

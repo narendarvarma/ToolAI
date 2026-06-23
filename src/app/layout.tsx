@@ -74,7 +74,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                const theme = localStorage.getItem('toolhub_theme');
+                const theme = localStorage.getItem('gettool_theme');
                 if (theme === 'light') {
                   document.documentElement.classList.remove('dark');
                 } else {

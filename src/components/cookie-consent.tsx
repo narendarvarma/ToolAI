@@ -22,7 +22,7 @@ export default function CookieConsent() {
   })
 
   useEffect(() => {
-    const hasConsented = localStorage.getItem("toolhub_cookie_consent")
+    const hasConsented = localStorage.getItem("gettool_cookie_consent")
     if (!hasConsented) {
       setTimeout(() => setShowConsent(true), 1500)
     } else {
@@ -38,18 +38,18 @@ export default function CookieConsent() {
 
   const handleAcceptAll = () => {
     const prefs = { essential: true, analytics: true, advertising: true }
-    localStorage.setItem("toolhub_cookie_consent", JSON.stringify(prefs))
+    localStorage.setItem("gettool_cookie_consent", JSON.stringify(prefs))
     setShowConsent(false)
   }
 
   const handleRejectNonEssential = () => {
     const prefs = { essential: true, analytics: false, advertising: false }
-    localStorage.setItem("toolhub_cookie_consent", JSON.stringify(prefs))
+    localStorage.setItem("gettool_cookie_consent", JSON.stringify(prefs))
     setShowConsent(false)
   }
 
   const handleSavePreferences = () => {
-    localStorage.setItem("toolhub_cookie_consent", JSON.stringify(preferences))
+    localStorage.setItem("gettool_cookie_consent", JSON.stringify(preferences))
     setShowConsent(false)
   }
 

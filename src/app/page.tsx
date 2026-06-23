@@ -157,7 +157,7 @@ export default function Home() {
   const toolOfTheDay = tools.find(tool => tool.path === "/tools/internship-finder") || tools[dayOfYear % tools.length]
 
   useEffect(() => {
-    const stored = localStorage.getItem("toolhub_recent")
+    const stored = localStorage.getItem("gettool_recent")
     if (stored) {
       const recentData = JSON.parse(stored)
       setRecentTools(recentData)
@@ -165,7 +165,7 @@ export default function Home() {
   }, [])
 
   const clearHistory = () => {
-    localStorage.removeItem("toolhub_recent")
+    localStorage.removeItem("gettool_recent")
     setRecentTools([])
   }
 

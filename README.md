@@ -1,8 +1,8 @@
-# 🚀 ToolHub AI
+# 🚀 GetTool AI
 
 <div align="center">
 
-![ToolHub AI](https://img.shields.io/badge/ToolHub-AI-00E5FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBvbHlnb24gcG9pbnRzPSIxMiA4IDggMTIgMTIgMTYgMTYgMTIiLz48L3N2Zz4=)
+![GetTool AI](https://img.shields.io/badge/GetTool-AI-00E5FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBvbHlnb24gcG9pbnRzPSIxMiA4IDggMTIgMTIgMTYgMTYgMTIiLz48L3N2Zz4=)
 ![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)
@@ -18,7 +18,7 @@
 
 ## ✨ Features
 
-ToolHub AI is a modern, full-stack "Everything Tools" website - a clean, fast, mobile-friendly platform containing useful daily tools for students, creators, office workers, and general users.
+GetTool AI is a modern, full-stack "Everything Tools" website - a clean, fast, mobile-friendly platform containing useful daily tools for students, creators, office workers, and general users.
 
 ### 🎯 Key Highlights
 
@@ -130,7 +130,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-toolhub-ai/
+gettool-ai/
 ├── src/
 │   ├── app/
 │   │   ├── globals.css
@@ -258,7 +258,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Narendar Varma**
 
 - GitHub: [@narendarvarma](https://github.com/narendarvarma)
-- Project: [ToolHub AI](https://github.com/narendarvarma/ToolAI)
+- Project: [GetTool AI](https://github.com/narendarvarma/ToolAI)
 
 ---
 

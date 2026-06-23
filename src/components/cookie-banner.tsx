@@ -8,14 +8,14 @@ export default function CookieBanner() {
 
   useEffect(() => {
     // Check if user has already consented
-    const hasConsented = localStorage.getItem("toolhub_cookie_consent")
+    const hasConsented = localStorage.getItem("gettool_cookie_consent")
     if (!hasConsented) {
       setIsVisible(true)
     }
   }, [])
 
   const handleAcceptAll = () => {
-    localStorage.setItem("toolhub_cookie_consent", "true")
+    localStorage.setItem("gettool_cookie_consent", "true")
     setIsVisible(false)
   }
 

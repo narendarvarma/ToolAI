@@ -2,9 +2,9 @@
 // Tracks daily request usage per user using localStorage
 
 const DAILY_REQUEST_LIMIT = 5; // 5 free requests per day
-const STORAGE_KEY = 'toolhub_usage';
-const LAST_RESET_KEY = 'toolhub_last_reset';
-const DEVICE_ID_KEY = 'toolhub_device_id';
+const STORAGE_KEY = 'gettool_usage';
+const LAST_RESET_KEY = 'gettool_last_reset';
+const DEVICE_ID_KEY = 'gettool_device_id';
 
 interface TokenUsage {
   date: string;
@@ -61,7 +61,7 @@ export class TokenManager {
   private cleanOldUsageKeys(): void {
     if (typeof window === 'undefined') return;
     Object.keys(localStorage).forEach((key) => {
-      if (key.startsWith('toolhub_usage_') && key !== STORAGE_KEY) {
+      if (key.startsWith('gettool_usage_') && key !== STORAGE_KEY) {
         localStorage.removeItem(key);
       }
     });
