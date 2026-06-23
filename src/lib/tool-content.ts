@@ -111,6 +111,36 @@ export const toolContent: Record<string, ToolContent> = {
     category: "Student Tools",
     relatedTools: ["loan-eligibility", "interest-calculator", "sip-calculator", "investment-calculator"]
   },
+  "img-to-pdf": {
+    whatIs: "The Image to PDF Converter is a powerful online tool that allows you to convert various image formats to PDF instantly. This tool supports JPG, JPEG, PNG, WEBP, GIF, BMP, and TIFF images, converting them directly into PDF pages. Using Sharp for high-quality image processing, the tool provides fast, secure conversion with preserved image quality. Perfect for creating PDFs from photos, screenshots, scanned documents, or any image files you need to share or print in PDF format.",
+    howToUse: [
+      "Drag and drop images into the dropzone or click to browse",
+      "Upload multiple images at once for batch conversion",
+      "View file list with name, size, and status indicators",
+      "Click 'Convert to PDF' to start the conversion process",
+      "Monitor progress with real-time status updates",
+      "Download converted PDFs individually using the download links"
+    ],
+    benefits: [
+      "Convert images (JPG, JPEG, PNG, WEBP, GIF, BMP, TIFF) to PDF",
+      "Batch processing for multiple images at once",
+      "High-quality conversion using Sharp library",
+      "Preserves original image quality in PDF",
+      "Real-time status updates and progress tracking",
+      "Free to use with no registration required",
+      "Secure processing - files never leave your browser"
+    ],
+    faqs: [
+      { question: "What image formats are supported?", answer: "JPG, JPEG, PNG, WEBP, GIF, BMP, and TIFF formats are supported. All common image formats can be converted to PDF." },
+      { question: "How does the conversion work?", answer: "Conversion happens using the Sharp library for high-quality image processing. Your images are converted to PDF pages while maintaining original quality." },
+      { question: "Can I convert multiple images at once?", answer: "Yes, you can upload multiple images and convert them all in one batch. Each image becomes a separate PDF page." },
+      { question: "Will the image quality be preserved?", answer: "Yes, our converter maintains the original image quality in the PDF output. Images are converted without compression or quality loss." },
+      { question: "Is my data secure when using this tool?", answer: "Yes, all processing happens in your browser. Your images are never uploaded to any server." },
+      { question: "What happens to the converted PDFs?", answer: "Each converted PDF is available for download immediately after conversion. The PDFs are generated in your browser." }
+    ],
+    category: "PDF Tools",
+    relatedTools: ["pdf-to-image", "merge-pdf", "compress-pdf", "image-compressor"]
+  },
   "doc-to-pdf": {
     whatIs: "The Doc to PDF Converter is a powerful online tool that allows you to convert various document and image formats to PDF instantly. This tool supports JPG, PNG images for direct embedding into PDF pages, and TXT, HTML, RTF text files with automatic wrapping and pagination. Using pdf-lib for in-browser conversion, the tool provides fast, secure processing without requiring server-side uploads for supported formats. For DOCX, PPTX, XLSX files, the tool clearly indicates that server-side conversion is needed. Perfect for creating PDFs from images, converting text documents, or preparing files for sharing and printing.",
     howToUse: [

@@ -2,8 +2,6 @@
 
 import { useState } from "react"
 import { Upload, Download, FileText as FileIcon, X } from "lucide-react"
-import { PDFDocument, rgb, StandardFonts } from "pdf-lib"
-import mammoth from "mammoth"
 import Link from "next/link"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
@@ -23,106 +21,27 @@ export default function DocToPdf() {
     setFiles(prev => prev.filter((_, i) => i !== index))
   }
 
-  const imgToPdf = async (file: File): Promise<Blob> => {
-    const buf = await file.arrayBuffer()
-    const doc = await PDFDocument.create()
-    const isJpg = ['jpg', 'jpeg'].includes(file.name.split('.').pop()?.toLowerCase() || '')
-    const img = isJpg ? await doc.embedJpg(buf) : await doc.embedPng(buf)
-    const page = doc.addPage([img.width, img.height])
-    page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height })
-    const pdfBytes = await doc.save()
-    const buffer = new Uint8Array(pdfBytes).buffer
-    return new Blob([buffer], { type: 'application/pdf' })
-  }
+  const convertFile = async (file: File): Promise<{ url: string; error?: string }> => {
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('target', 'pdf')
 
-  const textToPdf = async (file: File): Promise<Blob> => {
-    const text = await file.text()
-    const doc = await PDFDocument.create()
-    const font = await doc.embedFont(StandardFonts.Helvetica)
-    const W = 595.28, H = 841.89, M = 50, FS = 11, LH = 15
-    let page = doc.addPage([W, H]), y = H - M
+    try {
+      const response = await fetch('/api/convert', {
+        method: 'POST',
+        body: formData,
+      })
 
-    const wrapLine = (text: string, font: any, size: number, maxW: number): string[] => {
-      if (!text.trim()) return ['']
-      const words = text.split(' ')
-      const lines: string[] = []
-      let cur = ''
-      for (const w of words) {
-        const test = cur ? cur + ' ' + w : w
-        if (font.widthOfTextAtSize(test, size) > maxW) {
-          if (cur) lines.push(cur)
-          cur = w
-        } else {
-          cur = test
-        }
+      if (!response.ok) {
+        const error = await response.json()
+        return { url: '', error: error.details || error.error || 'Conversion failed' }
       }
-      if (cur) lines.push(cur)
-      return lines.length ? lines : ['']
+
+      const blob = await response.blob()
+      return { url: URL.createObjectURL(blob) }
+    } catch (error: any) {
+      return { url: '', error: error.message || 'Conversion failed' }
     }
-
-    for (const raw of text.split('\n')) {
-      for (const ln of wrapLine(raw, font, FS, W - M * 2)) {
-        if (y < M) {
-          page = doc.addPage([W, H])
-          y = H - M
-        }
-        page.drawText(ln, { x: M, y, size: FS, font, color: rgb(0, 0, 0) })
-        y -= LH
-      }
-    }
-    const pdfBytes = await doc.save()
-    const buffer = new Uint8Array(pdfBytes).buffer
-    return new Blob([buffer], { type: 'application/pdf' })
-  }
-
-  const docxToPdf = async (file: File): Promise<Blob> => {
-    const arrayBuffer = await file.arrayBuffer()
-    const result = await mammoth.extractRawText({ arrayBuffer })
-    const text = result.value
-    const doc = await PDFDocument.create()
-    const font = await doc.embedFont(StandardFonts.Helvetica)
-    const W = 595.28, H = 841.89, M = 50, FS = 11, LH = 15
-    let page = doc.addPage([W, H]), y = H - M
-
-    const wrapLine = (text: string, font: any, size: number, maxW: number): string[] => {
-      if (!text.trim()) return ['']
-      const words = text.split(' ')
-      const lines: string[] = []
-      let cur = ''
-      for (const w of words) {
-        const test = cur ? cur + ' ' + w : w
-        if (font.widthOfTextAtSize(test, size) > maxW) {
-          if (cur) lines.push(cur)
-          cur = w
-        } else {
-          cur = test
-        }
-      }
-      if (cur) lines.push(cur)
-      return lines.length ? lines : ['']
-    }
-
-    for (const raw of text.split('\n')) {
-      for (const ln of wrapLine(raw, font, FS, W - M * 2)) {
-        if (y < M) {
-          page = doc.addPage([W, H])
-          y = H - M
-        }
-        page.drawText(ln, { x: M, y, size: FS, font, color: rgb(0, 0, 0) })
-        y -= LH
-      }
-    }
-    const pdfBytes = await doc.save()
-    const buffer = new Uint8Array(pdfBytes).buffer
-    return new Blob([buffer], { type: 'application/pdf' })
-  }
-
-  const convertFile = async (file: File): Promise<Blob> => {
-    const ext = file.name.split('.').pop()?.toLowerCase()
-    if (['jpg', 'jpeg', 'png'].includes(ext || '')) return imgToPdf(file)
-    if (['txt', 'html', 'htm', 'rtf'].includes(ext || '')) return textToPdf(file)
-    if (['docx'].includes(ext || '')) return docxToPdf(file)
-    throw new Error('Unsupported file type')
   }
 
   const startConvert = async () => {
@@ -130,27 +49,14 @@ export default function DocToPdf() {
     setIsProcessing(true)
     setConvertedFiles([])
 
-    try {
-      const results = await Promise.all(
-        files.map(async (file) => {
-          try {
-            const blob = await convertFile(file)
-            return { file, url: URL.createObjectURL(blob) }
-          } catch (err) {
-            const ext = file.name.split('.').pop()?.toLowerCase()
-            const unsupported = ['doc', 'pptx', 'ppt', 'xlsx', 'xls', 'odt']
-            if (ext && unsupported.includes(ext)) {
-              return { file, url: '', error: 'Requires server-side conversion' }
-            }
-            return { file, url: '', error: 'Unsupported file type' }
-          }
-        })
-      )
-      setConvertedFiles(results)
-    } catch (error) {
-      console.error('Conversion error:', error)
-    }
+    const results = await Promise.all(
+      files.map(async (file) => {
+        const result = await convertFile(file)
+        return { file, ...result }
+      })
+    )
 
+    setConvertedFiles(results)
     setIsProcessing(false)
   }
 
@@ -160,13 +66,13 @@ export default function DocToPdf() {
     convertedFiles.forEach(cf => URL.revokeObjectURL(cf.url))
   }
 
-  const toolContent = getToolContent("doc-to-pdf")
+  const toolContent = getToolContent("img-to-pdf")
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] py-10 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-3 text-center text-white">Doc to PDF Converter</h1>
-        <p className="text-gray-400 text-base text-center mb-8">Convert images and text files to PDF instantly in your browser</p>
+        <h1 className="text-3xl font-bold mb-3 text-center text-white">Image to PDF Converter</h1>
+        <p className="text-gray-400 text-base text-center mb-8">Convert images to PDF instantly in your browser</p>
 
         {/* Ad below tool title */}
         <div className="ad-slot mb-8" style={{width: '100%', minHeight: '90px', background: '#f5f5f5', border: '1px dashed #ccc', textAlign: 'center', padding: '10px', margin: '16px 0', fontSize: '12px', color: '#999'}}>
@@ -188,7 +94,7 @@ export default function DocToPdf() {
               <label htmlFor="file-upload" className="cursor-pointer">
                 <Upload className="h-12 w-12 mx-auto mb-4 text-gray-400" />
                 <p className="text-gray-400">Click to upload or drag and drop</p>
-                <p className="text-sm text-gray-500 mt-2">Supports: JPG, PNG, TXT, HTML, RTF, DOCX</p>
+                <p className="text-sm text-gray-500 mt-2">Supports: JPG, JPEG, PNG, WEBP, GIF, BMP, TIFF</p>
               </label>
             </div>
           </div>
@@ -272,8 +178,8 @@ export default function DocToPdf() {
             Advertisement
           </div>
         </div>
-        <ToolContent content={toolContent} toolName="Doc to PDF Converter Online Free" toolPath="/tools/doc-to-pdf" />
-        <RelatedTools currentToolPath="/tools/doc-to-pdf" currentCategory={toolContent.category} />
+        <ToolContent content={toolContent} toolName="Image to PDF Converter Online Free" toolPath="/tools/img-to-pdf" />
+        <RelatedTools currentToolPath="/tools/img-to-pdf" currentCategory={toolContent.category} />
 
         <Link
           href="/"

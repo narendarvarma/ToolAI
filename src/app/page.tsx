@@ -34,7 +34,7 @@ const jsonLd = {
 
 const tools = [
   // PDF Tools
-  { name: "Doc to PDF", path: "/tools/doc-to-pdf", icon: FileText, category: "PDF Tools", description: "Convert JPG, PNG, TXT, HTML and RTF files to PDF instantly in your browser", isNew: false },
+  { name: "Image to PDF", path: "/tools/img-to-pdf", icon: ImageIcon, category: "PDF Tools", description: "Convert JPG, PNG, WEBP, GIF, BMP and TIFF images to PDF instantly", isNew: false },
   { name: "PDF to Image", path: "/tools/pdf-to-image", icon: ImageIcon, category: "PDF Tools", description: "Extract and convert any PDF page to high quality JPG or PNG image", isNew: false },
   { name: "Merge PDF", path: "/tools/merge-pdf", icon: FileText, category: "PDF Tools", description: "Combine multiple PDF files into one document quickly and easily", isNew: false },
   { name: "Split PDF", path: "/tools/split-pdf", icon: Scissors, category: "PDF Tools", description: "Split PDF into separate files by pages or ranges instantly", isNew: false },
