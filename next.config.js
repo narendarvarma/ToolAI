@@ -18,7 +18,7 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://adservice.google.com https://cdn.jsdelivr.net https://pl29888573.effectivecpmnetwork.com https://pl29888574.effectivecpmnetwork.com https://www.highperformanceformat.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://adservice.google.com https://cdn.jsdelivr.net https://pl29888573.effectivecpmnetwork.com https://pl29888574.effectivecpmnetwork.com https://www.highperformanceformat.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://www.google.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net",
               "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net",
               "frame-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.effectivecpmnetwork.com https://www.highperformanceformat.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://www.google.com",
