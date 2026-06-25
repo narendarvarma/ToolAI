@@ -2,18 +2,18 @@
 
 import { useEffect } from "react";
 
-export default function MonetagMultiTag() {
+export default function MonetagInPagePush() {
   useEffect(() => {
     const existing = document.querySelector(
-      'script[src="https://quge5.com/88/tag.min.js"]'
+      'script[data-zone="11200306"]'
     );
 
     if (existing) return;
 
     const script = document.createElement("script");
-    script.src = "https://quge5.com/88/tag.min.js";
+    script.src = "https://nap5k.com/tag.min.js";
     script.async = true;
-    script.setAttribute("data-zone", "253440");
+    script.setAttribute("data-zone", "11200306");
     script.setAttribute("data-cfasync", "false");
 
     document.body.appendChild(script);

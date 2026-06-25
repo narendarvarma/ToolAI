@@ -5,7 +5,7 @@ import dynamic from "next/dynamic"
 import { BASE_URL } from "@/lib/config"
 import Script from "next/script"
 import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from "@/components/structured-data"
-import MonetagMultiTag from "@/components/ads/MonetagMultiTag";
+import MonetagInPagePush from "@/components/ads/MonetagInPagePush";
 const Navbar = dynamic(() => import("@/components/navbar"), { ssr: false })
 const Footer = dynamic(() => import("@/components/footer"), { ssr: false })
 const CookieBanner = dynamic(() => import("@/components/cookie-banner"), { ssr: false })
@@ -136,7 +136,7 @@ export default function RootLayout({
        {/* <SocialBar /> */}
         <StructuredData type="Organization" data={generateOrganizationSchema()} />
         <StructuredData type="WebSite" data={generateWebSiteSchema(BASE_URL)} />
-      <MonetagMultiTag />
+      <MonetagInPagePush />
       </body>
     </html>
   )

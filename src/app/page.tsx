@@ -5,7 +5,6 @@ import Link from "next/link"
 import { Search, ArrowRight, Sparkles, Clock, Heart, Star, MessageCircle } from "lucide-react"
 import AdSlot from "@/components/ad-slot"
 import AdSenseDisclosure from "@/components/adsense-disclosure"
-import NativeBanner from "@/components/ads/NativeBanner"
 import { motion } from "framer-motion"
 import {
   Calculator, Calendar, FileText, Image as ImageIcon, Mic, Lock, Share2,
@@ -274,7 +273,6 @@ export default function Home() {
       </motion.section>
 
       {/* Native Banner Ad - After Hero Section */}
-      <NativeBanner />
 
       {/* Search Bar between hero and ad slot */}
       <motion.div 
