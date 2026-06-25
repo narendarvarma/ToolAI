@@ -5,12 +5,12 @@ import dynamic from "next/dynamic"
 import { BASE_URL } from "@/lib/config"
 import Script from "next/script"
 import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from "@/components/structured-data"
-import MonetagInPagePush from "@/components/ads/MonetagInPagePush";
+import MonetagMultiTag from "@/components/ads/MonetagMultiTag";
 const Navbar = dynamic(() => import("@/components/navbar"), { ssr: false })
 const Footer = dynamic(() => import("@/components/footer"), { ssr: false })
 const CookieBanner = dynamic(() => import("@/components/cookie-banner"), { ssr: false })
 const DailyLimitPopup = dynamic(() => import("@/components/daily-limit-popup"), { ssr: false })
-const SocialBar = dynamic(() => import("@/components/ads/SocialBar"), { ssr: false })
+// const SocialBar = dynamic(() => import("@/components/ads/SocialBar"), { ssr: false })
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
@@ -69,7 +69,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="google-adsense-account" content="ca-pub-8360124149016637" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8360124149016637" crossOrigin="anonymous"></script>
+        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8360124149016637" crossOrigin="anonymous"></script> */}
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
@@ -133,10 +133,10 @@ export default function RootLayout({
         <Footer />
         <CookieBanner />
         <DailyLimitPopup />
-        <SocialBar />
+       {/* <SocialBar /> */}
         <StructuredData type="Organization" data={generateOrganizationSchema()} />
         <StructuredData type="WebSite" data={generateWebSiteSchema(BASE_URL)} />
-      <MonetagInPagePush />
+      <MonetagMultiTag />
       </body>
     </html>
   )
