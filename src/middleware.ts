@@ -8,12 +8,12 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Frame-Options', 'SAMEORIGIN')
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
   response.headers.set('X-Content-Type-Options', 'nosniff')
-  
-  // Content Security Policy
-  response.headers.set(
-    'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://adservice.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://pagead2.googlesyndication.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://ep1.adtrafficquality.google https://adservice.google.com https://www.googletagmanager.com; frame-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com;"
-  )
+
+  // Content-Security-Policy intentionally NOT set here.
+  // It is defined once, centrally, in next.config.js's headers() function.
+  // Setting it in both places causes the browser to enforce BOTH policies
+  // simultaneously, which silently blocks anything the stricter one excludes
+  // (this was why the ad scripts were getting blocked).
 
   return response
 }

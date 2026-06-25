@@ -50,21 +50,6 @@ export default function Banner728x90() {
   return (
     <AdWrapper className="hidden md:block">
       <Script
-        id="adsterra-banner-728x90-config"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            atOptions = {
-              'key' : '645bbec6e1a27d9c36cd2c6269e52b66',
-              'format' : 'iframe',
-              'height' : 90,
-              'width' : 728,
-              'params' : {}
-            };
-          `
-        }}
-      />
-      <Script
         id="adsterra-banner-728x90-script"
         src="https://www.highperformanceformat.com/645bbec6e1a27d9c36cd2c6269e52b66/invoke.js"
         strategy="afterInteractive"

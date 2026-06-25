@@ -58,14 +58,17 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/contact"
-                className="text-gray-300 hover:text-white transition-colors text-sm relative group"
+                className="text-gray-300 hover:text-white transition-colors text-sm relative"
               >
                 Contact
-                <Link
-                  href="/admin/feedback"
-                  className="absolute -right-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#00E5FF] opacity-30 hover:opacity-100 transition-opacity cursor-pointer"
-                  title="Admin"
-                />
+              </Link>
+              <Link
+                href="/admin/feedback"
+                className="text-gray-300 hover:text-white transition-colors text-sm relative"
+                title="Admin"
+              >
+                <span className="absolute -left-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#00E5FF] opacity-30 hover:opacity-100 transition-opacity"></span>
+                Admin
               </Link>
               <Link
                 href="/faq"
@@ -122,14 +125,17 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/contact"
-                className="block text-gray-300 hover:text-white transition-colors py-2 relative group"
+                className="block text-gray-300 hover:text-white transition-colors py-2 relative"
               >
                 Contact
-                <Link
-                  href="/admin/feedback"
-                  className="absolute -right-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#00E5FF] opacity-30 hover:opacity-100 transition-opacity cursor-pointer"
-                  title="Admin"
-                />
+              </Link>
+              <Link
+                href="/admin/feedback"
+                className="block text-gray-300 hover:text-white transition-colors py-2 relative"
+                title="Admin"
+              >
+                <span className="absolute -left-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#00E5FF] opacity-30 hover:opacity-100 transition-opacity"></span>
+                Admin
               </Link>
               <Link
                 href="/faq"
