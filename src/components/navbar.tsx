@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Search, Menu, X } from "lucide-react"
+import Banner728x90 from "./ads/Banner728x90"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -146,6 +147,9 @@ export default function Navbar() {
           </div>
         )}
       </div>
+
+      {/* 728x90 Banner - Desktop Only */}
+      <Banner728x90 />
     </nav>
   )
 }

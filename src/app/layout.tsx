@@ -10,6 +10,7 @@ const Navbar = dynamic(() => import("@/components/navbar"), { ssr: false })
 const Footer = dynamic(() => import("@/components/footer"), { ssr: false })
 const CookieBanner = dynamic(() => import("@/components/cookie-banner"), { ssr: false })
 const DailyLimitPopup = dynamic(() => import("@/components/daily-limit-popup"), { ssr: false })
+const SocialBar = dynamic(() => import("@/components/ads/SocialBar"), { ssr: false })
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
@@ -132,6 +133,7 @@ export default function RootLayout({
         <Footer />
         <CookieBanner />
         <DailyLimitPopup />
+        <SocialBar />
         <StructuredData type="Organization" data={generateOrganizationSchema()} />
         <StructuredData type="WebSite" data={generateWebSiteSchema(BASE_URL)} />
       </body>
