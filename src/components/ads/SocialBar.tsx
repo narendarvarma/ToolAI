@@ -1,13 +1,27 @@
 "use client";
 
-import Script from "next/script";
+import { useEffect, useState } from "react";
 
 export default function SocialBar() {
-  return (
-    <Script
-      id="adsterra-social-bar"
-      src="https://pl29888574.effectivecpmnetwork.com/d3/39/08/d3390841dc3e359313014541f7f58247.js"
-      strategy="afterInteractive"
-    />
-  );
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const script = document.createElement("script");
+    script.src =
+      "https://pl29888574.effectivecpmnetwork.com/d3/39/08/d3390841dc3e359313014541f7f58247.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      script.remove(); // prevent duplicate injection on HMR/remount
+    };
+  }, [mounted]);
+
+  return null;
 }
