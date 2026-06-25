@@ -52,7 +52,7 @@ export default function NativeBanner() {
       <Script
         id="adsterra-native-banner-script"
         src="https://pl29888573.effectivecpmnetwork.com/0b70b5c822a4cf26d551af68c04a9c8c/invoke.js"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         data-cfasync="false"
       />
       <div id="container-0b70b5c822a4cf26d551af68c04a9c8c" />
