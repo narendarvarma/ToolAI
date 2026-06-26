@@ -272,8 +272,7 @@ export default function Home() {
       </div>
       </motion.section>
 
-      {/* Native Banner Ad - After Hero Section */}
-
+      
       {/* Search Bar between hero and ad slot */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}

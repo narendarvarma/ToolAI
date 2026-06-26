@@ -5,7 +5,6 @@ import { Upload, Download, FileText as FileIcon, X } from "lucide-react"
 import Link from "next/link"
 import ToolContent from "@/components/tool-content"
 import RelatedTools from "@/components/related-tools"
-import NativeBanner from "@/components/ads/NativeBanner"
 import { getToolContent } from "@/lib/tool-content"
 
 export default function DocToPdf() {
@@ -74,10 +73,6 @@ export default function DocToPdf() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-3 text-center text-white">Image to PDF Converter</h1>
         <p className="text-gray-400 text-base text-center mb-8">Convert images to PDF instantly in your browser</p>
-
-        {/* Native Banner Ad - After Tool Title */}
-        <NativeBanner />
-        
         <div className="bg-[#111827] rounded-2xl p-6 shadow-lg border border-white/8">
           {/* Upload Area */}
           <div className="mb-6">
@@ -169,11 +164,7 @@ export default function DocToPdf() {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Native Banner Ad - After Main Content */}
-        <NativeBanner />
-
+        </div>   
         <ToolContent content={toolContent} toolName="Image to PDF Converter Online Free" toolPath="/tools/img-to-pdf" />
         <RelatedTools currentToolPath="/tools/img-to-pdf" currentCategory={toolContent.category} />
 
